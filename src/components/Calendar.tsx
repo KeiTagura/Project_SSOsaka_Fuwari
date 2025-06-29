@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import resourceTimeGridPlugin  from "@fullcalendar/resource-timegrid";
 import jaLocale from "@fullcalendar/core/locales/ja";
+import multiMonthPlugin from '@fullcalendar/multimonth'
 
 import "@fullcalendar/daygrid";
 
@@ -67,15 +69,15 @@ export default function Calendar() {
   return (
     <div className="demo-app-main">
       <FullCalendar
-        plugins={[dayGridPlugin]}
-        initialView="dayGridMonth"
+        plugins={[multiMonthPlugin ]}
+        initialView="multiMonthYear"
         locale={jaLocale}
         events={events}
         dayCellContent={renderDayCellContent}
         headerToolbar={{
           left: "",
           center: "title",
-          right: "",
+          right: "today prev,next",
         }}
         height="55vh"
         businessHours={true}
@@ -87,6 +89,7 @@ export default function Calendar() {
           minute: "2-digit",
           meridiem: false,
         }}
+  		
       />
     </div>
   );
