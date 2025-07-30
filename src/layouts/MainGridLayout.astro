@@ -79,14 +79,16 @@ const mainPanelTop = siteConfig.banner.enable
                 </Icon>
             </a>}
 
-
+<!-- 
             <SideBar class="mb-4 row-start-2 row-end-3 col-span-2 lg:row-start-1 lg:row-end-2 lg:col-span-1 lg:max-w-[17.5rem] onload-animation" headings={headings}></SideBar>
-
-            <main id="swup-container" class="transition-swup-fade col-span-2 lg:col-span-1 overflow-hidden">
-                <div id="content-wrapper" class="onload-animation">
+-->
+            <main id="swup-container" class="transition-swup-fade col-span-2 lg:col-span-2 overflow-hidden">
+                <div id="content-wrapper" class="onload-animation  card-base" style="background-color: red;" >
                     <!-- the overflow-hidden here prevent long text break the layout-->
                     <!-- make id different from windows.swup global property -->
-                    <slot></slot>
+                    <slot ></slot>
+
+                     <slot ></slot>
                     <div class="footer col-span-2 onload-animation hidden lg:block">
                         <Footer></Footer>
                     </div>
