@@ -1,15 +1,22 @@
 ---
 import "@fontsource-variable/jetbrains-mono";
 import "@fontsource-variable/jetbrains-mono/wght-italic.css";
+import { Fragment } from "astro/jsx-runtime";
 
 interface Props {
 	class: string;
+    content?: string; // add this prop
 }
 const className = Astro.props.class;
+const content = Astro.props.content;
 ---
 <div data-pagefind-body class={`prose dark:prose-invert prose-base !max-w-none custom-md ${className}`}>
     <!--<div class="prose dark:prose-invert max-w-none custom-md">-->
-    <!--<div class="max-w-none custom-md">-->
+    <!--<div class="max-w-none custom-md">--> {content ? (
+    <Fragment set:html={content} />
+  ) : (
+    <slot />
+  )}
     <slot/>
 </div>
 

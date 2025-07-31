@@ -5,19 +5,50 @@ import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { getSortedPosts } from "../utils/content-utils";
+import { getEntryBySlug } from "astro:content";
+import PostFeatured from "@components/PostFeatured.astro";
+
+import PostCard from "../components/PostCard.astro";
+import { getCollection } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+
+const posts = await getCollection("posts");
+
+const featuredPost = await getEntryBySlug("posts", "guide"); // or whatever the slug is
+//let featuredPost = posts.find(p => p.data.featured);
+if (!featuredPost) {
+  posts.sort((a, b) => new Date(b.data.published).getTime() - new Date(a.data.published).getTime());
+  featuredPost = posts[0];
+}
+//const remainingPostsForRender = posts.filter(post => post !== featuredPost);
 
 export const getStaticPaths = (async ({ paginate }) => {
-	const allBlogPosts = await getSortedPosts();
-	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
+    const allBlogPosts = await getSortedPosts();
+  return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 // https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
 const { page } = Astro.props;
 
 const len = page.data.length;
+
+console.log(posts.map(p => [p.slug, p.data.featured]));
 ---
 
 <MainGridLayout>
+
+    
+  <!-- ✅ Featured post -->
+  <div class="featured-post mb-8 p-6 rounded-lg bg-[var(--card-bg)]">
+  <PostFeatured post={featuredPost} />
+    <!--  <h2 class="text-2xl font-bold mb-2">{featuredPost.data.title}</h2>
+    <p class="text-sm text-gray-500 mb-4">{featuredPost.data.published}</p>
+    <Markdown content={featuredPost.body} />-->
+  </div>
+
+
+
+
     <PostPage page={page}></PostPage>
     <Pagination class="mx-auto onload-animation" page={page} style={`animation-delay: calc(var(--content-delay) + ${(len)*50}ms)`}></Pagination>
 </MainGridLayout>
