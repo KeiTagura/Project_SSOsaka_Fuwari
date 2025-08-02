@@ -198,6 +198,9 @@ const bannerOffset =
 	.navbar-hidden {
 		@apply opacity-0 -translate-y-16
 	}
+	.title-hidden {
+		@apply opacity-0  -translate-y-4;
+	}
 
 }
 </style>
@@ -405,12 +408,23 @@ const setup = () => {
 		}
 		let threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16
 		let navbar = document.getElementById('navbar-wrapper')
+		let title = document.getElementById('title-wrapper');
+
+		if (!document.body.classList.contains('lg:is-home')) 
+		{
+			if(title)
+				{
+					title.classList.add('title-hidden')
+				}
+		}
+
 		if (!navbar || !document.body.classList.contains('lg:is-home')) {
 			return
 		}
 		if (document.body.scrollTop >= threshold || document.documentElement.scrollTop >= threshold) {
 			navbar.classList.add('navbar-hidden')
 		}
+		
 	})
 	window.swup.hooks.on('content:replace', initCustomScrollbar)
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
@@ -464,7 +478,9 @@ if (window?.swup?.hooks) {
 
 let backToTopBtn = document.getElementById('back-to-top-btn');
 let toc = document.getElementById('toc-wrapper');
-let navbar = document.getElementById('navbar-wrapper')
+let navbar = document.getElementById('navbar-wrapper');
+let title = document.getElementById('title-wrapper');
+
 function scrollFunction() {
 	let bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
 
@@ -494,6 +510,21 @@ function scrollFunction() {
 			bannerHeight = BANNER_HEIGHT_HOME
 		}
 		let threshold = window.innerHeight * (bannerHeight / 100) - NAVBAR_HEIGHT - MAIN_PANEL_EXCESS_HEIGHT - 16
+		let thresholdTitle = window.innerHeight * (bannerHeight / 100) - NAVBAR_HEIGHT - MAIN_PANEL_EXCESS_HEIGHT - 16
+		
+		console.log(thresholdTitle + " " + document.documentElement.scrollTop + " " + document.body.scrollTop);
+		if(title)
+			{
+					if (document.body.scrollTop* 2.5 >= thresholdTitle || document.documentElement.scrollTop* 2.5 >= thresholdTitle) {
+						title.classList.add('title-hidden')
+					} else {
+						title.classList.remove('title-hidden')
+					}
+			}
+			else
+			{
+				
+			}
 		if (document.body.scrollTop >= threshold || document.documentElement.scrollTop >= threshold) {
 			navbar.classList.add('navbar-hidden')
 		} else {
