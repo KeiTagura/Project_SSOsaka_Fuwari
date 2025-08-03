@@ -5,7 +5,12 @@ import resourceTimeGridPlugin  from "@fullcalendar/resource-timegrid";
 import jaLocale from "@fullcalendar/core/locales/ja";
 import multiMonthPlugin from '@fullcalendar/multimonth'
 
+import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+
+
 import "@fullcalendar/daygrid";
+
+
 
 interface Event {
   title: string;
@@ -69,10 +74,15 @@ export default function Calendar() {
   return (
     <div className="demo-app-main">
       <FullCalendar
-        plugins={[multiMonthPlugin ]}
+        plugins={[bootstrap5Plugin, multiMonthPlugin]}
+        themeSystem="bootstrap5"
         initialView="multiMonthYear"
         locale={jaLocale}
         events={events}
+        eventClassNames={(arg) => {
+        return arg.event.allDay ? 'bg-info text-red' : 'bg-success text-blue';
+        }}
+       // eventclassNames={() => 'bg-danger text-white'}  // Bootstrap classes
         dayCellContent={renderDayCellContent}
         headerToolbar={{
           left: "",
