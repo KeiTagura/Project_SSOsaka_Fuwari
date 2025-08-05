@@ -398,6 +398,7 @@ const setup = () => {
 		}
 	})
 */
+console.log("setup");
 	window.swup.hooks.on('link:click', () => {
 		// Remove the delay for the first time page load
 		document.documentElement.style.setProperty('--content-delay', '0ms')
@@ -408,15 +409,7 @@ const setup = () => {
 		}
 		let threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16
 		let navbar = document.getElementById('navbar-wrapper')
-		let title = document.getElementById('title-wrapper');
 
-		if (!document.body.classList.contains('lg:is-home')) 
-		{
-			if(title)
-				{
-					title.classList.add('title-hidden')
-				}
-		}
 
 		if (!navbar || !document.body.classList.contains('lg:is-home')) {
 			return
@@ -512,7 +505,6 @@ function scrollFunction() {
 		let threshold = window.innerHeight * (bannerHeight / 100) - NAVBAR_HEIGHT - MAIN_PANEL_EXCESS_HEIGHT - 16
 		let thresholdTitle = window.innerHeight * (bannerHeight / 100) - NAVBAR_HEIGHT - MAIN_PANEL_EXCESS_HEIGHT - 16
 		
-		console.log(thresholdTitle + " " + document.documentElement.scrollTop + " " + document.body.scrollTop);
 		if(title)
 			{
 					if (document.body.scrollTop* 2.5 >= thresholdTitle || document.documentElement.scrollTop* 2.5 >= thresholdTitle) {
@@ -539,6 +531,9 @@ window.onresize = () => {
 	let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
 	offset = offset - offset % 4;
 	document.documentElement.style.setProperty('--banner-height-extend', `${offset}px`);
+
+
+
 }
 
 </script>
@@ -596,6 +591,7 @@ const setup = () => {
 		},
 		{ before: true },
 	)
+
 }
 
 if (window.swup) {
@@ -604,3 +600,5 @@ if (window.swup) {
 	document.addEventListener("swup:enable", setup)
 }
 </script>
+
+
