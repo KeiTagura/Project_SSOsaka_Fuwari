@@ -199,7 +199,7 @@ const bannerOffset =
 		@apply opacity-0 -translate-y-16
 	}
 	.title-hidden {
-		@apply opacity-0  -translate-y-4;
+		@apply opacity-0  -translate-y-2;
 	}
 
 }
@@ -268,6 +268,17 @@ function disableAnimation() {
 */
 
 const bannerEnabled = !!document.getElementById('banner-wrapper')
+
+let nextIsHome = false;
+const isHomePath = (href) => {
+  try {
+    const target = new URL(href, window.location.origin).pathname;
+    return pathsEqual(target, url('/'));
+  } catch {
+    return false;
+  }
+};
+const getTitleWrapper = () => document.getElementById('title-wrapper');
 
 function setClickOutsideToClose(panel: string, ignores: string[]) {
 	document.addEventListener("click", event => {
@@ -376,6 +387,25 @@ function showBanner() {
 
 function init() {
 	// disableAnimation()()		// TODO
+
+  // show on first load if current page is home
+  if (document.body.classList.contains('lg:is-home')) {
+    document.getElementById('title-wrapper')?.classList.remove('opacity-0', 'title-hidden');
+  } else {
+    document.getElementById('title-wrapper')?.classList.add('title-hidden');
+  }
+
+  window.swup?.hooks?.on('animation:in:end', () => {
+    // fade in only on home after the new page is in
+    if (document.body.classList.contains('lg:is-home')) {
+      document.getElementById('title-wrapper')?.classList.remove('title-hidden', 'opacity-0');
+    }
+  });
+
+  window.swup?.hooks?.on('animation:out:start', () => {
+  document.getElementById('title-wrapper')?.classList.add('title-hidden'); // triggers fade-out
+});
+
 	loadTheme();
 	loadHue();
 	initCustomScrollbar();
@@ -399,6 +429,29 @@ const setup = () => {
 	})
 */
 console.log("setup");
+
+
+window.swup.hooks.on('visit:start', (visit) => {
+  nextIsHome = isHomePath(visit.to.url);
+  const body = document.querySelector('body');
+  if (nextIsHome) body?.classList.add('lg:is-home');
+  else body?.classList.remove('lg:is-home');
+
+  if (!nextIsHome) getTitleWrapper()?.classList.add('title-hidden');
+});
+
+window.swup.hooks.on('content:replace', () => {
+  if (!nextIsHome) getTitleWrapper()?.classList.add('title-hidden');
+  else getTitleWrapper()?.classList.add('title-hidden');
+});
+
+window.swup.hooks.on('animation:in:end', () => {
+  if (nextIsHome) requestAnimationFrame(() => {
+    getTitleWrapper()?.classList.remove('title-hidden');
+  });
+});
+
+
 	window.swup.hooks.on('link:click', () => {
 		// Remove the delay for the first time page load
 		document.documentElement.style.setProperty('--content-delay', '0ms')
@@ -505,8 +558,17 @@ function scrollFunction() {
 		let threshold = window.innerHeight * (bannerHeight / 100) - NAVBAR_HEIGHT - MAIN_PANEL_EXCESS_HEIGHT - 16
 		let thresholdTitle = window.innerHeight * (bannerHeight / 100) - NAVBAR_HEIGHT - MAIN_PANEL_EXCESS_HEIGHT - 16
 		
+
+
+		if (!document.body.classList.contains('lg:is-home')) {
+		title?.classList.add('title-hidden')
+		return
+		}
+
+
 		if(title)
 			{
+
 					if (document.body.scrollTop* 2.5 >= thresholdTitle || document.documentElement.scrollTop* 2.5 >= thresholdTitle) {
 						title.classList.add('title-hidden')
 					} else {
@@ -544,6 +606,8 @@ import "photoswipe/style.css"
 
 let lightbox: PhotoSwipeLightbox
 let pswp = import("photoswipe")
+
+
 
 function createPhotoSwipe() {
 	lightbox = new PhotoSwipeLightbox({
