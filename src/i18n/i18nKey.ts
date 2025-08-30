@@ -2,8 +2,13 @@ enum I18nKey {
 	home = "home",
 	about = "about",
 	archive = "archive",
+	event = "event",
 	events = "events",
 	search = "search",
+
+	past = "previous",
+	upcoming = "upcoming",
+	today = "today",
 
 	tags = "tags",
 	categories = "categories",
@@ -21,6 +26,7 @@ enum I18nKey {
 	minutesCount = "minutesCount",
 	postCount = "postCount",
 	postsCount = "postsCount",
+
 
 	themeColor = "themeColor",
 

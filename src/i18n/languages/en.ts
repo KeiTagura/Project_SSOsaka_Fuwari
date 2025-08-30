@@ -6,7 +6,15 @@ export const en: Translation = {
 	[Key.about]: "About",
 	[Key.archive]: "Archive",
 	[Key.search]: "Search",
+	[Key.event]: "Event",
 	[Key.events]: "Events",
+
+	
+
+	[Key.past]: "previous",
+	[Key.upcoming]: "upcoming",
+	[Key.today]: "today",
+
 
 	[Key.tags]: "Tags",
 	[Key.categories]: "Categories",

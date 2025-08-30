@@ -53,12 +53,29 @@ const imageStyle = `object-position: ${position}`;
 <div id="title-wrapper"
      class="absolute inset-0 z-20 flex items-center justify-center
             pointer-events-none
-            transition-opacity duration-[600ms] ease-in-out
-            opacity-0">
+            opacity-0 transition-opacity duration-700 ease-out">
+  <!-- your #title / #titleText content -->
+
+  <!-- Full width background container -->
   <div id="title"
-       class="text-white text-4xl md:text-6xl font-bold drop-shadow-lg pointer-events-auto">
-    SS Osaka
+       style="background-color: rgba(0, 0, 0, 0.479); width: 100%; padding: 2vh ;"
+       class="flex justify-center">
+       
+    <!-- Text container -->
+    <div id="titleText"
+         class="relative font-maniac font-bold text-6xl md:text-9xl leading-none text-amber-500 drop-shadow-lg">
+      SS Osaka
+
+      <!-- Subtitle aligned to left edge of titleText -->
+      <div id="subtitle"
+		   
+           class=" -mt-[2px] md:-mt-4 absolute right-0 top-full mt-1 font-sans text-lg md:text-2xl leading-tight text-amber-500">
+        テスト
+      </div>
+    </div>
+
   </div>
+
 </div>
 	
     {isLocal && img && <Image src={img} alt={alt || ""} class={imageClass} style={imageStyle}/>}

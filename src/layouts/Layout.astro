@@ -280,6 +280,41 @@ const isHomePath = (href) => {
 };
 const getTitleWrapper = () => document.getElementById('title-wrapper');
 
+
+
+  function fadeInTitleOnce() {
+    const title = document.getElementById('title-wrapper');
+    if (!title) return;
+
+    // Only on homepage
+    const onHome = document.body.classList.contains('lg:is-home');
+    if (!onHome) return;
+
+    // Respect reduced motion
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      title.classList.remove('opacity-0', 'title-hidden');
+      return;
+    }
+
+    // Only once per session; change to localStorage if you want “once forever”
+    if (sessionStorage.getItem('ssOsakaShown') === '1') {
+      // If we’ve shown it already, make sure it’s visible (no fade)
+      title.classList.remove('opacity-0', 'title-hidden');
+      return;
+    }
+
+    // Let the browser paint once, then remove opacity so the transition runs
+    requestAnimationFrame(() => {
+      // small delay improves reliability across browsers
+      setTimeout(() => {
+        title.classList.remove('opacity-0', 'title-hidden');
+        sessionStorage.setItem('ssOsakaShown', '1');
+      }, 50);
+    });
+  }
+
+
 function setClickOutsideToClose(panel: string, ignores: string[]) {
 	document.addEventListener("click", event => {
 		let panelDom = document.getElementById(panel);
@@ -410,6 +445,8 @@ function init() {
 	loadHue();
 	initCustomScrollbar();
 	showBanner();
+
+	fadeInTitleOnce();
 }
 
 /* Load settings when entering the site */

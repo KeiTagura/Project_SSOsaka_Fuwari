@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "ColorBasic";
+  src: url("/public/fonts/color-basic/Color Basic.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maniac";
+  src: url("/public/fonts/maniac/Maniac-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

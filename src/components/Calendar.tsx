@@ -75,7 +75,7 @@ export default function Calendar() {
     <div className="demo-app-main">
       <FullCalendar
         plugins={[bootstrap5Plugin, multiMonthPlugin]}
-        themeSystem="bootstrap5"
+        themeSystem=""
         initialView="multiMonthYear"
         locale={jaLocale}
         events={events}
