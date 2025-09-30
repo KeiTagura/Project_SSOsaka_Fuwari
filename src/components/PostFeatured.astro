@@ -43,7 +43,9 @@ if (imageUrl?.startsWith(".")) {
 
     <!-- Image -->
     {imageUrl && (
-      <img src={imageUrl} alt={post.data.title} class="mb-8 rounded-xl banner-container" />
+      <div class="img-boarder">
+        <img src={imageUrl} alt={post.data.title} class="mb-8 rounded-xl banner-container" />
+      </div>
     )}
 
     <!-- Markdown content -->
