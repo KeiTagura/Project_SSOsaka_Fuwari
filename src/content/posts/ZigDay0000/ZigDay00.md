@@ -1,12 +1,12 @@
 ---
-title: Simple Guides for Fuwari
-published: 2024-04-01
-description: "How to use this blog template."
-image: "./cover.jpeg"
+title: ZigDay
+published: 2025-10-01
+description: "The day of the zig"
+image: "./ZigDay_00.jpg"
 tags: ["Fuwari", "Blogging", "Customization"]
 category: Guides
 draft: false
-featured: false
+featured: true
 ---
 
 > Cover image source: [Source](https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/208fc754-890d-4adb-9753-2c963332675d/width=2048/01651-1456859105-(colour_1.5),girl,_Blue,yellow,green,cyan,purple,red,pink,_best,8k,UHD,masterpiece,male%20focus,%201boy,gloves,%20ponytail,%20long%20hair,.jpeg)
@@ -17,13 +17,14 @@ This blog template is built with [Astro](https://astro.build/). For the things t
 
 ```yaml
 ---
-title: My First Blog Post
-published: 2023-09-09
-description: This is the first post of my new Astro blog.
-image: ./cover.jpeg
-tags: [Foo, Bar]
-category: Front-end
+title: ZigDay
+published: 2025-10-01
+description: "The day of the zig"
+image: "./cover.jpeg"
+tags: ["Fuwari", "Blogging", "Customization"]
+category: Guides
 draft: false
+featured: true
 ---
 ```
 
@@ -35,7 +36,7 @@ draft: false
 | `image`       | The cover image path of the post.<br/>1. Start with `http://` or `https://`: Use web image<br/>2. Start with `/`: For image in `public` dir<br/>3. With none of the prefixes: Relative to the markdown file |
 | `tags`        | The tags of the post.                                                                                                                                                                                       |
 | `category`    | The category of the post.                                                                                                                                                                                   |
-| `draft`       | If this post is still a draft, which won't be displayed.                                                                                                                                                    |
+| `draft`        | If this post is still a draft, which won't be displayed.                                                                                                                                                    |
 
 ## Where to Place the Post Files
 
