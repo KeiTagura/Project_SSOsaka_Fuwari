@@ -60,7 +60,7 @@ const imageStyle = `object-position: ${position}`;
   <div id="title"
        style="background-color: rgba(0, 0, 0, 0.479); width: 100%; padding: 2vh ;"
        class="flex justify-center">
-       
+
     <!-- Text container -->
     <div id="titleText"
          class="relative font-maniac font-bold text-6xl md:text-9xl leading-none text-amber-500 drop-shadow-lg">
@@ -72,11 +72,17 @@ const imageStyle = `object-position: ${position}`;
            class=" -mt-[2px] md:-mt-4 absolute right-0 top-full mt-1 font-sans text-lg md:text-2xl leading-tight text-amber-500">
         SS オオサカ
       </div>
+      </div>
+ 
     </div>
 
   </div>
 
-</div>
+	</div>
+
+
+
+
 	
     {isLocal && img && <Image src={img} alt={alt || ""} class={imageClass} style={imageStyle}/>}
     {!isLocal && <img src={isPublic ? url(src) : src} alt={alt || ""} class={imageClass} style={imageStyle}/>}
