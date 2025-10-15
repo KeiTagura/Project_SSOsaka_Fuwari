@@ -2,7 +2,7 @@
 title: ZigDay
 published: 2025-10-01
 description: "The day of the zig"
-image: "./ZigDay_00.jpg"
+image: "./cover.jpg"
 tags: ["Fuwari", "Blogging", "Customization"]
 category: Guides
 draft: false

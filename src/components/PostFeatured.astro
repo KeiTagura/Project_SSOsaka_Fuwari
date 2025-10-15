@@ -7,21 +7,47 @@ import { Icon } from "astro-icon/components";
 
 const { post } = Astro.props;
 const { Content, data } = await post.render();
-// Resolve relative image path
-let imageUrl = post.data.image;
-if (imageUrl?.startsWith(".")) {
-  const imageMap = import.meta.glob("/src/content/posts/**/cover.*", {
-    query: "?url",
-    import: "default",
-  });
-  const imagePath = `/src/content/posts/${post.slug}/cover.jpeg`;
+// Resolve relative image path robustly
 
-  if (imageMap[imagePath]) {
-    imageUrl = await imageMap[imagePath]();
+let imageUrl = post.data.image;
+const isAbsolute = (p: string) =>
+  typeof p === "string" && (p.startsWith("/") || /^https?:\/\//.test(p));
+
+if (imageUrl && !isAbsolute(imageUrl)) {
+  // Build the REAL directory from collection + slug (don’t use post.id)
+  const collection = post.collection; // e.g. "posts"
+  const slugDir = post.slug.includes("/")
+    ? post.slug.slice(0, post.slug.lastIndexOf("/"))
+    : post.slug; // e.g. "zigday00"
+
+  const dirPath = `/src/content/${collection}/${slugDir}`; // -> "/src/content/posts/zigday00"
+
+  // Assets available under content
+  const assets = import.meta.glob(
+    "/src/content/**/*.{jpg,jpeg,png,webp,avif,gif,svg}",
+    { query: "?url", import: "default" }
+  );
+
+  // 1) Try cover.*
+  const coverKey = Object.keys(assets).find((k) => k.startsWith(`${dirPath}/cover.`));
+
+  if (coverKey) {
+    imageUrl = await (assets as Record<string, () => Promise<string>>)[coverKey]();
   } else {
-    console.warn(`Image not found for ${post.slug}: ${imagePath}`);
+    // 2) Try the exact relative filename from frontmatter (e.g., ./cover.jpg)
+    const relClean = String(imageUrl).replace(/^\.?\//, "");
+    const exactKey = `${dirPath}/${relClean}`;
+    if (exactKey in assets) {
+      imageUrl = await (assets as Record<string, () => Promise<string>>)[exactKey]();
+    } else {
+      console.warn(
+        `Image not found for ${post.slug}: tried ${dirPath}/cover.* and ${exactKey}`
+      );
+      imageUrl = undefined;
+    }
   }
 }
+
 ---
 
 <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
