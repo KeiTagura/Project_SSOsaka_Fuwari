@@ -435,6 +435,8 @@ function init() {
     if (document.body.classList.contains('lg:is-home')) {
       document.getElementById('title-wrapper')?.classList.remove('title-hidden', 'opacity-0');
     }
+    // Ensure navbar is visible after navigation completes
+    document.getElementById('navbar-wrapper')?.classList.remove('navbar-hidden');
   });
 
   window.swup?.hooks?.on('animation:out:start', () => {
@@ -598,9 +600,10 @@ function scrollFunction() {
 
 
 		if (!document.body.classList.contains('lg:is-home')) {
-		title?.classList.add('title-hidden')
-		return
-		}
+    title?.classList.add('title-hidden')
+    navbar?.classList.remove('navbar-hidden')
+    return
+    }
 
 
 		if(title)

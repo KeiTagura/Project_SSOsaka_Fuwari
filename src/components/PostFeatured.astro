@@ -48,6 +48,8 @@ if (imageUrl && !isAbsolute(imageUrl)) {
   }
 }
 
+    console.log("CHECKER");
+console.log(`Post: ${post.slug}, Image: ${post.data.image}, Resolved: ${imageUrl}, link: ${post.slug}, url: ${getPostUrlBySlug(post.slug)}`);
 ---
 
 <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
@@ -55,7 +57,7 @@ if (imageUrl && !isAbsolute(imageUrl)) {
     <!-- Optional word count section if you calculate it -->
     <!-- title -->
     <div class="relative">
-      <h1 class="text-3xl font-bold mb-3">{post.data.title}</h1>
+      <h1 class="text-3xl font-bold mb-3 text-white">{post.data.title}</h1>
     </div>
 
     <!-- metadata -->
@@ -78,32 +80,5 @@ if (imageUrl && !isAbsolute(imageUrl)) {
     <Markdown class="mb-6 markdown-content">
       <Content />
     </Markdown>
-
-    <!-- Optional: Next/Prev post buttons -->
-    <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
-      <a href={post.data.nextSlug ? getPostUrlBySlug(post.data.nextSlug) : "#"}
-         class:list={["w-full font-bold overflow-hidden active:scale-95", { "pointer-events-none": !post.data.nextSlug }]}>
-        {post.data.nextSlug && (
-          <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center justify-start gap-4">
-            <Icon name="material-symbols:chevron-left-rounded" class="text-[2rem] text-[var(--primary)]" />
-            <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
-              {post.data.nextTitle}
-            </div>
-          </div>
-        )}
-      </a>
-
-      <a href={post.data.prevSlug ? getPostUrlBySlug(post.data.prevSlug) : "#"}
-         class:list={["w-full font-bold overflow-hidden active:scale-95", { "pointer-events-none": !post.data.prevSlug }]}>
-        {post.data.prevSlug && (
-          <div class="btn-card rounded-2xl w-full h-[3.75rem] max-w-full px-4 flex items-center justify-end gap-4">
-            <div class="overflow-hidden transition overflow-ellipsis whitespace-nowrap max-w-[calc(100%_-_3rem)] text-black/75 dark:text-white/75">
-              {post.data.prevTitle}
-            </div>
-            <Icon name="material-symbols:chevron-right-rounded" class="text-[2rem] text-[var(--primary)]" />
-          </div>
-        )}
-      </a>
-    </div>
   </div>
 </div>

@@ -55,7 +55,11 @@ export const getStaticPaths = (async ({ paginate }) => {
 // https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
 const { page } = Astro.props;
-const len = page.data.length;
+// Filter out the featured post from the current page list to avoid duplication
+const pageFiltered = featuredPost
+  ? { ...page, data: page.data.filter((p) => p.slug !== featuredPost.slug) }
+  : page;
+const len = pageFiltered.data.length;
 
 
 console.log("CHECK");
@@ -70,7 +74,7 @@ console.log(posts.map(p => [p.slug, p.data.featured]));
       </div>
     )}
 
-    <PostPage page={page} ></PostPage>
+    <PostPage page={pageFiltered} ></PostPage>
       <Pagination
         class="mx-auto onload-animation"
         page={page}

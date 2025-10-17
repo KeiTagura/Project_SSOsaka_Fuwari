@@ -25,7 +25,11 @@ Create a GitHub repository card with the code `::github{repo="<owner>/<repo>"}`.
 
 Following types of admonitions are supported: `note` `tip` `important` `warning` `caution`
 
-:::note
+:::note[MY CUSTOM TIWHAAALE]
+This is a note with a custom title.
+:::
+
+:::note[MY CUSTOM TIWHAAALE]
 Highlights information that users should take into account, even when skimming.
 :::
 

@@ -63,7 +63,8 @@ const imageStyle = `object-position: ${position}`;
 
     <!-- Text container -->
     <div id="titleText"
-         class="relative font-maniac font-bold text-6xl md:text-9xl leading-none text-amber-500 drop-shadow-lg">
+         class="relative font-maniac font-bold text-6xl md:text-9xl leading-none text-amber-500 drop-shadow-lg opacity-0"
+         style="animation: titleTextFadeIn 0.7s ease-out 1.5s forwards;">
       SS Osaka
 
       <!-- Subtitle aligned to left edge of titleText -->
@@ -87,3 +88,10 @@ const imageStyle = `object-position: ${position}`;
     {isLocal && img && <Image src={img} alt={alt || ""} class={imageClass} style={imageStyle}/>}
     {!isLocal && <img src={isPublic ? url(src) : src} alt={alt || ""} class={imageClass} style={imageStyle}/>}
 </div>
+
+<style>
+@keyframes titleTextFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>

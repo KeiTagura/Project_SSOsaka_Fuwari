@@ -1,5 +1,5 @@
 ---
-title: ZigDay
+title: Zig Day
 published: 2025-10-01
 description: "The day of the zig"
 image: "./cover.jpg"
@@ -9,34 +9,54 @@ draft: false
 featured: true
 ---
 
-> Cover image source: [Source](https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/208fc754-890d-4adb-9753-2c963332675d/width=2048/01651-1456859105-(colour_1.5),girl,_Blue,yellow,green,cyan,purple,red,pink,_best,8k,UHD,masterpiece,male%20focus,%201boy,gloves,%20ponytail,%20long%20hair,.jpeg)
 
-This blog template is built with [Astro](https://astro.build/). For the things that are not mentioned in this guide, you may find the answers in the [Astro Docs](https://docs.astro.build/).
 
-## Front-matter of Posts
+
+[ZigDay](https://zig.day) is a full-day, community-driven gathering of collaborative programming and socialization to inspire you to make Software You Can Love.
+
+
+It’s a space to connect, collaborate, learn, and build together — no rigid agenda, no sales pitches, just shared energy and mutual curiosity. 
+ |
+
+
+
+
+## Rough format (were winging it?)
 
 ```yaml
 ---
-title: ZigDay
-published: 2025-10-01
-description: "The day of the zig"
-image: "./cover.jpeg"
-tags: ["Fuwari", "Blogging", "Customization"]
-category: Guides
-draft: false
-featured: true
+Call for Presenters & Contributors
+
+We welcome anyone interested in presenting or contributing something — a short talk, demo, workshop, discussion, or even just a lightning idea. Don’t worry about perfection: the goal is to share, spark conversation, and learn together.
+
+If you’d like to present, please reach out by [deadline date] with:
+
+Your name / affiliation (if any)
+
+Title or topic (tentative)
+
+Format (lightning talk, workshop, demo, discussion)
+
+Approximate time needed
+
+Any special requirements (projector, internet, etc.)
+
+We’ll schedule presentations thoughtfully so they don’t interrupt the collaborative flow.
+
+Even if you prefer not to present, you’re absolutely invited to attend, participate, and share your journey through the day.
 ---
 ```
 
-| Attribute     | Description                                                                                                                                                                                                 |
+| Time     | Activity                                                                                                                                                                                                 |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `title`       | The title of the post.                                                                                                                                                                                      |
-| `published`   | The date the post was published.                                                                                                                                                                            |
-| `description` | A short description of the post. Displayed on index page.                                                                                                                                                   |
-| `image`       | The cover image path of the post.<br/>1. Start with `http://` or `https://`: Use web image<br/>2. Start with `/`: For image in `public` dir<br/>3. With none of the prefixes: Relative to the markdown file |
-| `tags`        | The tags of the post.                                                                                                                                                                                       |
-| `category`    | The category of the post.                                                                                                                                                                                   |
-| `draft`        | If this post is still a draft, which won't be displayed.                                                                                                                                                    |
+| `09:30 ~ 10:00`       | Arrival, coffee / minglepost.                                                                                                                                                                                      |
+| `10:00 ~ 10:30`       | Opening circle: intros.                                                                                                                                                            |
+| `10:30 ~ 12:30`       | Collaborative work / breakout groups.                                                                                                                                                  |
+| `12:30 ~ 13:30`       | Lunch.                                                                                                                                                              |
+| `13:30 ~ 14:00`        | Midday check-in / sharing in circle.                                                                                                                                                             |
+| `14:00 ~ 16:30`        | More collaboration / group switching if desired                                                                                                                                                            |
+| `16:30 ~ 17:00`        | Lightning talks (if any) / show & tell / optional presentations                                                                                                                                                            |
+| `17:00+`              | Hang-out and chill / continue collaborating                                                                                                                                                         |
 
 ## Where to Place the Post Files
 
@@ -51,3 +71,45 @@ src/content/posts/
     ├── cover.png
     └── index.md
 ```
+
+
+## Code of Conduct
+```yaml
+---
+
+We aim to create a respectful, supportive, inclusive environment. All participants are expected to:
+
+Be kind, considerate, and open to collaboration
+
+Respect diverse backgrounds, skill levels, and viewpoints
+
+Give and receive feedback graciously
+
+Ask for consent before pairing, reviewing someone’s code, or recording anything
+
+Speak up if anything makes you uncomfortable — we want to address it
+---
+```
+
+
+## Venue, Logistics & What to Bring
+
+Location: [Venue name / address / map]
+
+Start / End Times: 09:30 (doors open) to ~17:30 (wrap-up)
+
+What to bring:
+
+Laptop (with charger)
+
+Any project / code you want to show or work on
+
+Notebooks, pens
+
+Headphones, power strip
+
+Snacks or light lunch (though we’ll coordinate lunch together)
+
+Connectivity: [WiFi / ethernet / Internet details]
+
+Capacity / registration: [Number of seats, how to RSVP]
