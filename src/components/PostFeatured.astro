@@ -7,12 +7,35 @@ import { Icon } from "astro-icon/components";
 
 const { post } = Astro.props;
 const { Content, data } = await post.render();
+
+// Extract custom featured excerpt between markers in raw markdown body
+// Markers used in markdown:
+// [comment]: <FeaturedDescription>
+let featuredExcerptHtml: string | undefined;
+try {
+  const body: string = (post as any).body ?? "";
+  const MARK = "[comment]: <FeaturedDescription>";
+  const first = body.indexOf(MARK);
+  const second = first >= 0 ? body.indexOf(MARK, first + MARK.length) : -1;
+  if (first >= 0 && second > first) {
+    const slice = body.slice(first + MARK.length, second).trim();
+    // Minimal markdown to HTML: convert links and paragraph breaks
+    const linkified = slice.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1<\/a>');
+    const paragraphs = linkified
+      .split(/\n\s*\n+/)
+      .map(p => `<p>${p.trim()}<\/p>`)
+      .join("\n");
+    featuredExcerptHtml = paragraphs;
+  }
+} catch {}
 // Resolve relative image path robustly
 
 let imageUrl = post.data.image;
 const isAbsolute = (p: string) =>
   typeof p === "string" && (p.startsWith("/") || /^https?:\/\//.test(p));
 
+
+  
 if (imageUrl && !isAbsolute(imageUrl)) {
   // Build the REAL directory from collection + slug (don’t use post.id)
   const collection = post.collection; // e.g. "posts"
@@ -76,9 +99,28 @@ console.log(`Post: ${post.slug}, Image: ${post.data.image}, Resolved: ${imageUrl
       </div>
     )}
 
-    <!-- Markdown content -->
-    <Markdown class="mb-6 markdown-content">
-      <Content />
-    </Markdown>
+    <!-- Featured excerpt: prefer custom marker-defined snippet; else description; else first paragraphs -->
+    <div class="featured-excerpt">
+      {featuredExcerptHtml ? (
+        <Markdown class="mb-6 markdown-content" content={featuredExcerptHtml} />
+      ) : post.data.description ? (
+        <div class="mb-6 markdown-content"><p>{post.data.description}</p></div>
+      ) : (
+        <Markdown class="mb-6 markdown-content">
+          <Content />
+        </Markdown>
+      )}
+      <div >
+         <a class="featured-post mb-8 p-6 rounded-lg bg-[var(--card-bg-featured)] btn-regular-featured" href={getPostUrlBySlug(post.slug)}>READ MORE</a>
+      </div>
+    </div>
+    <!-- 
+ <a href={getPostUrlBySlug(post.slug)} aria-label={post.data.title} class="!hidden md:!flex btn-regular w-[3.25rem]
+         absolute right-3 top-3 bottom-3 rounded-xl bg-[var(--enter-btn-bg)]
+         hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95
+        ">
+  -->
+        </a>
   </div>
 </div>
+

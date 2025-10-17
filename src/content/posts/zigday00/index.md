@@ -9,16 +9,17 @@ draft: false
 featured: true
 ---
 
-
+[comment]: <FeaturedDescription> 
 
 
 [ZigDay](https://zig.day) is a full-day, community-driven gathering of collaborative programming and socialization to inspire you to make Software You Can Love.
 
 
 It’s a space to connect, collaborate, learn, and build together — no rigid agenda, no sales pitches, just shared energy and mutual curiosity. 
- |
 
 
+
+[comment]: <FeaturedDescription>
 
 
 ## Rough format (were winging it?)
