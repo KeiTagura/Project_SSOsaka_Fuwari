@@ -48,16 +48,16 @@ Even if you prefer not to present, you’re absolutely invited to attend, partic
 ---
 ```
 
-| Time     | Activity                                                                                                                                                                                                 |
+| Time                  | Activity                                                                                                                                                                                         |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `09:30 ~ 10:00`       | Arrival, coffee / minglepost.                                                                                                                                                                                      |
-| `10:00 ~ 10:30`       | Opening circle: intros.                                                                                                                                                            |
-| `10:30 ~ 12:30`       | Collaborative work / breakout groups.                                                                                                                                                  |
-| `12:30 ~ 13:30`       | Lunch.                                                                                                                                                              |
-| `13:30 ~ 14:00`        | Midday check-in / sharing in circle.                                                                                                                                                             |
-| `14:00 ~ 16:30`        | More collaboration / group switching if desired                                                                                                                                                            |
-| `16:30 ~ 17:00`        | Lightning talks (if any) / show & tell / optional presentations                                                                                                                                                            |
-| `17:00+`              | Hang-out and chill / continue collaborating                                                                                                                                                         |
+| `09:30 ~ 10:00`       | Arrival, coffee / minglepost.                                                                                                                                                                    |
+| `10:00 ~ 10:30`       | Opening circle: intros.                                                                                                                                                                          |
+| `10:30 ~ 12:30`       | Collaborative work / breakout groups.                                                                                                                                                            |
+| `12:30 ~ 13:30`       | Lunch.                                                                                                                                                                                           |
+| `13:30 ~ 14:00`       | Midday check-in / sharing in circle.                                                                                                                                                             |
+| `14:00 ~ 16:30`       | More collaboration / group switching if desired                                                                                                                                                  |
+| `16:30 ~ 17:00`       | Lightning talks (if any) / show & tell / optional presentations                                                                                                                                  |
+| `17:00+`              | Hang-out and chill / continue collaborating                                                                                                                                                      |
 
 ## Where to Place the Post Files
 
