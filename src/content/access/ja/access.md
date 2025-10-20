@@ -2,7 +2,7 @@
 `Secret Shop`</br>`シークレットショップ`
 
 
-```ansi
+```ansi showLineNumbers=false
 
 
 

@@ -5,6 +5,7 @@ enum I18nKey {
 	event = "event",
 	events = "events",
 	search = "search",
+	upcomingEvents = "Upcoming Events",
 
 	past = "previous",
 	upcoming = "upcoming",

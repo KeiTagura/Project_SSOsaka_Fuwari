@@ -17,6 +17,8 @@ import PostFeatured from "@components/PostFeatured.astro";
 import PostCard from "../components/PostCard.astro";
 import Markdown from "@components/misc/Markdown.astro";
 import { getLangFromPath } from "../utils/lang";
+import I18nKey from "../i18n/i18nKey";
+import { i18nFor } from "../i18n/translation";
 
 import { getCollection, type CollectionEntry } from "astro:content";
 
@@ -73,6 +75,8 @@ const accessJa = await getEntry("access" as any, "ja/access" as any);
 const AccessEn = accessEn ? (await render(accessEn)).Content : null;
 const AccessJa = accessJa ? (await render(accessJa)).Content : null;
 
+const routeLang_ = getLangFromPath(Astro.url.pathname) ?? "en";
+const t = i18nFor(routeLang);
 
 console.log("CHECK");
 console.log(posts.map(p => [p.slug, p.data.featured]));
@@ -86,6 +90,7 @@ console.log(posts.map(p => [p.slug, p.data.featured]));
       </div>
     )}
 
+  <div class="text-5xl font-semibold text-center text-90">{t(I18nKey.upcomingEvents)}</div>
     <div id="home-post-list">
       <PostPage page={pageFiltered} ></PostPage>
     </div>
