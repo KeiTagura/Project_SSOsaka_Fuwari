@@ -127,6 +127,22 @@ function loadButtonScript() {
                 try { updateLangUI(getCurrentLang()); } catch {}
             }
         }
+        // Hover-to-open language panel
+        const panel = document.getElementById('lang-select-panel');
+        if (panel) {
+            let hoverTimer = null as any;
+            const open = () => {
+                panel.classList.remove('float-panel-closed');
+                try { updateLangUI(getCurrentLang()); } catch {}
+            };
+            const close = () => panel.classList.add('float-panel-closed');
+            const cancel = () => { if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; } };
+
+            langBtn.addEventListener('mouseenter', () => { cancel(); open(); });
+            panel.addEventListener('mouseenter', () => { cancel(); open(); });
+            langBtn.addEventListener('mouseleave', () => { cancel(); hoverTimer = setTimeout(close, 150); });
+            panel.addEventListener('mouseleave', () => { cancel(); hoverTimer = setTimeout(close, 150); });
+        }
     }
 
     function getCurrentLang() {

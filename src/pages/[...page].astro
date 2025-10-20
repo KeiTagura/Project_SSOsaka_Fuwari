@@ -74,7 +74,9 @@ console.log(posts.map(p => [p.slug, p.data.featured]));
       </div>
     )}
 
-    <PostPage page={pageFiltered} ></PostPage>
+    <div id="home-post-list">
+      <PostPage page={pageFiltered} ></PostPage>
+    </div>
       <Pagination
         class="mx-auto onload-animation"
         page={page}
@@ -125,6 +127,55 @@ console.log(posts.map(p => [p.slug, p.data.featured]));
  
 </div>
       
+
+<script>
+  (function(){
+    function selectedLang(){
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const q = (params.get('lang')||'').toLowerCase();
+        if (q === 'en' || q === 'ja') return q;
+        const parts = window.location.pathname.split('/').filter(Boolean);
+        const first = parts[0]?.toLowerCase?.();
+        if (first === 'en' || first === 'ja') return first;
+        const pref = (localStorage.getItem('preferredLang')||'').toLowerCase();
+        if (pref === 'en' || pref === 'ja') return pref;
+      } catch {}
+      return 'ja';
+    }
+    function filterHome(){
+      const cur = selectedLang();
+      const root = document.getElementById('home-post-list') || document;
+      root.querySelectorAll('[data-post-lang]')
+        .forEach((el)=>{
+          const key = (el as HTMLElement).getAttribute('data-post-lang')||'';
+          const show = key === cur;
+          (el as HTMLElement).style.display = show ? '' : 'none';
+        });
+    }
+    filterHome();
+    window.addEventListener('popstate', filterHome);
+    document.addEventListener('astro:page-load', () => setTimeout(filterHome, 0));
+    document.addEventListener('astro:after-swap', () => setTimeout(filterHome, 0));
+    // Also catch clicks on pagination links to re-run after navigation
+    document.addEventListener('click', (e)=>{
+      const t = e.target as HTMLElement | null;
+      if (!t) return;
+      const a = (t.closest && t.closest('a')) as HTMLAnchorElement | null;
+      if (a && a.closest('.pagination, [data-pagination], .bg-[var(--card-bg)]')) {
+        setTimeout(filterHome, 100);
+      }
+    });
+    document.addEventListener('click', (e)=>{
+      const t = e.target as HTMLElement | null;
+      if (!t) return;
+      const id = t.id || (t.closest && (t.closest('#lang-en, #lang-ja') as HTMLElement)?.id) || '';
+      if (id === 'lang-en' || id === 'lang-ja') {
+        setTimeout(filterHome, 50);
+      }
+    });
+  })();
+</script>
 
 </MainGridLayout>
 

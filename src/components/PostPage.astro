@@ -8,24 +8,34 @@ const { page, lang } = Astro.props as { page: any; lang?: string };
 
 let delay = 0;
 const interval = 50;
+ 
+function getItemLang(entry: CollectionEntry<"posts">): string {
+    const slugLang = (entry.slug?.split?.("/")?.[0] ?? "").toLowerCase();
+    const fmLang = (entry.data as any)?.lang?.toLowerCase?.();
+    if (fmLang === 'en' || fmLang === 'ja') return fmLang;
+    if (slugLang === 'en' || slugLang === 'ja') return slugLang;
+    return '';
+}
 ---
 
 <div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
     {page.data.map((entry: CollectionEntry<"posts">) => (
-        <PostCard
-                entry={entry}
-                title={entry.data.title}
-                tags={entry.data.tags}
-                category={entry.data.category}
-                published={entry.data.published}
-                updated={entry.data.updated}
-                url={getPostUrlBySlugLang(entry.slug, lang)}
-                image={entry.data.image}
-                description={entry.data.description}
-                draft={entry.data.draft}
-                lang={lang}
-                class:list="onload-animation"
-                style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
-        ></PostCard>
+        <div data-post-lang={getItemLang(entry)}>
+            <PostCard
+                    entry={entry}
+                    title={entry.data.title}
+                    tags={entry.data.tags}
+                    category={entry.data.category}
+                    published={entry.data.published}
+                    updated={entry.data.updated}
+                    url={getPostUrlBySlugLang(entry.slug, lang)}
+                    image={entry.data.image}
+                    description={entry.data.description}
+                    draft={entry.data.draft}
+                    lang={lang}
+                    class:list="onload-animation"
+                    style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
+            ></PostCard>
+        </div>
     ))}
 </div>
