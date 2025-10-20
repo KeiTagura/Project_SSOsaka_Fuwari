@@ -3,8 +3,8 @@ title: Zig Day
 published: 2025-11-15
 description: "The day of the zig"
 image: "./cover.jpg"
-tags: ["Fuwari", "Blogging", "Customization"]
-category: Guides
+tags: ["Zig", "Public"]
+category: Public
 draft: false
 featured: true
 ---
@@ -24,7 +24,7 @@ It’s a space to connect, collaborate, learn, and build together — no rigid a
 
 ## Rough format (were winging it?)
 
-```yaml
+```
 ---
 Call for Presenters & Contributors
 
@@ -75,7 +75,7 @@ src/content/posts/
 
 
 ## Code of Conduct
-```yaml
+```
 ---
 
 We aim to create a respectful, supportive, inclusive environment. All participants are expected to:
@@ -95,22 +95,12 @@ Speak up if anything makes you uncomfortable — we want to address it
 
 ## Venue, Logistics & What to Bring
 
-Location: [Venue name / address / map]
-
-Start / End Times: 09:30 (doors open) to ~17:30 (wrap-up)
 
 What to bring:
 
-Laptop (with charger)
+-Laptop, (or a desktop if your that crazy)
+-Any project / code you want to show or work on
 
-Any project / code you want to show or work on
 
-Notebooks, pens
 
-Headphones, power strip
-
-Snacks or light lunch (though we’ll coordinate lunch together)
-
-Connectivity: [WiFi / ethernet / Internet details]
-
-Capacity / registration: [Number of seats, how to RSVP]
+RSVP: 

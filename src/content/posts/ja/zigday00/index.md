@@ -3,67 +3,62 @@ title: Zig Day
 published: 2025-11-15
 description: "The day of the zig"
 image: "./cover.jpg"
-tags: ["Fuwari", "Blogging", "Customization"]
-category: Guides
+tags: ["Zig", "Public"]
+category: Public
 draft: false
 featured: true
 ---
 
 [comment]: <FeaturedDescription> 
 
+[ZigDay](https://zig.day) は、コミュニティ主導で行われる一日イベントで、  
+共同プログラミングや交流を通して「愛せるソフトウェア」をつくるための  
+インスピレーションを得ることを目的としています。
 
-[ZigDay](https://zig.day) is a full-day, community-driven gathering of collaborative programming and socialization to inspire you to make Software You Can Love.
-
-
-It’s a space to connect, collaborate, learn, and build together — no rigid agenda, no sales pitches, just shared energy and mutual curiosity. 
-
-
+堅苦しいアジェンダや営業トークはなし。  
+つながり、協力し、学び、そして一緒にものづくりを楽しむための空間です。  
 
 [comment]: <FeaturedDescription>
 
+## おおまかな流れ（かなりフリースタイル？）
 
-## Rough format (were winging it?)
-
-```yaml
+```
 ---
-Call for Presenters & Contributors
+発表者・参加協力者募集
 
-We welcome anyone interested in presenting or contributing something — a short talk, demo, workshop, discussion, or even just a lightning idea. Don’t worry about perfection: the goal is to share, spark conversation, and learn together.
+短いトーク、デモ、ワークショップ、ディスカッション、またはちょっとしたアイデアなど、  
+何かを発表・共有してみたい方を歓迎します。  
+完璧さは求めません。目的は共有し、会話を生み、共に学ぶことです。
 
-If you’d like to present, please reach out by [deadline date] with:
+発表を希望される方は [締切日] までに以下の情報をお知らせください：
 
-Your name / affiliation (if any)
+お名前 / 所属（あれば）  
+タイトルまたはトピック（仮でOK）  
+形式（ライトニングトーク、ワークショップ、デモ、ディスカッションなど）  
+必要なおおよその時間  
+特別な要件（プロジェクター、インターネット等）
 
-Title or topic (tentative)
+発表は全体の流れを妨げないよう、バランスよくスケジューリングします。
 
-Format (lightning talk, workshop, demo, discussion)
-
-Approximate time needed
-
-Any special requirements (projector, internet, etc.)
-
-We’ll schedule presentations thoughtfully so they don’t interrupt the collaborative flow.
-
-Even if you prefer not to present, you’re absolutely invited to attend, participate, and share your journey through the day.
+もちろん発表をしなくても、参加・見学・一緒に過ごすだけでも大歓迎です。
 ---
 ```
 
-| Time                  | Activity                                                                                                                                                                                         |
+| 時間                  | アクティビティ                                                                                                                                                                                         |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `09:30 ~ 10:00`       | Arrival, coffee / minglepost.                                                                                                                                                                    |
-| `10:00 ~ 10:30`       | Opening circle: intros.                                                                                                                                                                          |
-| `10:30 ~ 12:30`       | Collaborative work / breakout groups.                                                                                                                                                            |
-| `12:30 ~ 13:30`       | Lunch.                                                                                                                                                                                           |
-| `13:30 ~ 14:00`       | Midday check-in / sharing in circle.                                                                                                                                                             |
-| `14:00 ~ 16:30`       | More collaboration / group switching if desired                                                                                                                                                  |
-| `16:30 ~ 17:00`       | Lightning talks (if any) / show & tell / optional presentations                                                                                                                                  |
-| `17:00+`              | Hang-out and chill / continue collaborating                                                                                                                                                      |
+| `09:30 ~ 10:00`       | 到着、コーヒー / 交流タイム                                                                                                                                                                    |
+| `10:00 ~ 10:30`       | オープニングサークル：自己紹介                                                                                                                                                                          |
+| `10:30 ~ 12:30`       | 協働作業 / ブレイクアウトグループ                                                                                                                                                            |
+| `12:30 ~ 13:30`       | 昼食                                                                                                                                                                                           |
+| `13:30 ~ 14:00`       | ミッドデイ・チェックイン / サークルでの共有                                                                                                                                                             |
+| `14:00 ~ 16:30`       | さらなるコラボレーション / 希望者はグループチェンジ                                                                                                                                                  |
+| `16:30 ~ 17:00`       | ライトニングトーク（希望者） / ショー＆テル / 任意の発表                                                                                                                                  |
+| `17:00+`              | 懇親・交流 / 作業の続行                                                                                                                                                      |
 
-## Where to Place the Post Files
+## 投稿ファイルの配置場所
 
-
-
-Your post files should be placed in `src/content/posts/` directory. You can also create sub-directories to better organize your posts and assets.
+投稿ファイルは `src/content/posts/` ディレクトリ内に配置してください。  
+必要に応じてサブディレクトリを作成し、投稿やアセットを整理することもできます。
 
 ```
 src/content/posts/
@@ -73,44 +68,27 @@ src/content/posts/
     └── index.md
 ```
 
-
-## Code of Conduct
-```yaml
+## 行動規範
+```
 ---
 
-We aim to create a respectful, supportive, inclusive environment. All participants are expected to:
+私たちは、敬意・支援・包摂を大切にする環境を目指しています。  
+すべての参加者に、以下の行動を期待します：
 
-Be kind, considerate, and open to collaboration
+・思いやりを持ち、協力的であること  
+・多様な背景・スキルレベル・視点を尊重すること  
+・建設的にフィードバックを与え、受け取ること  
+・ペア作業、コードレビュー、録音・撮影などを行う際は、必ず相手の同意を得ること  
+・不快に感じることがあれば遠慮なく声を上げてください。私たちは解決に取り組みます。
 
-Respect diverse backgrounds, skill levels, and viewpoints
-
-Give and receive feedback graciously
-
-Ask for consent before pairing, reviewing someone’s code, or recording anything
-
-Speak up if anything makes you uncomfortable — we want to address it
 ---
 ```
 
+## 会場・準備・持ち物
 
-## Venue, Logistics & What to Bring
+持ち物：
 
-Location: [Venue name / address / map]
+- ノートPC（もしくは、デスクトップを持ってくる猛者も歓迎）
+- 見せたい・作業したいプロジェクト / コード  
 
-Start / End Times: 09:30 (doors open) to ~17:30 (wrap-up)
-
-What to bring:
-
-Laptop (with charger)
-
-Any project / code you want to show or work on
-
-Notebooks, pens
-
-Headphones, power strip
-
-Snacks or light lunch (though we’ll coordinate lunch together)
-
-Connectivity: [WiFi / ethernet / Internet details]
-
-Capacity / registration: [Number of seats, how to RSVP]
+RSVP:
