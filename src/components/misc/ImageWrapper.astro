@@ -32,16 +32,27 @@ if (isLocal) {
 	const files = import.meta.glob<ImageMetadata>("../../**", {
 		import: "default",
 	});
+	const normalizedBase = path
+		.normalize(path.join("../../", basePath))
+		.replace(/\\/g, "/");
 	let normalizedPath = path
 		.normalize(path.join("../../", basePath, src))
 		.replace(/\\/g, "/");
-	const file = files[normalizedPath];
+	let file = files[normalizedPath];
 	if (!file) {
-		console.error(
-			`\n[ERROR] Image file not found: ${normalizedPath.replace("../../", "src/")}`,
-		);
+		// Fallback: try cover.* inside the same basePath directory
+		const coverKey = Object.keys(files).find((k) => k.startsWith(`${normalizedBase}cover.`));
+		if (coverKey) {
+			file = files[coverKey];
+		} else {
+			console.error(
+				`\n[ERROR] Image file not found: ${normalizedPath.replace("../../", "src/")}`,
+			);
+		}
 	}
-	img = await file();
+	if (file) {
+		img = await file();
+	}
 }
 
 const imageClass = "w-full h-full object-cover";

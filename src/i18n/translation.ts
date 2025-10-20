@@ -41,3 +41,8 @@ export function i18n(key: I18nKey): string {
 	const lang = siteConfig.lang || "ja";
 	return getTranslation(lang)[key];
 }
+
+export function i18nFor(lang: string) {
+    const t = getTranslation(lang || "ja");
+    return (key: I18nKey) => t[key];
+}

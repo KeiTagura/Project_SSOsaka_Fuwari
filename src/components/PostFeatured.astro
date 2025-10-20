@@ -2,10 +2,10 @@
 import type { CollectionEntry } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import PostMeta from "@components/PostMeta.astro";
-import { getPostUrlBySlug } from "@utils/url-utils";
+import { getPostUrlBySlug, getPostUrlBySlugLang } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 
-const { post } = Astro.props;
+const { post, lang } = Astro.props as { post: any; lang?: string };
 const { Content, data } = await post.render();
 
 // Extract custom featured excerpt between markers in raw markdown body
@@ -39,11 +39,10 @@ const isAbsolute = (p: string) =>
 if (imageUrl && !isAbsolute(imageUrl)) {
   // Build the REAL directory from collection + slug (don’t use post.id)
   const collection = post.collection; // e.g. "posts"
-  const slugDir = post.slug.includes("/")
-    ? post.slug.slice(0, post.slug.lastIndexOf("/"))
-    : post.slug; // e.g. "zigday00"
+  // Use the full slug path as a directory (e.g., "ja/zigday00"), since localized posts live under lang folders
+  const slugDir = post.slug; 
 
-  const dirPath = `/src/content/${collection}/${slugDir}`; // -> "/src/content/posts/zigday00"
+  const dirPath = `/src/content/${collection}/${slugDir}`; // -> "/src/content/posts/ja/zigday00"
 
   // Assets available under content
   const assets = import.meta.glob(
@@ -111,7 +110,7 @@ console.log(`Post: ${post.slug}, Image: ${post.data.image}, Resolved: ${imageUrl
         </Markdown>
       )}
       <div >
-         <a class="featured-post mb-8 p-6 rounded-lg bg-[var(--card-bg-featured)] btn-regular-featured" href={getPostUrlBySlug(post.slug)}>READ MORE</a>
+         <a class="featured-post mb-8 p-6 rounded-lg bg-[var(--card-bg-featured)] btn-regular-featured" href={getPostUrlBySlugLang(post.slug, lang)}>READ MORE</a>
       </div>
     </div>
     <!-- 

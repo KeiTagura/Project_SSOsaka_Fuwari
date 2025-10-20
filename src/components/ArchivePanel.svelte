@@ -1,17 +1,17 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import I18nKey from "../i18n/i18nKey";
-import { i18n } from "../i18n/translation";
-import { getPostUrlBySlug } from "../utils/url-utils";
+import { i18nFor } from "../i18n/translation";
+import { getPostUrlBySlugLang } from "../utils/url-utils";
 
 export let tags: string[] = [];
 export let categories: string[] = [];
 export let sortedPosts: Post[] = [];
 
-const params = new URLSearchParams(window.location.search);
-tags = params.has("tag") ? params.getAll("tag") : [];
-categories = params.has("category") ? params.getAll("category") : [];
-const uncategorized = params.get("uncategorized");
+let currentLang: string | null = null;
+let t = (k: I18nKey) => i18nFor("ja")(k); // default fallback, will be updated on mount
+
+// NOTE: query parsing moved into onMount to avoid SSR window access
 
 interface Post {
   slug: string;
@@ -52,12 +52,25 @@ function eventSpaceTime(date: Date): EventInfo {
   const today = new Date();
   // compare by day (ignore time)
   const isSameDay = date.toDateString() === today.toDateString();
-  if (isSameDay) return { status: "today", label: i18n(I18nKey.today) };
-  if (date < today) return { status: "past", label: i18n(I18nKey.past) };
-  return { status: "upcoming", label: i18n(I18nKey.upcoming) };
+  if (isSameDay) return { status: "today", label: t(I18nKey.today) };
+  if (date < today) return { status: "past", label: t(I18nKey.past) };
+  return { status: "upcoming", label: t(I18nKey.upcoming) };
 }
 
 onMount(async () => {
+  const params = new URLSearchParams(window.location.search);
+  tags = params.has("tag") ? params.getAll("tag") : [];
+  categories = params.has("category") ? params.getAll("category") : [];
+  const uncategorized = params.get("uncategorized");
+  try {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const first = parts[0]?.toLowerCase?.();
+    currentLang = first === 'en' || first === 'ja' ? first : null;
+    if (currentLang) {
+      t = i18nFor(currentLang);
+    }
+  } catch {}
+
   let filtered: Post[] = sortedPosts;
 
   if (tags.length > 0) {
@@ -116,13 +129,13 @@ onMount(async () => {
           ></div>
         </div>
         <div class="w-[70%] md:w-[80%] transition text-left text-50">
-          {group.posts.length} {i18n(group.posts.length === 1 ? I18nKey.event : I18nKey.events)}
+          {group.posts.length} {t(group.posts.length === 1 ? I18nKey.event : I18nKey.events)}
         </div>
       </div>
 
       {#each group.posts as post}
         <a
-          href={getPostUrlBySlug(post.slug)}
+          href={getPostUrlBySlugLang(post.slug, currentLang || undefined)}
           aria-label={post.data.title}
           class="group btn-plain !block h-10 w-full rounded-lg hover:text-[initial]"
         >

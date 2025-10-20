@@ -1,13 +1,17 @@
 ---
 
 import I18nKey from "../../i18n/i18nKey";
-import { i18n } from "../../i18n/translation";
+import { i18nFor } from "../../i18n/translation";
 import { getTagList } from "../../utils/content-utils";
-import { getTagUrl } from "../../utils/url-utils";
+import { getTagUrlLang } from "../../utils/url-utils";
+import { getLangFromPath } from "../../utils/lang";
+
 import ButtonTag from "../control/ButtonTag.astro";
 import WidgetLayout from "./WidgetLayout.astro";
 
-const tags = await getTagList();
+const routeLang = getLangFromPath(Astro.url.pathname) ?? undefined;
+const t = i18nFor(routeLang ?? "ja");
+const tags = await getTagList(routeLang);
 
 const COLLAPSED_HEIGHT = "7.5rem";
 
@@ -20,11 +24,11 @@ interface Props {
 const className = Astro.props.class;
 const style = Astro.props.style;
 ---
-<WidgetLayout name={i18n(I18nKey.tags)} id="tags" isCollapsed={isCollapsed} collapsedHeight={COLLAPSED_HEIGHT} class={className} style={style}>
+<WidgetLayout name={t(I18nKey.tags)} id="tags" isCollapsed={isCollapsed} collapsedHeight={COLLAPSED_HEIGHT} class={className} style={style}>
     <div class="flex gap-2 flex-wrap">
-        {tags.map(t => (
-            <ButtonTag href={getTagUrl(t.name)} label={`View all posts with the ${t.name.trim()} tag`}>
-                {t.name.trim()}
+        {tags.map(item => (
+            <ButtonTag href={getTagUrlLang(item.name, routeLang)} label={`View all posts with the ${item.name.trim()} tag`}>
+                {item.name.trim()}
             </ButtonTag>
         ))}
     </div>
