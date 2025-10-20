@@ -4,13 +4,16 @@ import I18nKey from "@i18n/i18nKey";
 import { i18nFor } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPostsList } from "../utils/content-utils";
-import { getLangFromPath, normalizeLang } from "../utils/lang";
+import { getLangFromPath } from "../utils/lang";
 
 const path = Astro.url.pathname;
-const routeLang = getLangFromPath(path);
-const lang = routeLang ? routeLang : undefined;
-const t = i18nFor(lang ?? "ja");
-const sortedPostsList = await getSortedPostsList(lang);
+const pathLang = getLangFromPath(path) ?? undefined;
+const qLangRaw = Astro.url.searchParams.get('lang')?.toLowerCase?.();
+const qLang = qLangRaw === 'en' || qLangRaw === 'ja' ? qLangRaw : undefined;
+const lang = qLang ?? pathLang ?? 'ja';
+const t = i18nFor(lang);
+// Pass full list; client filters by chosen language
+const sortedPostsList = await getSortedPostsList();
 ---
 
 <MainGridLayout title={t(I18nKey.archive)}>

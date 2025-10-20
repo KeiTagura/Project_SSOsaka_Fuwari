@@ -63,15 +63,42 @@ onMount(async () => {
   categories = params.has("category") ? params.getAll("category") : [];
   const uncategorized = params.get("uncategorized");
   try {
-    const parts = window.location.pathname.split('/').filter(Boolean);
-    const first = parts[0]?.toLowerCase?.();
-    currentLang = first === 'en' || first === 'ja' ? first : null;
+    const q = (params.get('lang') || '').toLowerCase();
+    if (q === 'en' || q === 'ja') {
+      currentLang = q;
+    } else {
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      const first = parts[0]?.toLowerCase?.();
+      currentLang = first === 'en' || first === 'ja' ? first : null;
+      if (!currentLang) {
+        try {
+          const pref = (localStorage.getItem('preferredLang') || '').toLowerCase();
+          if (pref === 'en' || pref === 'ja') currentLang = pref;
+        } catch {}
+      }
+      if (!currentLang) {
+        currentLang = 'ja';
+      }
+    }
     if (currentLang) {
       t = i18nFor(currentLang);
     }
   } catch {}
 
   let filtered: Post[] = sortedPosts;
+
+  // Apply language filter first to show only relevant posts
+  if (currentLang) {
+    const l = currentLang.toLowerCase();
+    filtered = filtered.filter((post) => {
+      const slugLang = typeof post.slug === 'string' ? post.slug.split('/')?.[0]?.toLowerCase?.() : undefined;
+      // @ts-ignore optional custom frontmatter lang
+      const fmLang = (post.data as any)?.lang?.toLowerCase?.();
+      const byFrontmatter = !!fmLang && fmLang === l;
+      const byFolder = !!slugLang && slugLang === l;
+      return byFrontmatter || byFolder;
+    });
+  }
 
   if (tags.length > 0) {
     filtered = filtered.filter(
