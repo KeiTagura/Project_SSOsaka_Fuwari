@@ -63,6 +63,18 @@ let links: NavBarLink[] = navBarConfig.links.map(
             </button>
         </div>
         <NavMenuPanel links={links}></NavMenuPanel>
+        <div id="lang-select-panel" class="float-panel float-panel-closed absolute right-16 top-[4.5rem] z-50">
+            <div class="card-base p-2 rounded-xl flex flex-col gap-2 min-w-[6rem]">
+                <button id="lang-en" data-lang="en" class="btn-regular px-3 py-1 rounded-lg flex items-center gap-1 w-full justify-between">
+                    <span data-check class="hidden">✓</span>
+                    <span>EN</span>
+                </button>
+                <button id="lang-ja" data-lang="ja" class="btn-regular px-3 py-1 rounded-lg flex items-center gap-1 w-full justify-between">
+                    <span data-check class="hidden">✓</span>
+                    <span>JA</span>
+                </button>
+            </div>
+        </div>
         <DisplaySettings client:only="svelte"></DisplaySettings>
     </div>
 </div>
@@ -109,57 +121,124 @@ function loadButtonScript() {
     let langBtn = document.getElementById("lang-toggle");
     if (langBtn) {
         langBtn.onclick = function () {
-            try {
-                const path = window.location.pathname;
-                const parts = path.split('/').filter(Boolean);
-                const trailingSlash = path.endsWith('/');
-
-                // Collect indices of existing locale segments ('en'|'ja')
-                const localeIdxs = parts
-                    .map((seg, i) => ((seg === 'en' || seg === 'ja') ? i : -1))
-                    .filter(i => i >= 0);
-
-                // Determine primary locale position to replace:
-                // Prefer the locale immediately after 'posts', else the very first segment if it's a locale
-                let idx = -1;
-                if (parts[0] === 'posts' && (parts[1] === 'en' || parts[1] === 'ja')) {
-                    idx = 1;
-                } else if (parts[0] === 'en' || parts[0] === 'ja') {
-                    idx = 0;
-                } else if (localeIdxs.length > 0) {
-                    idx = localeIdxs[0];
-                }
-
-                // Compute target locale
-                const cur = idx >= 0 ? parts[idx] : null;
-                const target = cur === 'en' ? 'ja' : 'en';
-
-                // Start from a copy and remove any extra locale segments except the chosen idx
-                let next = parts.slice();
-                if (localeIdxs.length > 1) {
-                    next = next.filter((_, i) => i === idx || !(localeIdxs.includes(i)));
-                }
-
-                if (idx >= 0) {
-                    // Replace at the identified index
-                    next[idx] = target;
-                } else {
-                    // Insert locale segment: if path starts with 'posts', insert after it; else insert at start
-                    if (next[0] === 'posts') {
-                        next.splice(1, 0, target);
-                    } else {
-                        next.unshift(target);
-                    }
-                }
-
-                const newPath = '/' + next.join('/') + (trailingSlash ? '/' : '');
-                try { localStorage.setItem('preferredLang', target); } catch {}
-                window.location.assign(newPath);
-            } catch (e) {
-                console.error(e);
+            const panel = document.getElementById('lang-select-panel');
+            if (panel) {
+                panel.classList.toggle('float-panel-closed');
+                try { updateLangUI(getCurrentLang()); } catch {}
             }
         }
     }
+
+    function getCurrentLang() {
+        const params = new URLSearchParams(window.location.search);
+        const q = (params.get('lang') || '').toLowerCase();
+        if (q === 'en' || q === 'ja') return q;
+        const segs = window.location.pathname.split('/').filter(Boolean);
+        if (segs[0] === 'en' || segs[0] === 'ja') return segs[0];
+        if (segs[0] === 'posts' && (segs[1] === 'en' || segs[1] === 'ja')) return segs[1];
+        return 'ja';
+    }
+
+    function updateLangUI(current) {
+        const enBtn = document.getElementById('lang-en');
+        const jaBtn = document.getElementById('lang-ja');
+        const sets = [enBtn, jaBtn];
+        sets.forEach((btn) => {
+            if (!btn) return;
+            const lang = btn.getAttribute('data-lang');
+            const check = btn.querySelector('[data-check]');
+            if (lang === current) {
+                btn.classList.add('ring-1','ring-[var(--primary)]');
+                btn.classList.remove('opacity-60');
+                if (check) check.classList.remove('hidden');
+                btn.setAttribute('aria-current','true');
+            } else {
+                btn.classList.remove('ring-1','ring-[var(--primary)]');
+                btn.classList.add('opacity-60');
+                if (check) check.classList.add('hidden');
+                btn.removeAttribute('aria-current');
+            }
+        });
+    }
+
+    function navigateToLang(target) {
+        try {
+            const path = window.location.pathname;
+            const parts = path.split('/').filter(Boolean);
+            const trailingSlash = path.endsWith('/');
+            const localeIdxs = parts
+                .map((seg, i) => ((seg === 'en' || seg === 'ja') ? i : -1))
+                .filter(i => i >= 0);
+            let idx = -1;
+            if (parts[0] === 'posts' && (parts[1] === 'en' || parts[1] === 'ja')) {
+                idx = 1;
+            } else if (parts[0] === 'en' || parts[0] === 'ja') {
+                idx = 0;
+            } else if (localeIdxs.length > 0) {
+                idx = localeIdxs[0];
+            }
+            // Neutral paths: root, about, archive
+            if (parts.length === 0 || ((parts[0] === 'about' || parts[0] === 'archive') && localeIdxs.length === 0)) {
+                const params = new URLSearchParams(window.location.search);
+                params.set('lang', target);
+                const base = parts.length === 0 ? '/' : `/${parts[0]}` + (trailingSlash ? '/' : '');
+                const newUrl = base + (params.toString() ? ('?' + params.toString()) : '');
+                try { localStorage.setItem('preferredLang', target); } catch {}
+                window.location.assign(newUrl);
+                return;
+            }
+            let next = parts.slice();
+            if (localeIdxs.length > 1) {
+                next = next.filter((_, i) => i === idx || !(localeIdxs.includes(i)));
+            }
+            if (idx >= 0) {
+                next[idx] = target;
+            } else {
+                if (next[0] === 'posts') {
+                    next.splice(1, 0, target);
+                } else {
+                    next.unshift(target);
+                }
+            }
+            const newPath = '/' + next.join('/') + (trailingSlash ? '/' : '');
+            try { localStorage.setItem('preferredLang', target); } catch {}
+            window.location.assign(newPath);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    const btnEn = document.getElementById('lang-en');
+    if (btnEn) {
+        btnEn.onclick = function () {
+            updateLangUI('en');
+            const panel = document.getElementById('lang-select-panel');
+            if (panel) panel.classList.add('float-panel-closed');
+            navigateToLang('en');
+        };
+    }
+    const btnJa = document.getElementById('lang-ja');
+    if (btnJa) {
+        btnJa.onclick = function () {
+            updateLangUI('ja');
+            const panel = document.getElementById('lang-select-panel');
+            if (panel) panel.classList.add('float-panel-closed');
+            navigateToLang('ja');
+        };
+    }
+
+    // Initialize selection state on load
+    try { updateLangUI(getCurrentLang()); } catch {}
+
+    // Click-outside to close language panel
+    document.addEventListener('click', function (e) {
+        const panel = document.getElementById('lang-select-panel');
+        const btn = document.getElementById('lang-toggle');
+        if (!panel || !btn) return;
+        const target = e.target;
+        if (panel.contains(target as any) || btn.contains(target as any)) return;
+        panel.classList.add('float-panel-closed');
+    });
 }
 
 loadButtonScript();
