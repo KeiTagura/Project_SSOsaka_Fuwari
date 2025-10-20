@@ -53,14 +53,22 @@ const featuredPost: Post | undefined = upcoming[0] ?? past[0];
 
 export const getStaticPaths = (async ({ paginate }) => {
     const allBlogPosts = await getSortedPosts();
-  return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
+    const nowRef = new Date();
+    const upcomingOnly = allBlogPosts.filter((p) => new Date(String(p.data.published)) >= nowRef);
+    return paginate(upcomingOnly, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 // https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
 const { page } = Astro.props;
-// Filter out the featured post from the current page list to avoid duplication
+// Filter out the featured post from the current page list to avoid duplication (both locales)
+function normalizeSlug(slug: string): string {
+  const parts = String(slug).split('/');
+  const first = parts[0]?.toLowerCase?.();
+  if (first === 'en' || first === 'ja') return parts.slice(1).join('/');
+  return slug;
+}
 const pageFiltered = featuredPost
-  ? { ...page, data: page.data.filter((p) => p.slug !== featuredPost.slug) }
+  ? { ...page, data: page.data.filter((p) => normalizeSlug(p.slug) !== normalizeSlug(featuredPost.slug)) }
   : page;
 const len = pageFiltered.data.length;
 

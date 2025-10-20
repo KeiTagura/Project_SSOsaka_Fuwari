@@ -1,6 +1,6 @@
 ---
 title: Zig Day
-published: 2025-10-01
+published: 2025-11-15
 description: "The day of the zig"
 image: "./cover.jpg"
 tags: ["Fuwari", "Blogging", "Customization"]

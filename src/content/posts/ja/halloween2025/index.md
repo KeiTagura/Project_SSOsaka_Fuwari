@@ -3,8 +3,8 @@ title: Halloween 2025
 published: 2025-11-01
 description: "Halloween Party"
 image: "./cover.jpg"
-tags: ["Holiday", "Casual", "InviteOnly"]
-category: Private
+tags: ["Fuwari", "Blogging", "Customization"]
+category: Guides
 draft: false
 featured: false
 ---
