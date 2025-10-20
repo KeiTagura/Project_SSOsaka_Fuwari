@@ -32,7 +32,7 @@ function getItemLang(entry: CollectionEntry<"posts">): string {
                     image={entry.data.image}
                     description={entry.data.description}
                     draft={entry.data.draft}
-                    lang={lang}
+                    lang={getItemLang(entry) || lang}
                     class:list="onload-animation"
                     style={`animation-delay: calc(var(--content-delay) + ${delay++ * interval}ms);`}
             ></PostCard>

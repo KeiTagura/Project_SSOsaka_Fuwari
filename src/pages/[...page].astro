@@ -75,7 +75,6 @@ const accessJa = await getEntry("access" as any, "ja/access" as any);
 const AccessEn = accessEn ? (await render(accessEn)).Content : null;
 const AccessJa = accessJa ? (await render(accessJa)).Content : null;
 
-const routeLang_ = getLangFromPath(Astro.url.pathname) ?? "en";
 const t = i18nFor(routeLang);
 
 console.log("CHECK");
@@ -89,10 +88,20 @@ console.log(posts.map(p => [p.slug, p.data.featured]));
         <PostFeatured post={featuredPost} />
       </div>
     )}
-
-  <div class="text-5xl font-semibold text-center text-90">{t(I18nKey.upcomingEvents)}</div>
+  <div
+    id="home-title-en"
+    data-lang="en"
+    class="text-5xl font-semibold text-center text-90"
+    style={routeLang === 'en' ? '' : 'display:none'}
+  >{i18nFor('en')(I18nKey.upcomingEvents)}</div>
+  <div
+    id="home-title-ja"
+    data-lang="ja"
+    class="text-5xl font-semibold text-center text-90"
+    style={routeLang === 'ja' ? '' : 'display:none'}
+  >{i18nFor('ja')(I18nKey.upcomingEvents)}</div>
     <div id="home-post-list">
-      <PostPage page={pageFiltered} ></PostPage>
+      <PostPage page={pageFiltered} lang={routeLang} ></PostPage>
     </div>
       <Pagination
         class="mx-auto onload-animation"
@@ -169,14 +178,44 @@ console.log(posts.map(p => [p.slug, p.data.featured]));
       if (en) en.style.display = (cur === 'en') ? '' : 'none';
       if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
     }
+    function updateHeadingVisible(){
+      const cur = selectedLang();
+      const en = document.getElementById('home-title-en');
+      const ja = document.getElementById('home-title-ja');
+      if (en) en.style.display = (cur === 'en') ? '' : 'none';
+      if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
+    }
+    function rewriteLinksWithLang(){
+      try {
+        const cur = selectedLang();
+        const anchors = document.querySelectorAll('a[href]');
+        anchors.forEach((aEl)=>{
+          const a = aEl as HTMLAnchorElement;
+          if (!a.href) return;
+          const url = new URL(a.href, window.location.origin);
+          if (url.origin !== window.location.origin) return;
+          if (url.hash && url.pathname === window.location.pathname) return;
+          url.searchParams.set('lang', cur);
+          a.href = url.toString();
+        });
+      } catch {}
+    }
     filterHome();
     updateAccessVisible();
+    updateHeadingVisible();
+    rewriteLinksWithLang();
     window.addEventListener('popstate', filterHome);
     window.addEventListener('popstate', updateAccessVisible);
+    window.addEventListener('popstate', updateHeadingVisible);
+    window.addEventListener('popstate', rewriteLinksWithLang);
     document.addEventListener('astro:page-load', () => setTimeout(filterHome, 0));
     document.addEventListener('astro:after-swap', () => setTimeout(filterHome, 0));
     document.addEventListener('astro:page-load', () => setTimeout(updateAccessVisible, 0));
     document.addEventListener('astro:after-swap', () => setTimeout(updateAccessVisible, 0));
+    document.addEventListener('astro:page-load', () => setTimeout(updateHeadingVisible, 0));
+    document.addEventListener('astro:after-swap', () => setTimeout(updateHeadingVisible, 0));
+    document.addEventListener('astro:page-load', () => setTimeout(rewriteLinksWithLang, 0));
+    document.addEventListener('astro:after-swap', () => setTimeout(rewriteLinksWithLang, 0));
     // Also catch clicks on pagination links to re-run after navigation
     document.addEventListener('click', (e)=>{
       const t = e.target as HTMLElement | null;
@@ -184,6 +223,8 @@ console.log(posts.map(p => [p.slug, p.data.featured]));
       const a = (t.closest && t.closest('a')) as HTMLAnchorElement | null;
       if (a && a.closest('.pagination, [data-pagination], .bg-[var(--card-bg)]')) {
         setTimeout(filterHome, 100);
+        setTimeout(updateHeadingVisible, 100);
+        setTimeout(rewriteLinksWithLang, 100);
       }
     });
     document.addEventListener('click', (e)=>{
@@ -191,8 +232,11 @@ console.log(posts.map(p => [p.slug, p.data.featured]));
       if (!t) return;
       const id = t.id || (t.closest && (t.closest('#lang-en, #lang-ja') as HTMLElement)?.id) || '';
       if (id === 'lang-en' || id === 'lang-ja') {
+        try { localStorage.setItem('preferredLang', id === 'lang-en' ? 'en' : 'ja'); } catch {}
         setTimeout(filterHome, 50);
         setTimeout(updateAccessVisible, 50);
+        setTimeout(updateHeadingVisible, 50);
+        setTimeout(rewriteLinksWithLang, 50);
       }
     });
   })();
