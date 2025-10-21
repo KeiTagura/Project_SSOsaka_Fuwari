@@ -103,4 +103,10 @@ What to bring:
 
 
 
-RSVP: 
+
+## Wanna be a Speaker?
+<div class="max-w-3xl mx-auto">
+  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="/en/zigday-apply/" style="color:oklch(0.26 0 0)"> Apply Here</a>
+</div>
+
+

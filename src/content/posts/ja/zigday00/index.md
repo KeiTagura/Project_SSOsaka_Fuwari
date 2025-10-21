@@ -91,4 +91,7 @@ src/content/posts/
 - ノートPC（もしくは、デスクトップを持ってくる猛者も歓迎）
 - 見せたい・作業したいプロジェクト / コード  
 
-RSVP:
+## 登壇してみませんか？
+<div class="max-w-3xl mx-auto">
+  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="/en/zigday-apply/" style="color:oklch(0.26 0 0)"> 応募はこちら</a>
+</div>
