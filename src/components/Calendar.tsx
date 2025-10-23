@@ -46,7 +46,7 @@ export default function Calendar() {
 		fetchEvents();
 	}, [fetchHolidays, fetchEvents]);
 
-	const renderDayCellContent = (dayCellContent: any) => {
+	const renderDayCellContent = (dayCellContent: { view: { type: string }; date: Date }) => {
 		if (dayCellContent.view.type !== "dayGridMonth") return;
 
 		const dateStr = dayCellContent.date.toLocaleDateString("sv-SE");
@@ -65,15 +65,18 @@ export default function Calendar() {
 		);
 	};
 
+	// Cast FullCalendar to any to satisfy TS in this environment
+	const FC = FullCalendar as any;
+
 	return (
 		<div className="demo-app-main">
-			<FullCalendar
+			<FC
 				plugins={[bootstrap5Plugin, multiMonthPlugin]}
 				themeSystem=""
 				initialView="multiMonthYear"
 				locale={jaLocale}
 				events={events}
-				eventClassNames={(arg) => {
+				eventClassNames={(arg: { event: { allDay?: boolean } }) => {
 					return arg.event.allDay ? "bg-info text-red" : "bg-success text-blue";
 				}}
 				// eventclassNames={() => 'bg-danger text-white'}  // Bootstrap classes
