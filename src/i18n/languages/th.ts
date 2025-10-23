@@ -5,7 +5,14 @@ export const th: Translation = {
 	[Key.home]: "หน้าแรก",
 	[Key.about]: "เกี่ยวกับ",
 	[Key.archive]: "คลัง",
+	[Key.event]: "อีเวนต์",
+	[Key.events]: "อีเวนต์",
 	[Key.search]: "ค้นหา",
+	[Key.upcomingEvents]: "กิจกรรมที่จะมีขึ้น",
+
+	[Key.past]: "ที่ผ่านมา",
+	[Key.upcoming]: "กำลังจะมีขึ้น",
+	[Key.today]: "วันนี้",
 
 	[Key.tags]: "ป้ายกำกับ",
 	[Key.categories]: "หมวดหมู่",

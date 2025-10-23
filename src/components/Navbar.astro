@@ -125,7 +125,7 @@ function loadButtonScript() {
         // Hover-to-open language panel
         const panel = document.getElementById('lang-select-panel');
         if (panel) {
-            let hoverTimer = null as any;
+            let hoverTimer: ReturnType<typeof setTimeout> | null = null;
             const open = () => {
                 panel.classList.remove('float-panel-closed');
                 try { updateLangUI(getCurrentLang()); } catch {}
@@ -150,12 +150,13 @@ function loadButtonScript() {
         return 'ja';
     }
 
-    function updateLangUI(current) {
+    function updateLangUI(current: string) {
         const enBtn = document.getElementById('lang-en');
         const jaBtn = document.getElementById('lang-ja');
         const sets = [enBtn, jaBtn];
         sets.forEach((btn) => {
             if (!btn) return;
+
             const lang = btn.getAttribute('data-lang');
             const check = btn.querySelector('[data-check]');
             if (lang === current) {
@@ -172,7 +173,7 @@ function loadButtonScript() {
         });
     }
 
-    function navigateToLang(target) {
+    function navigateToLang(target: string) {
         try {
             const path = window.location.pathname;
             const parts = path.split('/').filter(Boolean);
@@ -242,12 +243,12 @@ function loadButtonScript() {
     try { updateLangUI(getCurrentLang()); } catch {}
 
     // Click-outside to close language panel
-    document.addEventListener('click', function (e) {
+    document.addEventListener('click', function (e: MouseEvent) {
         const panel = document.getElementById('lang-select-panel');
         const btn = document.getElementById('lang-toggle');
         if (!panel || !btn) return;
-        const target = e.target;
-        if (panel.contains(target as any) || btn.contains(target as any)) return;
+        const target = e.target as Node | null;
+        if (target && (panel.contains(target) || btn.contains(target))) return;
         panel.classList.add('float-panel-closed');
     });
 }

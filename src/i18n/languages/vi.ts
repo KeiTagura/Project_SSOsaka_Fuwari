@@ -5,7 +5,14 @@ export const vi: Translation = {
 	[Key.home]: "Trang chủ",
 	[Key.about]: "Giới thiệu",
 	[Key.archive]: "Kho bài",
+	[Key.event]: "Sự kiện",
+	[Key.events]: "Sự kiện",
 	[Key.search]: "Tìm kiếm",
+	[Key.upcomingEvents]: "Sự kiện sắp tới",
+
+	[Key.past]: "Đã qua",
+	[Key.upcoming]: "Sắp tới",
+	[Key.today]: "Hôm nay",
 
 	[Key.tags]: "Thẻ",
 	[Key.categories]: "Danh mục",

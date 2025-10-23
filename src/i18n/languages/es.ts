@@ -5,7 +5,14 @@ export const es: Translation = {
 	[Key.home]: "Inicio",
 	[Key.about]: "Sobre mí",
 	[Key.archive]: "Archivo",
+	[Key.event]: "Evento",
+	[Key.events]: "Eventos",
 	[Key.search]: "Buscar",
+	[Key.upcomingEvents]: "Próximos eventos",
+
+	[Key.past]: "Pasado",
+	[Key.upcoming]: "Próximos",
+	[Key.today]: "Hoy",
 
 	[Key.tags]: "Etiquetas",
 	[Key.categories]: "Categorías",

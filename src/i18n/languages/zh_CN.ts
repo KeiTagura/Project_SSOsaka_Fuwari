@@ -5,7 +5,14 @@ export const zh_CN: Translation = {
 	[Key.home]: "主页",
 	[Key.about]: "关于",
 	[Key.archive]: "归档",
+	[Key.event]: "活动",
+	[Key.events]: "活动",
 	[Key.search]: "搜索",
+	[Key.upcomingEvents]: "即将举行的活动",
+
+	[Key.past]: "过去",
+	[Key.upcoming]: "即将",
+	[Key.today]: "今天",
 
 	[Key.tags]: "标签",
 	[Key.categories]: "分类",

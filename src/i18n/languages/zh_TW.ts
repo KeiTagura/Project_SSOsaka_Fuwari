@@ -5,7 +5,14 @@ export const zh_TW: Translation = {
 	[Key.home]: "首頁",
 	[Key.about]: "關於",
 	[Key.archive]: "彙整",
+	[Key.event]: "活動",
+	[Key.events]: "活動",
 	[Key.search]: "搜尋",
+	[Key.upcomingEvents]: "即將舉行的活動",
+
+	[Key.past]: "過去",
+	[Key.upcoming]: "即將",
+	[Key.today]: "今天",
 
 	[Key.tags]: "標籤",
 	[Key.categories]: "分類",

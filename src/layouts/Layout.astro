@@ -270,7 +270,7 @@ function disableAnimation() {
 const bannerEnabled = !!document.getElementById('banner-wrapper')
 
 let nextIsHome = false;
-const isHomePath = (href) => {
+const isHomePath = (href: string) => {
   try {
     const target = new URL(href, window.location.origin).pathname;
     return pathsEqual(target, url('/'));
@@ -279,7 +279,6 @@ const isHomePath = (href) => {
   }
 };
 const getTitleWrapper = () => document.getElementById('title-wrapper');
-
 
 
   function fadeInTitleOnce() {
@@ -470,7 +469,7 @@ const setup = () => {
 console.log("setup");
 
 
-window.swup.hooks.on('visit:start', (visit) => {
+window.swup.hooks.on('visit:start', (visit: { to: { url: string } }) => {
   nextIsHome = isHomePath(visit.to.url);
   const body = document.querySelector('body');
   if (nextIsHome) body?.classList.add('lg:is-home');
