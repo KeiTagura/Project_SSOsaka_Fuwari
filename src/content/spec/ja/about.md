@@ -59,3 +59,12 @@ Secret Shopは、クリエイティブな仲間、好奇心旺盛な人たち、
 
 ```
 
+
+### 📧 Contact Us
+
+```
+ご質問・ご意見・イベントの提案などございましたら、お気軽にご連絡ください。
+
+メール: contact@secretshop.osaka
+Discord: https://discord.gg/AE94Z8hhpn
+```

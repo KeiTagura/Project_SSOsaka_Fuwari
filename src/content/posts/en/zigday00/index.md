@@ -59,20 +59,6 @@ Even if you prefer not to present, you’re absolutely invited to attend, partic
 | `16:30 ~ 17:00`       | Lightning talks (if any) / show & tell / optional presentations                                                                                                                                  |
 | `17:00+`              | Hang-out and chill / continue collaborating                                                                                                                                                      |
 
-## Where to Place the Post Files
-
-
-
-Your post files should be placed in `src/content/posts/` directory. You can also create sub-directories to better organize your posts and assets.
-
-```
-src/content/posts/
-├── post-1.md
-└── post-2/
-    ├── cover.png
-    └── index.md
-```
-
 
 ## Code of Conduct
 ```

@@ -150,6 +150,22 @@ function loadButtonScript() {
         return 'ja';
     }
 
+    function rewriteNavLinksWithLang() {
+        const cur = getCurrentLang();
+        const anchors = document.querySelectorAll('#navbar-links a[href], #navbar a[href]');
+        anchors.forEach((el) => {
+            const a = el as HTMLAnchorElement;
+            if (!a.href) return;
+            try {
+                const u = new URL(a.href, window.location.origin);
+                if (u.origin !== window.location.origin) return;
+                if (u.hash && u.pathname === window.location.pathname) return;
+                u.searchParams.set('lang', cur);
+                a.href = u.toString();
+            } catch {}
+        });
+    }
+
     function updateLangUI(current: string) {
         const enBtn = document.getElementById('lang-en');
         const jaBtn = document.getElementById('lang-ja');
@@ -241,6 +257,7 @@ function loadButtonScript() {
 
     // Initialize selection state on load
     try { updateLangUI(getCurrentLang()); } catch {}
+    rewriteNavLinksWithLang();
 
     // Click-outside to close language panel
     document.addEventListener('click', function (e: MouseEvent) {
@@ -251,6 +268,13 @@ function loadButtonScript() {
         if (target && (panel.contains(target) || btn.contains(target))) return;
         panel.classList.add('float-panel-closed');
     });
+
+    document.addEventListener('astro:page-load', () => rewriteNavLinksWithLang());
+    document.addEventListener('astro:after-swap', () => rewriteNavLinksWithLang());
+    if (window?.swup?.hooks) {
+        window.swup.hooks.on('page:view', () => rewriteNavLinksWithLang());
+        window.swup.hooks.on('content:replace', () => rewriteNavLinksWithLang());
+    }
 }
 
 loadButtonScript();

@@ -65,6 +65,10 @@ const t = i18nFor(routeLang);
       if (q === 'en' || q === 'ja') return q;
       const segs = window.location.pathname.split('/').filter(Boolean);
       if (segs[0] === 'en' || segs[0] === 'ja') return segs[0];
+      try {
+        const pref = (localStorage.getItem('preferredLang')||'').toLowerCase();
+        if (pref === 'en' || pref === 'ja') return pref;
+      } catch {}
       return 'ja';
     }
     function updateVisible(){
@@ -76,5 +80,11 @@ const t = i18nFor(routeLang);
     }
     updateVisible();
     window.addEventListener('popstate', updateVisible);
+    document.addEventListener('astro:page-load', () => setTimeout(updateVisible, 0));
+    document.addEventListener('astro:after-swap', () => setTimeout(updateVisible, 0));
+    if (window?.swup?.hooks) {
+      window.swup.hooks.on('content:replace', () => updateVisible());
+      window.swup.hooks.on('page:view', () => updateVisible());
+    }
   })();
 </script>

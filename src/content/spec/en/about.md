@@ -41,3 +41,12 @@ Come to an event, lend a hand, bring an idea, or just drop by to say hi.
 We’re always looking for creative collaborators, curious minds, and friendly faces to help shape what Secret Shop becomes next.
 ```
 
+
+### 📧 Contact Us
+
+```
+Questions? Feedback? Events Suggestions?
+
+Email: contact@secretshop.osaka
+Discord: https://discord.gg/AE94Z8hhpn
+```
