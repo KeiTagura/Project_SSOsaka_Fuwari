@@ -8,9 +8,9 @@ import { getLangFromPath } from "../utils/lang";
 
 const path = Astro.url.pathname;
 const pathLang = getLangFromPath(path) ?? undefined;
-const qLangRaw = Astro.url.searchParams.get('lang')?.toLowerCase?.();
-const qLang = qLangRaw === 'en' || qLangRaw === 'ja' ? qLangRaw : undefined;
-const lang = qLang ?? pathLang ?? 'ja';
+const qLangRaw = Astro.url.searchParams.get("lang")?.toLowerCase?.();
+const qLang = qLangRaw === "en" || qLangRaw === "ja" ? qLangRaw : undefined;
+const lang = qLang ?? pathLang ?? "ja";
 const t = i18nFor(lang);
 // Pass full list; client filters by chosen language
 const sortedPostsList = await getSortedPostsList();

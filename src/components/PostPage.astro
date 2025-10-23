@@ -3,18 +3,17 @@ import type { CollectionEntry } from "astro:content";
 import { getPostUrlBySlug, getPostUrlBySlugLang } from "../utils/url-utils";
 import PostCard from "./PostCard.astro";
 
-
 const { page, lang } = Astro.props as { page: any; lang?: string };
 
 let delay = 0;
 const interval = 50;
- 
+
 function getItemLang(entry: CollectionEntry<"posts">): string {
-    const slugLang = (entry.slug?.split?.("/")?.[0] ?? "").toLowerCase();
-    const fmLang = (entry.data as any)?.lang?.toLowerCase?.();
-    if (fmLang === 'en' || fmLang === 'ja') return fmLang;
-    if (slugLang === 'en' || slugLang === 'ja') return slugLang;
-    return '';
+	const slugLang = (entry.slug?.split?.("/")?.[0] ?? "").toLowerCase();
+	const fmLang = (entry.data as any)?.lang?.toLowerCase?.();
+	if (fmLang === "en" || fmLang === "ja") return fmLang;
+	if (slugLang === "en" || slugLang === "ja") return slugLang;
+	return "";
 }
 ---
 

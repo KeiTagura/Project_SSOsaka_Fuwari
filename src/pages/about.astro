@@ -9,15 +9,19 @@ import { getLangFromPath } from "../utils/lang";
 
 // Respond to ?lang=en|ja, else infer from path, default 'ja'
 const pathLang = getLangFromPath(Astro.url.pathname) ?? undefined;
-const qLangRaw = Astro.url.searchParams.get('lang')?.toLowerCase?.();
-const qLang = qLangRaw === 'en' || qLangRaw === 'ja' ? qLangRaw : undefined;
-const routeLang = qLang ?? pathLang ?? 'ja';
+const qLangRaw = Astro.url.searchParams.get("lang")?.toLowerCase?.();
+const qLang = qLangRaw === "en" || qLangRaw === "ja" ? qLangRaw : undefined;
+const routeLang = qLang ?? pathLang ?? "ja";
 // Load localized entries (fallback to neutral) so client can toggle by ?lang
-const enEntry = (await getEntry("spec", "en/about" as any)) ?? (await getEntry("spec", "about" as any));
-const jaEntry = (await getEntry("spec", "ja/about" as any)) ?? (await getEntry("spec", "about" as any));
+const enEntry =
+	(await getEntry("spec", "en/about" as any)) ??
+	(await getEntry("spec", "about" as any));
+const jaEntry =
+	(await getEntry("spec", "ja/about" as any)) ??
+	(await getEntry("spec", "about" as any));
 
 if (!enEntry && !jaEntry) {
-  throw new Error("About page content not found");
+	throw new Error("About page content not found");
 }
 
 const En = enEntry ? (await render(enEntry)).Content : null;

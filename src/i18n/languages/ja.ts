@@ -10,9 +10,6 @@ export const ja: Translation = {
 	[Key.events]: "イベント",
 	[Key.upcomingEvents]: "今後のイベント",
 
-
-	
-
 	[Key.past]: "過去",
 	[Key.upcoming]: "予定",
 	[Key.today]: "本日",

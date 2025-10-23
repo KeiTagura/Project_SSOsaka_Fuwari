@@ -5,93 +5,114 @@
 
 
 
-import { getEntry, render } from 'astro:content';
-
+import {
+	type CollectionEntry,
+	getCollection,
+	getEntry,
+	render,
+} from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import PostFeatured from "@components/PostFeatured.astro";
 import type { GetStaticPaths } from "astro";
 import Pagination from "../components/control/Pagination.astro";
+import PostCard from "../components/PostCard.astro";
 import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
-import MainGridLayout from "../layouts/MainGridLayout.astro";
-import { getSortedPosts } from "../utils/content-utils";
-import PostFeatured from "@components/PostFeatured.astro";
-import PostCard from "../components/PostCard.astro";
-import Markdown from "@components/misc/Markdown.astro";
-import { getLangFromPath } from "../utils/lang";
 import I18nKey from "../i18n/i18nKey";
 import { i18nFor } from "../i18n/translation";
-
-import { getCollection, type CollectionEntry } from "astro:content";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { getSortedPosts } from "../utils/content-utils";
+import { getLangFromPath } from "../utils/lang";
 
 // Helper so it works whether published is a Date or string
 const toDate = (d: unknown) => (d instanceof Date ? d : new Date(String(d)));
 const now = new Date();
-
-
 
 // Load posts (exclude drafts for lists; adjust if your schema differs)
 type Post = CollectionEntry<"posts">;
 const posts: Post[] = await getCollection("posts", ({ data }) => !data.draft);
 
 // Choose featured posts per language: soonest upcoming featured; fallback = latest past featured
-function getItemLangFromSlug(slug: string, fmLang?: string): 'en'|'ja'|'' {
-  const fm = fmLang?.toLowerCase?.();
-  if (fm === 'en' || fm === 'ja') return fm as any;
-  const first = String(slug).split('/')?.[0]?.toLowerCase?.();
-  return (first === 'en' || first === 'ja') ? (first as any) : '';
+function getItemLangFromSlug(slug: string, fmLang?: string): "en" | "ja" | "" {
+	const fm = fmLang?.toLowerCase?.();
+	if (fm === "en" || fm === "ja") return fm as any;
+	const first = String(slug).split("/")?.[0]?.toLowerCase?.();
+	return first === "en" || first === "ja" ? (first as any) : "";
 }
 const candidates = posts.filter((p) => !!p.data.featured);
-const candEn = candidates.filter((p)=> getItemLangFromSlug(p.slug, (p.data as any)?.lang) === 'en');
-const candJa = candidates.filter((p)=> getItemLangFromSlug(p.slug, (p.data as any)?.lang) === 'ja');
+const candEn = candidates.filter(
+	(p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "en",
+);
+const candJa = candidates.filter(
+	(p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "ja",
+);
 
 const upcomingEn = candEn
-  .filter((p) => toDate(p.data.published) >= now)
-  .sort((a, b) => toDate(a.data.published).getTime() - toDate(b.data.published).getTime());
+	.filter((p) => toDate(p.data.published) >= now)
+	.sort(
+		(a, b) =>
+			toDate(a.data.published).getTime() - toDate(b.data.published).getTime(),
+	);
 const pastEn = candEn
-  .filter((p) => toDate(p.data.published) < now)
-  .sort((a, b) => toDate(b.data.published).getTime() - toDate(a.data.published).getTime());
+	.filter((p) => toDate(p.data.published) < now)
+	.sort(
+		(a, b) =>
+			toDate(b.data.published).getTime() - toDate(a.data.published).getTime(),
+	);
 const featuredEn: Post | undefined = upcomingEn[0] ?? pastEn[0];
 
 const upcomingJa = candJa
-  .filter((p) => toDate(p.data.published) >= now)
-  .sort((a, b) => toDate(a.data.published).getTime() - toDate(b.data.published).getTime());
+	.filter((p) => toDate(p.data.published) >= now)
+	.sort(
+		(a, b) =>
+			toDate(a.data.published).getTime() - toDate(b.data.published).getTime(),
+	);
 const pastJa = candJa
-  .filter((p) => toDate(p.data.published) < now)
-  .sort((a, b) => toDate(b.data.published).getTime() - toDate(a.data.published).getTime());
+	.filter((p) => toDate(p.data.published) < now)
+	.sort(
+		(a, b) =>
+			toDate(b.data.published).getTime() - toDate(a.data.published).getTime(),
+	);
 const featuredJa: Post | undefined = upcomingJa[0] ?? pastJa[0];
 
-
-
-
 export const getStaticPaths = (async ({ paginate }) => {
-    const allBlogPosts = await getSortedPosts();
-    const nowRef = new Date();
-    const upcomingOnly = allBlogPosts.filter((p) => new Date(String(p.data.published)) >= nowRef);
-    return paginate(upcomingOnly, { pageSize: PAGE_SIZE });
+	const allBlogPosts = await getSortedPosts();
+	const nowRef = new Date();
+	const upcomingOnly = allBlogPosts.filter(
+		(p) => new Date(String(p.data.published)) >= nowRef,
+	);
+	return paginate(upcomingOnly, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 // https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
 const { page } = Astro.props;
 // Filter out the featured post from the current page list to avoid duplication (both locales)
 function normalizeSlug(slug: string): string {
-  const parts = String(slug).split('/');
-  const first = parts[0]?.toLowerCase?.();
-  if (first === 'en' || first === 'ja') return parts.slice(1).join('/');
-  return slug;
+	const parts = String(slug).split("/");
+	const first = parts[0]?.toLowerCase?.();
+	if (first === "en" || first === "ja") return parts.slice(1).join("/");
+	return slug;
 }
-const excludeSet = new Set<string>([
-  featuredEn ? normalizeSlug(featuredEn.slug) : '',
-  featuredJa ? normalizeSlug(featuredJa.slug) : '',
-].filter(Boolean));
-const pageFiltered = excludeSet.size > 0
-  ? { ...page, data: page.data.filter((p) => !excludeSet.has(normalizeSlug(p.slug))) }
-  : page;
+const excludeSet = new Set<string>(
+	[
+		featuredEn ? normalizeSlug(featuredEn.slug) : "",
+		featuredJa ? normalizeSlug(featuredJa.slug) : "",
+	].filter(Boolean),
+);
+const pageFiltered =
+	excludeSet.size > 0
+		? {
+				...page,
+				data: page.data.filter((p) => !excludeSet.has(normalizeSlug(p.slug))),
+			}
+		: page;
 const len = pageFiltered.data.length;
 
 // Localized Access content
 const pathLang = getLangFromPath(Astro.url.pathname) ?? undefined;
-const qLangRaw = Astro.url.searchParams.get('lang')?.toLowerCase?.();
-const qLang = qLangRaw === 'en' || qLangRaw === 'ja' ? qLangRaw : undefined;
-const routeLang = qLang ?? pathLang ?? 'ja';
+const qLangRaw = Astro.url.searchParams.get("lang")?.toLowerCase?.();
+const qLang = qLangRaw === "en" || qLangRaw === "ja" ? qLangRaw : undefined;
+const routeLang = qLang ?? pathLang ?? "ja";
 
 const accessEn = await getEntry("access" as any, "en/access" as any);
 const accessJa = await getEntry("access" as any, "ja/access" as any);
@@ -101,7 +122,7 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
 const t = i18nFor(routeLang);
 
 console.log("CHECK");
-console.log(posts.map(p => [p.slug, p.data.featured]));
+console.log(posts.map((p) => [p.slug, p.data.featured]));
 ---
 
 <MainGridLayout>

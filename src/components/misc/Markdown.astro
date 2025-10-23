@@ -1,23 +1,21 @@
 ---
 import "@fontsource-variable/jetbrains-mono";
 import "@fontsource-variable/jetbrains-mono/wght-italic.css";
-import { Fragment } from "astro/jsx-runtime";
 
 interface Props {
 	class: string;
-    content?: string; // add this prop
+	content?: string; // add this prop
 }
 const className = Astro.props.class;
 const content = Astro.props.content;
 ---
 <div data-pagefind-body class={`prose dark:prose-invert prose-base !max-w-none custom-md ${className}`}>
-    <!--<div class="prose dark:prose-invert max-w-none custom-md">-->
-    <!--<div class="max-w-none custom-md">--> {content ? (
-    <Fragment set:html={content} />
-  ) : (
-    <slot />
-  )}
-</div>
+    {content ? (
+      <span set:html={content} />
+    ) : (
+      <slot />
+    )}
+  </div>
 
 <script>
 document.addEventListener("click", function (e: MouseEvent) {
@@ -33,7 +31,7 @@ document.addEventListener("click", function (e: MouseEvent) {
 
         const timeoutId = target.getAttribute("data-timeout-id");
         if (timeoutId) {
-            clearTimeout(parseInt(timeoutId));
+            clearTimeout(parseInt(timeoutId, 10));
         }
 
         target.classList.add("success");

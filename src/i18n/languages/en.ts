@@ -10,12 +10,9 @@ export const en: Translation = {
 	[Key.events]: "Events",
 	[Key.upcomingEvents]: "Upcoming Events",
 
-	
-
 	[Key.past]: "previous",
 	[Key.upcoming]: "upcoming",
 	[Key.today]: "today",
-
 
 	[Key.tags]: "Tags",
 	[Key.categories]: "Categories",

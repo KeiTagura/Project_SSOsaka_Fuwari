@@ -5,7 +5,7 @@ import { i18nFor } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPostsList } from "@/utils/content-utils";
 
-const lang = 'en';
+const lang = "en";
 const t = i18nFor(lang);
 const sortedPostsList = await getSortedPostsList(lang);
 ---

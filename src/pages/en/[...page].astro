@@ -1,44 +1,51 @@
 ---
-import { getEntry, getCollection, type CollectionEntry } from 'astro:content';
+import { type CollectionEntry, getCollection, getEntry } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import PostFeatured from "@components/PostFeatured.astro";
 import type { GetStaticPaths } from "astro";
 import Pagination from "../../components/control/Pagination.astro";
+import PostCard from "../../components/PostCard.astro";
 import PostPage from "../../components/PostPage.astro";
 import { PAGE_SIZE } from "../../constants/constants";
 import MainGridLayout from "../../layouts/MainGridLayout.astro";
 import { getSortedPosts } from "../../utils/content-utils";
-import PostFeatured from "@components/PostFeatured.astro";
-import PostCard from "../../components/PostCard.astro";
-import Markdown from "@components/misc/Markdown.astro";
 
-const lang = 'en';
+const lang = "en";
 const toDate = (d: unknown) => (d instanceof Date ? d : new Date(String(d)));
 const now = new Date();
 type Post = CollectionEntry<"posts">;
 const posts: Post[] = await getCollection("posts", (entry) => {
-  const { data, slug } = entry as any;
-  const draftOk = !data.draft;
-  const slugLang = typeof slug === 'string' ? slug.split('/')[0]?.toLowerCase?.() : undefined;
-  const fmLang = data.lang?.toLowerCase?.();
-  const langOk = fmLang === lang || slugLang === lang;
-  return draftOk && langOk;
+	const { data, slug } = entry as any;
+	const draftOk = !data.draft;
+	const slugLang =
+		typeof slug === "string" ? slug.split("/")[0]?.toLowerCase?.() : undefined;
+	const fmLang = data.lang?.toLowerCase?.();
+	const langOk = fmLang === lang || slugLang === lang;
+	return draftOk && langOk;
 });
 const candidates = posts.filter((p) => !!p.data.featured);
 const upcoming = candidates
-  .filter((p) => toDate(p.data.published) >= now)
-  .sort((a, b) => toDate(a.data.published).getTime() - toDate(b.data.published).getTime());
+	.filter((p) => toDate(p.data.published) >= now)
+	.sort(
+		(a, b) =>
+			toDate(a.data.published).getTime() - toDate(b.data.published).getTime(),
+	);
 const past = candidates
-  .filter((p) => toDate(p.data.published) < now)
-  .sort((a, b) => toDate(b.data.published).getTime() - toDate(a.data.published).getTime());
+	.filter((p) => toDate(p.data.published) < now)
+	.sort(
+		(a, b) =>
+			toDate(b.data.published).getTime() - toDate(a.data.published).getTime(),
+	);
 const featuredPost: Post | undefined = upcoming[0] ?? past[0];
 export const getStaticPaths = (async ({ paginate }) => {
-  const langLocal = 'en';
-  const allBlogPosts = await getSortedPosts(langLocal);
-  return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
+	const langLocal = "en";
+	const allBlogPosts = await getSortedPosts(langLocal);
+	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 const { page } = Astro.props;
 const pageFiltered = featuredPost
-  ? { ...page, data: page.data.filter((p) => p.slug !== featuredPost.slug) }
-  : page;
+	? { ...page, data: page.data.filter((p) => p.slug !== featuredPost.slug) }
+	: page;
 const len = pageFiltered.data.length;
 ---
 

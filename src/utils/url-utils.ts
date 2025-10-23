@@ -18,13 +18,16 @@ export function getPostUrlBySlug(slug: string): string {
 	return url(`/posts/${slug}/`);
 }
 
-export function getPostUrlBySlugLang(slug: string, lang?: string | null): string {
-    const p = getPostUrlBySlug(slug);
-    // If slug already starts with a locale (e.g., 'en/...' or 'ja/...'), return as-is
-    const hasLocale = /^(en|ja)\//.test(slug);
-    if (hasLocale) return p;
-    const l = lang ? normalizeLang(lang) : null;
-    return l ? `/${l}${p}` : p;
+export function getPostUrlBySlugLang(
+	slug: string,
+	lang?: string | null,
+): string {
+	const p = getPostUrlBySlug(slug);
+	// If slug already starts with a locale (e.g., 'en/...' or 'ja/...'), return as-is
+	const hasLocale = /^(en|ja)\//.test(slug);
+	if (hasLocale) return p;
+	const l = lang ? normalizeLang(lang) : null;
+	return l ? `/${l}${p}` : p;
 }
 
 export function getTagUrl(tag: string): string {
@@ -48,7 +51,10 @@ export function getCategoryUrl(category: string | null): string {
 	return url(`/archive/?category=${encodeURIComponent(category.trim())}`);
 }
 
-export function getCategoryUrlLang(category: string | null, lang?: string | null): string {
+export function getCategoryUrlLang(
+	category: string | null,
+	lang?: string | null,
+): string {
 	const p = getCategoryUrl(category);
 	const l = lang ? normalizeLang(lang) : null;
 	return l ? `/${l}${p}` : p;

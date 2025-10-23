@@ -14,16 +14,16 @@ import PostMetadata from "../../../components/PostMeta.astro";
 import { profileConfig } from "../../../config";
 import { formatDateToYYYYMMDD } from "../../../utils/date-utils";
 
-const lang = 'ja';
+const lang = "ja";
 const t = i18nFor(lang);
 
 export async function getStaticPaths() {
-  const langLocal = 'ja';
-  const blogEntries = await getSortedPosts(langLocal);
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+	const langLocal = "ja";
+	const blogEntries = await getSortedPosts(langLocal);
+	return blogEntries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
 }
 
 const { entry } = Astro.props;
@@ -31,18 +31,18 @@ const { Content, headings } = await entry.render();
 const { remarkPluginFrontmatter } = await entry.render();
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: entry.data.title,
-  description: entry.data.description || entry.data.title,
-  keywords: entry.data.tags,
-  author: {
-    "@type": "Person",
-    name: profileConfig.name,
-    url: Astro.site,
-  },
-  datePublished: formatDateToYYYYMMDD(entry.data.published),
-  inLanguage: (entry.data.lang || lang).replace("_", "-"),
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	headline: entry.data.title,
+	description: entry.data.description || entry.data.title,
+	keywords: entry.data.tags,
+	author: {
+		"@type": "Person",
+		name: profileConfig.name,
+		url: Astro.site,
+	},
+	datePublished: formatDateToYYYYMMDD(entry.data.published),
+	inLanguage: (entry.data.lang || lang).replace("_", "-"),
 };
 ---
 <MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={lang} setOGTypeArticle={true} headings={headings}>

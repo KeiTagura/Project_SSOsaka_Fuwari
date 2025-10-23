@@ -1,8 +1,8 @@
 ---
 import type { Page } from "astro";
 import { Icon } from "astro-icon/components";
-import { url } from "../../utils/url-utils";
 import { getLangFromPath } from "../../utils/lang";
+import { url } from "../../utils/url-utils";
 
 interface Props {
 	page: Page;
@@ -52,30 +52,29 @@ if (r < page.lastPage) pages.push(page.lastPage);
 // - Else, keep neutral URLs
 const currentPath = Astro.url.pathname;
 const pathLang = getLangFromPath(currentPath) ?? undefined;
-const qLangRaw = Astro.url.searchParams.get('lang')?.toLowerCase?.();
-const qLang = qLangRaw === 'en' || qLangRaw === 'ja' ? qLangRaw : undefined;
+const qLangRaw = Astro.url.searchParams.get("lang")?.toLowerCase?.();
+const qLang = qLangRaw === "en" || qLangRaw === "ja" ? qLangRaw : undefined;
 
-        console.log("ETF");
-        
+console.log("ETF");
+
 const getPageUrl = (p: number) => {
-    // Locale-prefixed routes
-    if (pathLang === 'en' || pathLang === 'ja') {
-        console.log("HHHH");
-        console.log(`/${pathLang}/${p}/`);
-        if (p === 1) return `/${pathLang}/`;
-        return `/${pathLang}/${p}/`;
-    }
-    // Neutral routes; preserve ?lang if present
-    const base = p === 1 ? "/" : `/${p}/`;
-    if (qLang) {
-        const qs = new URLSearchParams(Astro.url.searchParams);
-        qs.set('lang', qLang);
-        const suffix = qs.toString();
-        return suffix ? `${base}?${suffix}` : base;
-    }
-    return base;
+	// Locale-prefixed routes
+	if (pathLang === "en" || pathLang === "ja") {
+		console.log("HHHH");
+		console.log(`/${pathLang}/${p}/`);
+		if (p === 1) return `/${pathLang}/`;
+		return `/${pathLang}/${p}/`;
+	}
+	// Neutral routes; preserve ?lang if present
+	const base = p === 1 ? "/" : `/${p}/`;
+	if (qLang) {
+		const qs = new URLSearchParams(Astro.url.searchParams);
+		qs.set("lang", qLang);
+		const suffix = qs.toString();
+		return suffix ? `${base}?${suffix}` : base;
+	}
+	return base;
 };
-
 ---
 
 <div class:list={[className, "flex flex-row gap-3 justify-center"]} style={style}>

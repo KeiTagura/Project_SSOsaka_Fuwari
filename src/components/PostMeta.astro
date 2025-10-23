@@ -5,7 +5,6 @@ import { i18nFor } from "../i18n/translation";
 import { formatDateToYYYYMMDD } from "../utils/date-utils";
 import { getCategoryUrlLang, getTagUrlLang } from "../utils/url-utils";
 
-
 interface Props {
 	class: string;
 	published: Date;
@@ -14,7 +13,7 @@ interface Props {
 	category: string | null;
 	hideTagsForMobile?: boolean;
 	hideUpdateDate?: boolean;
-    lang?: string;
+	lang?: string;
 }
 const {
 	published,
@@ -23,7 +22,7 @@ const {
 	category,
 	hideTagsForMobile = false,
 	hideUpdateDate = false,
-    lang,
+	lang,
 } = Astro.props;
 const className = Astro.props.class;
 const t = i18nFor(lang ?? "ja");

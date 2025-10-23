@@ -43,6 +43,6 @@ export function i18n(key: I18nKey): string {
 }
 
 export function i18nFor(lang: string) {
-    const t = getTranslation(lang || "ja");
-    return (key: I18nKey) => t[key];
+	const t = getTranslation(lang || "ja");
+	return (key: I18nKey) => t[key];
 }

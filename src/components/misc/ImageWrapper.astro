@@ -41,7 +41,9 @@ if (isLocal) {
 	let file = files[normalizedPath];
 	if (!file) {
 		// Fallback: try cover.* inside the same basePath directory
-		const coverKey = Object.keys(files).find((k) => k.startsWith(`${normalizedBase}cover.`));
+		const coverKey = Object.keys(files).find((k) =>
+			k.startsWith(`${normalizedBase}cover.`),
+		);
 		if (coverKey) {
 			file = files[coverKey];
 		} else {

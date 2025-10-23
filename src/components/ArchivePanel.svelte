@@ -14,24 +14,25 @@ let t = (k: I18nKey) => i18nFor("ja")(k); // default fallback, will be updated o
 // NOTE: query parsing moved into onMount to avoid SSR window access
 
 interface Post {
-  slug: string;
-  data: {
-    title: string;
-    tags: string[];
-    category?: string;
-    published: Date;
-  };
+	slug: string;
+	data: {
+		title: string;
+		tags: string[];
+		category?: string;
+		lang?: string;
+		published: Date;
+	};
 }
 
 interface Group {
-  year: number;
-  posts: Post[];
+	year: number;
+	posts: Post[];
 }
 
 type Status = "past" | "upcoming" | "today";
 interface EventInfo {
-  status: Status;
-  label: string;
+	status: Status;
+	label: string;
 }
 type PostWithStatus = Post & { eventInfo: EventInfo };
 type GroupWithStatus = { year: number; posts: PostWithStatus[] };
@@ -40,106 +41,113 @@ let groups: Group[] = [];
 let groupsWithStatus: GroupWithStatus[] = [];
 
 function formatDate(date: Date) {
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  return `${month}-${day}`;
+	const month = (date.getMonth() + 1).toString().padStart(2, "0");
+	const day = date.getDate().toString().padStart(2, "0");
+	return `${month}-${day}`;
 }
 function formatTag(tagList: string[]) {
-  return tagList.map((t) => `#${t}`).join(" ");
+	return tagList.map((t) => `#${t}`).join(" ");
 }
 
 function eventSpaceTime(date: Date): EventInfo {
-  const today = new Date();
-  // compare by day (ignore time)
-  const isSameDay = date.toDateString() === today.toDateString();
-  if (isSameDay) return { status: "today", label: t(I18nKey.today) };
-  if (date < today) return { status: "past", label: t(I18nKey.past) };
-  return { status: "upcoming", label: t(I18nKey.upcoming) };
+	const today = new Date();
+	// compare by day (ignore time)
+	const isSameDay = date.toDateString() === today.toDateString();
+	if (isSameDay) return { status: "today", label: t(I18nKey.today) };
+	if (date < today) return { status: "past", label: t(I18nKey.past) };
+	return { status: "upcoming", label: t(I18nKey.upcoming) };
 }
 
 onMount(async () => {
-  const params = new URLSearchParams(window.location.search);
-  tags = params.has("tag") ? params.getAll("tag") : [];
-  categories = params.has("category") ? params.getAll("category") : [];
-  const uncategorized = params.get("uncategorized");
-  try {
-    const q = (params.get('lang') || '').toLowerCase();
-    if (q === 'en' || q === 'ja') {
-      currentLang = q;
-    } else {
-      const parts = window.location.pathname.split('/').filter(Boolean);
-      const first = parts[0]?.toLowerCase?.();
-      currentLang = first === 'en' || first === 'ja' ? first : null;
-      if (!currentLang) {
-        try {
-          const pref = (localStorage.getItem('preferredLang') || '').toLowerCase();
-          if (pref === 'en' || pref === 'ja') currentLang = pref;
-        } catch {}
-      }
-      if (!currentLang) {
-        currentLang = 'ja';
-      }
-    }
-    if (currentLang) {
-      t = i18nFor(currentLang);
-    }
-  } catch {}
+	const params = new URLSearchParams(window.location.search);
+	tags = params.has("tag") ? params.getAll("tag") : [];
+	categories = params.has("category") ? params.getAll("category") : [];
+	const uncategorized = params.get("uncategorized");
+	try {
+		const q = (params.get("lang") || "").toLowerCase();
+		if (q === "en" || q === "ja") {
+			currentLang = q;
+		} else {
+			const parts = window.location.pathname.split("/").filter(Boolean);
+			const first = parts[0]?.toLowerCase?.();
+			currentLang = first === "en" || first === "ja" ? first : null;
+			if (!currentLang) {
+				try {
+					const pref = (
+						localStorage.getItem("preferredLang") || ""
+					).toLowerCase();
+					if (pref === "en" || pref === "ja") currentLang = pref;
+				} catch {}
+			}
+			if (!currentLang) {
+				currentLang = "ja";
+			}
+		}
+		if (currentLang) {
+			t = i18nFor(currentLang);
+		}
+	} catch {}
 
-  let filtered: Post[] = sortedPosts;
+	let filtered: Post[] = sortedPosts;
 
-  // Apply language filter first to show only relevant posts
-  if (currentLang) {
-    const l = currentLang.toLowerCase();
-    filtered = filtered.filter((post) => {
-      const slugLang = typeof post.slug === 'string' ? post.slug.split('/')?.[0]?.toLowerCase?.() : undefined;
-      // @ts-ignore optional custom frontmatter lang
-      const fmLang = (post.data as any)?.lang?.toLowerCase?.();
-      const byFrontmatter = !!fmLang && fmLang === l;
-      const byFolder = !!slugLang && slugLang === l;
-      return byFrontmatter || byFolder;
-    });
-  }
+	// Apply language filter first to show only relevant posts
+	if (currentLang) {
+		const l = currentLang.toLowerCase();
+		filtered = filtered.filter((post) => {
+			const slugLang =
+				typeof post.slug === "string"
+					? post.slug.split("/")?.[0]?.toLowerCase?.()
+					: undefined;
+			const fmLang = post.data.lang?.toLowerCase?.();
+			const byFrontmatter = !!fmLang && fmLang === l;
+			const byFolder = !!slugLang && slugLang === l;
+			return byFrontmatter || byFolder;
+		});
+	}
 
-  if (tags.length > 0) {
-    filtered = filtered.filter(
-      (post) =>
-        Array.isArray(post.data.tags) &&
-        post.data.tags.some((tag) => tags.includes(tag)),
-    );
-  }
+	if (tags.length > 0) {
+		filtered = filtered.filter(
+			(post) =>
+				Array.isArray(post.data.tags) &&
+				post.data.tags.some((tag) => tags.includes(tag)),
+		);
+	}
 
-  if (categories.length > 0) {
-    filtered = filtered.filter(
-      (post) => post.data.category && categories.includes(post.data.category),
-    );
-  }
+	if (categories.length > 0) {
+		filtered = filtered.filter(
+			(post) => post.data.category && categories.includes(post.data.category),
+		);
+	}
 
-  if (uncategorized) {
-    filtered = filtered.filter((post) => !post.data.category);
-  }
+	if (uncategorized) {
+		filtered = filtered.filter((post) => !post.data.category);
+	}
 
-  // group by year
-  const grouped = filtered.reduce((acc, post) => {
-    const year = post.data.published.getFullYear();
-    (acc[year] ??= []).push(post);
-    return acc;
-  }, {} as Record<number, Post[]>);
+	// group by year
+	const grouped = filtered.reduce<Record<number, Post[]>>((acc, post) => {
+		const year = post.data.published.getFullYear();
+		if (!acc[year]) {
+			acc[year] = [];
+		}
+		acc[year].push(post);
+		return acc;
+	}, {});
 
-  groups = Object.keys(grouped)
-    .map((yearStr) => ({
-      year: Number(yearStr),
-      posts: grouped[Number(yearStr)],
-    }))
-    .sort((a, b) => b.year - a.year);
+	groups = Object.keys(grouped)
+		.map((yearStr) => ({
+			year: Number(yearStr),
+			posts: grouped[Number(yearStr)],
+		}))
+		.sort((a, b) => b.year - a.year);
 
-  // add eventInfo (typed) per post
-  groupsWithStatus = groups.map((g) => ({
-    year: g.year,
-    posts: g.posts.map((p) => ({
-      ...p,
-      eventInfo: eventSpaceTime(p.data.published),
-    })),
-  }));
+	// add eventInfo (typed) per post
+	groupsWithStatus = groups.map((g) => ({
+		year: g.year,
+		posts: g.posts.map((p) => ({
+			...p,
+			eventInfo: eventSpaceTime(p.data.published),
+		})),
+	}));
 });
 </script>
 

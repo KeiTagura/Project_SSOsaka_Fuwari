@@ -13,65 +13,74 @@ const { Content, data } = await post.render();
 // [comment]: <FeaturedDescription>
 let featuredExcerptHtml: string | undefined;
 try {
-  const body: string = (post as any).body ?? "";
-  const MARK = "[comment]: <FeaturedDescription>";
-  const first = body.indexOf(MARK);
-  const second = first >= 0 ? body.indexOf(MARK, first + MARK.length) : -1;
-  if (first >= 0 && second > first) {
-    const slice = body.slice(first + MARK.length, second).trim();
-    // Minimal markdown to HTML: convert links and paragraph breaks
-    const linkified = slice.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1<\/a>');
-    const paragraphs = linkified
-      .split(/\n\s*\n+/)
-      .map(p => `<p>${p.trim()}<\/p>`)
-      .join("\n");
-    featuredExcerptHtml = paragraphs;
-  }
+	const body: string = (post as any).body ?? "";
+	const MARK = "[comment]: <FeaturedDescription>";
+	const first = body.indexOf(MARK);
+	const second = first >= 0 ? body.indexOf(MARK, first + MARK.length) : -1;
+	if (first >= 0 && second > first) {
+		const slice = body.slice(first + MARK.length, second).trim();
+		// Minimal markdown to HTML: convert links and paragraph breaks
+		const linkified = slice.replace(
+			/\[([^\]]+)\]\(([^)]+)\)/g,
+			'<a href="$2">$1<\/a>',
+		);
+		const paragraphs = linkified
+			.split(/\n\s*\n+/)
+			.map((p) => `<p>${p.trim()}<\/p>`)
+			.join("\n");
+		featuredExcerptHtml = paragraphs;
+	}
 } catch {}
 // Resolve relative image path robustly
 
 let imageUrl = post.data.image;
 const isAbsolute = (p: string) =>
-  typeof p === "string" && (p.startsWith("/") || /^https?:\/\//.test(p));
+	typeof p === "string" && (p.startsWith("/") || /^https?:\/\//.test(p));
 
-
-  
 if (imageUrl && !isAbsolute(imageUrl)) {
-  // Build the REAL directory from collection + slug (don’t use post.id)
-  const collection = post.collection; // e.g. "posts"
-  // Use the full slug path as a directory (e.g., "ja/zigday00"), since localized posts live under lang folders
-  const slugDir = post.slug; 
+	// Build the REAL directory from collection + slug (don’t use post.id)
+	const collection = post.collection; // e.g. "posts"
+	// Use the full slug path as a directory (e.g., "ja/zigday00"), since localized posts live under lang folders
+	const slugDir = post.slug;
 
-  const dirPath = `/src/content/${collection}/${slugDir}`; // -> "/src/content/posts/ja/zigday00"
+	const dirPath = `/src/content/${collection}/${slugDir}`; // -> "/src/content/posts/ja/zigday00"
 
-  // Assets available under content
-  const assets = import.meta.glob(
-    "/src/content/**/*.{jpg,jpeg,png,webp,avif,gif,svg}",
-    { query: "?url", import: "default" }
-  );
+	// Assets available under content
+	const assets = import.meta.glob(
+		"/src/content/**/*.{jpg,jpeg,png,webp,avif,gif,svg}",
+		{ query: "?url", import: "default" },
+	);
 
-  // 1) Try cover.*
-  const coverKey = Object.keys(assets).find((k) => k.startsWith(`${dirPath}/cover.`));
+	// 1) Try cover.*
+	const coverKey = Object.keys(assets).find((k) =>
+		k.startsWith(`${dirPath}/cover.`),
+	);
 
-  if (coverKey) {
-    imageUrl = await (assets as Record<string, () => Promise<string>>)[coverKey]();
-  } else {
-    // 2) Try the exact relative filename from frontmatter (e.g., ./cover.jpg)
-    const relClean = String(imageUrl).replace(/^\.?\//, "");
-    const exactKey = `${dirPath}/${relClean}`;
-    if (exactKey in assets) {
-      imageUrl = await (assets as Record<string, () => Promise<string>>)[exactKey]();
-    } else {
-      console.warn(
-        `Image not found for ${post.slug}: tried ${dirPath}/cover.* and ${exactKey}`
-      );
-      imageUrl = undefined;
-    }
-  }
+	if (coverKey) {
+		imageUrl = await (assets as Record<string, () => Promise<string>>)[
+			coverKey
+		]();
+	} else {
+		// 2) Try the exact relative filename from frontmatter (e.g., ./cover.jpg)
+		const relClean = String(imageUrl).replace(/^\.?\//, "");
+		const exactKey = `${dirPath}/${relClean}`;
+		if (exactKey in assets) {
+			imageUrl = await (assets as Record<string, () => Promise<string>>)[
+				exactKey
+			]();
+		} else {
+			console.warn(
+				`Image not found for ${post.slug}: tried ${dirPath}/cover.* and ${exactKey}`,
+			);
+			imageUrl = undefined;
+		}
+	}
 }
 
-    console.log("CHECKER");
-console.log(`Post: ${post.slug}, Image: ${post.data.image}, Resolved: ${imageUrl}, link: ${post.slug}, url: ${getPostUrlBySlug(post.slug)}`);
+console.log("CHECKER");
+console.log(
+	`Post: ${post.slug}, Image: ${post.data.image}, Resolved: ${imageUrl}, link: ${post.slug}, url: ${getPostUrlBySlug(post.slug)}`,
+);
 ---
 
 <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
