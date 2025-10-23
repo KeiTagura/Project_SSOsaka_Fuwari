@@ -38,9 +38,9 @@ const past = candidates
 	);
 const featuredPost: Post | undefined = upcoming[0] ?? past[0];
 export const getStaticPaths = (async ({ paginate }) => {
-    const langLocal = "ja";
-    const allBlogPosts = await getSortedPosts(langLocal);
-    return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
+	const langLocal = "ja";
+	const allBlogPosts = await getSortedPosts(langLocal);
+	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 const { page } = Astro.props;
 const pageFiltered = featuredPost

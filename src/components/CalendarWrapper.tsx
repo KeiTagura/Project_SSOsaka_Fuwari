@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import Calendar from "./Calendar";
 

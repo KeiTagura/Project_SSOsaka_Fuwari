@@ -2,7 +2,7 @@ import bootstrap5Plugin from "@fullcalendar/bootstrap5";
 import jaLocale from "@fullcalendar/core/locales/ja";
 import multiMonthPlugin from "@fullcalendar/multimonth";
 import FullCalendar from "@fullcalendar/react";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface Event {
 	title: string;

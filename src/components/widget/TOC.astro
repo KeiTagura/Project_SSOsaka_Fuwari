@@ -241,18 +241,19 @@ class TableOfContents extends HTMLElement {
         }
         this.active = new Array(this.tocEntries.length).fill(false);
 
-        this.sections.forEach((section) =>
-            this.observer.observe(section)
-        );
+        this.sections.forEach((section) => {
+            this.observer.observe(section);
+        });
 
         this.fallback();
         this.update();
     };
 
     disconnectedCallback() {
-        this.sections.forEach((section) =>
-            this.observer.unobserve(section)
-        );
+        this.sections.forEach((section) => {
+            this.observer.unobserve(section);
+        });
+
         this.observer.disconnect();
         this.tocEl?.removeEventListener("click", this.handleAnchorClick);
     };

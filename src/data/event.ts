@@ -1,6 +1,6 @@
 let eventGuid = 0;
 const today = new Date();
-const day1 = new Date(
+const _day1 = new Date(
 	today.getFullYear(),
 	today.getMonth(),
 	today.getDate() + 1,
@@ -15,7 +15,7 @@ const day3 = new Date(
 	today.getMonth(),
 	today.getDate() + 3,
 );
-const day4 = new Date(
+const _day4 = new Date(
 	today.getFullYear(),
 	today.getMonth(),
 	today.getDate() + 4,
@@ -30,7 +30,7 @@ const day6 = new Date(
 	today.getMonth(),
 	today.getDate() + 6,
 );
-const day7 = new Date(
+const _day7 = new Date(
 	today.getFullYear(),
 	today.getMonth(),
 	today.getDate() + 6,
