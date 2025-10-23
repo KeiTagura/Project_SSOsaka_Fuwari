@@ -8,11 +8,9 @@ import { getLangFromPath } from "@/utils/lang";
 
 let delay = 0;
 const interval = 50;
----
-
 const routeLang = getLangFromPath(Astro.url.pathname) ?? "ja";
 const t = i18nFor(routeLang);
-
+---
 <MainGridLayout title={t(I18nKey.events)} description={t(I18nKey.events)}>
     
       <!-- Inject Bootstrap CSS via <head> slot -->
