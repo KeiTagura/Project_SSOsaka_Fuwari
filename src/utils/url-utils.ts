@@ -1,6 +1,5 @@
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
-import type { SupportedLang } from "./lang";
 import { normalizeLang } from "./lang";
 
 export function pathsEqual(path1: string, path2: string) {
