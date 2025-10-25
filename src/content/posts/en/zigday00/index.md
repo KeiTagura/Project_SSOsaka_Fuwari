@@ -88,9 +88,26 @@ What to bring:
 -Any project / code you want to show or work on
 
 
+## Tickets
+<div class="max-w-3xl mx-auto">
+  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="https://www.meetup.com/zig-day/events/311701911/?eventOrigin=your_events/?utm_medium=referral&utm_campaign=event_card_savedevents_share_modal&utm_source=link&utm_version=v2" style="color:oklch(0.26 0 0)"> Peatix</a>
+</div>
+<br/>
+<div class="max-w-3xl mx-auto">
+  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="https://www.eventbrite.com/e/zig-day-tickets-1880708853809?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=cp&aff=ebdsshcopyurl" style="color:oklch(0.26 0 0)">EventBrite</a>
+</div>
+
+
+
 
 
 ## Wanna be a Speaker?
+```
+---
+Accepted speakers will receive a free event pass.
+We’ll get back to you soon!
+---
+```
 <div class="max-w-3xl mx-auto">
   <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="/en/zigday-apply/" style="color:oklch(0.26 0 0)"> Apply Here</a>
 </div>

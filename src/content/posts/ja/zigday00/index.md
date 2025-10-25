@@ -80,7 +80,24 @@ featured: true
 - ノートPC（もしくは、デスクトップを持ってくる猛者も歓迎）
 - 見せたい・作業したいプロジェクト / コード  
 
+## チケット
+<div class="max-w-3xl mx-auto">
+  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="https://www.meetup.com/zig-day/events/311701911/?eventOrigin=your_events/?utm_medium=referral&utm_campaign=event_card_savedevents_share_modal&utm_source=link&utm_version=v2" style="color:oklch(0.26 0 0)"> Peatix</a>
+</div>
+
+<br/>
+<div class="max-w-3xl mx-auto">
+  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="https://www.eventbrite.com/e/zig-day-tickets-1880708853809?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=cp&aff=ebdsshcopyurl" style="color:oklch(0.26 0 0)">EventBrite</a>
+</div>
+
+
 ## 登壇してみませんか？
+```
+---
+採択された登壇者には、無料の参加チケットをお送りします。
+後ほどこちらからご連絡いたします！
+---
+```
 <div class="max-w-3xl mx-auto">
   <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="/en/zigday-apply/" style="color:oklch(0.26 0 0)"> 応募はこちら</a>
 </div>
