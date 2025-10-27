@@ -73,12 +73,6 @@ featured: true
 ---
 ```
 
-## 会場・準備・持ち物
-
-持ち物：
-
-- ノートPC（もしくは、デスクトップを持ってくる猛者も歓迎）
-- 見せたい・作業したいプロジェクト / コード  
 
 ## チケット
 <div class="max-w-3xl mx-auto">
@@ -104,9 +98,16 @@ featured: true
 
 
 
-<div class="card-base mt-8 h-[0.5rem] dark:bg-[var(--card-bg-featured)]"></div>
+## 会場・準備・持ち物
+
+持ち物：
+
+- ノートPC（もしくは、デスクトップを持ってくる猛者も歓迎）
+- 見せたい・作業したいプロジェクト / コード  
+
+
 <div id="access" class="max-w-6xl mx-auto p-4 space-y-4">
-  <div class="text-5xl font-semibold text-center text-90">Access</div>
+
 
   <div class="grid gap-4 md:grid-cols-3">
     <aside id="access-info" class="h-[34rem] md:col-span-1 shrink-0 text-sm rounded-xl border p-4 text-90 flex items-center">
