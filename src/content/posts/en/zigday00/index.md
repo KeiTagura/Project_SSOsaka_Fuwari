@@ -113,3 +113,48 @@ We’ll get back to you soon!
 </div>
 
 
+<div class="card-base mt-8 h-[0.5rem] dark:bg-[var(--card-bg-featured)]"></div>
+<div id="access" class="max-w-6xl mx-auto p-4 space-y-4">
+  <div class="text-5xl font-semibold text-center text-90">Access</div>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <aside id="access-info" class="h-[34rem] md:col-span-1 shrink-0 text-sm rounded-xl border p-4 text-90 flex items-center">
+      <Markdown class="prose prose-invert max-w-none mx-auto text-center">
+
+
+
+`Secret Shop`
+
+```ansi showLineNumbers=false
+[38;5;172m3 Chome-5 Sanno, Nishinari Ward, Osaka, 557-0001[0m
+Abeno Station  [1;34mexit 6[0m [1;32m10 min[0m
+Dobutsen-mae [1;34mexit 2[0m [1;32m10 min[0m
+Tennoji station [1;32m14 min[0m
+
+
+
+---
+```
+      
+
+
+
+  
+  </Markdown>
+    </aside>
+    <div id="access-media" class="flex flex-col gap-4 h-[34rem] md:col-span-2">
+      <aside id="access-img" class="relative flex-1 w-full rounded-2xl overflow-hidden">
+        <img src="/images/LocationShot.webp" alt="Access" class="w-full h-full object-cover" />
+        <div aria-hidden="true" class="absolute inset-0 pointer-events-none" style="background-image: url('/images/overlays/overlay11.png'); background-repeat: repeat; opacity: 0.8;"></div>
+      </aside>
+      <main id="access-map" class="flex-1 w-full rounded-2xl overflow-hidden">
+        <iframe
+          class="w-full h-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=34.64246579608249, 135.50556859266723&z=15&output=embed">
+        </iframe>
+      </main>
+    </div>
+  </div>
+</div>
