@@ -79,15 +79,6 @@ Speak up if anything makes you uncomfortable — we want to address it
 ```
 
 
-## Venue, Logistics & What to Bring
-
-
-What to bring:
-
--Laptop, (or a desktop if your that crazy)
--Any project / code you want to show or work on
-
-
 ## Tickets
 <div class="max-w-3xl mx-auto">
   <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="https://www.meetup.com/zig-day/events/311701911/?eventOrigin=your_events/?utm_medium=referral&utm_campaign=event_card_savedevents_share_modal&utm_source=link&utm_version=v2" style="color:oklch(0.26 0 0)"> Peatix</a>
@@ -113,9 +104,21 @@ We’ll get back to you soon!
 </div>
 
 
-<div class="card-base mt-8 h-[0.5rem] dark:bg-[var(--card-bg-featured)]"></div>
+
+
+
+
+## Venue, Logistics & What to Bring
+
+
+What to bring:
+
+-Laptop, (or a desktop if your that crazy)
+
+-Any project / code you want to show or work on
+
+
 <div id="access" class="max-w-6xl mx-auto p-4 space-y-4">
-  <div class="text-5xl font-semibold text-center text-90">Access</div>
 
   <div class="grid gap-4 md:grid-cols-3">
     <aside id="access-info" class="h-[34rem] md:col-span-1 shrink-0 text-sm rounded-xl border p-4 text-90 flex items-center">
