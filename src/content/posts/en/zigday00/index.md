@@ -6,7 +6,7 @@ image: "./cover.jpg"
 tags: ["Zig", "Public"]
 category: Public
 draft: false
-featured: true
+featured: false
 ---
 
 [comment]: <FeaturedDescription> 
