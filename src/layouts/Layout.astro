@@ -42,7 +42,6 @@ if (!banner || typeof banner !== "string" || banner.trim() === "") {
 	banner = siteConfig.banner.src;
 }
 
-// TODO don't use post cover as banner for now
 banner = siteConfig.banner.src;
 
 const enableBanner = siteConfig.banner.enable;
@@ -223,50 +222,6 @@ import {
 } from "../constants/constants";
 import { siteConfig } from '../config';
 
-/* Preload fonts */
-// (async function() {
-// 	try {
-// 		await Promise.all([
-// 			document.fonts.load("400 1em Roboto"),
-// 			document.fonts.load("700 1em Roboto"),
-// 		]);
-// 		document.body.classList.remove("hidden");
-// 	} catch (error) {
-// 		console.log("Failed to load fonts:", error);
-// 	}
-// })();
-
-/* TODO This is a temporary solution for style flicker issue when the transition is activated */
-/* issue link: https://github.com/withastro/astro/issues/8711, the solution get from here too */
-/* update: fixed in Astro 3.2.4 */
-/*
-function disableAnimation() {
-	const css = document.createElement('style')
-	css.appendChild(
-		document.createTextNode(
-			`*{
-              -webkit-transition:none!important;
-              -moz-transition:none!important;
-              -o-transition:none!important;
-              -ms-transition:none!important;
-              transition:none!important
-              }`
-		)
-	)
-	document.head.appendChild(css)
-
-	return () => {
-		// Force restyle
-		;(() => window.getComputedStyle(document.body))()
-
-		// Wait for next tick before removing
-		setTimeout(() => {
-			document.head.removeChild(css)
-		}, 1)
-	}
-}
-*/
-
 const bannerEnabled = !!document.getElementById('banner-wrapper')
 
 let nextIsHome = false;
@@ -420,8 +375,6 @@ function showBanner() {
 }
 
 function init() {
-	// disableAnimation()()		// TODO
-
   // show on first load if current page is home
   if (document.body.classList.contains('lg:is-home')) {
     document.getElementById('title-wrapper')?.classList.remove('opacity-0', 'title-hidden');
@@ -454,104 +407,59 @@ function init() {
 init();
 
 const setup = () => {
-	// TODO: temp solution to change the height of the banner
-/*
-	window.swup.hooks.on('animation:out:start', () => {
-		const path = window.location.pathname
-		const body = document.querySelector('body')
-		if (path[path.length - 1] === '/' && !body.classList.contains('is-home')) {
-			body.classList.add('is-home')
-		} else if (path[path.length - 1] !== '/' && body.classList.contains('is-home')) {
-			body.classList.remove('is-home')
-		}
-	})
-*/
-console.log("setup");
+	window.swup.hooks.on('visit:start', (visit: { to: { url: string } }) => {
+		nextIsHome = isHomePath(visit.to.url);
+		const body = document.querySelector('body');
+		if (nextIsHome) body?.classList.add('lg:is-home');
+		else body?.classList.remove('lg:is-home');
 
+		if (!nextIsHome) getTitleWrapper()?.classList.add('title-hidden');
 
-window.swup.hooks.on('visit:start', (visit: { to: { url: string } }) => {
-  nextIsHome = isHomePath(visit.to.url);
-  const body = document.querySelector('body');
-  if (nextIsHome) body?.classList.add('lg:is-home');
-  else body?.classList.remove('lg:is-home');
+		const heightExtend = document.getElementById('page-height-extend');
+		if (heightExtend) heightExtend.classList.remove('hidden');
 
-  if (!nextIsHome) getTitleWrapper()?.classList.add('title-hidden');
-});
+		const toc = document.getElementById('toc-wrapper');
+		if (toc) toc.classList.add('toc-not-ready');
+	});
 
-window.swup.hooks.on('content:replace', () => {
-  if (!nextIsHome) getTitleWrapper()?.classList.add('title-hidden');
-  else getTitleWrapper()?.classList.add('title-hidden');
-});
+	window.swup.hooks.on('content:replace', () => {
+		getTitleWrapper()?.classList.add('title-hidden');
+		initCustomScrollbar();
+	});
 
-window.swup.hooks.on('animation:in:end', () => {
-  if (nextIsHome) requestAnimationFrame(() => {
-    getTitleWrapper()?.classList.remove('title-hidden');
-  });
-});
-
+	window.swup.hooks.on('animation:in:end', () => {
+		if (nextIsHome) requestAnimationFrame(() => {
+			getTitleWrapper()?.classList.remove('title-hidden');
+		});
+		document.getElementById('navbar-wrapper')?.classList.remove('navbar-hidden');
+	});
 
 	window.swup.hooks.on('link:click', () => {
-		// Remove the delay for the first time page load
-		document.documentElement.style.setProperty('--content-delay', '0ms')
+		document.documentElement.style.setProperty('--content-delay', '0ms');
 
-		// prevent elements from overlapping the navbar
-		if (!bannerEnabled) {
-			return
-		}
-		let threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16
-		let navbar = document.getElementById('navbar-wrapper')
+		if (!bannerEnabled) return;
 
-
-		if (!navbar || !document.body.classList.contains('lg:is-home')) {
-			return
-		}
+		const threshold = window.innerHeight * (BANNER_HEIGHT / 100) - 72 - 16;
+		const navbar = document.getElementById('navbar-wrapper');
+		if (!navbar || !document.body.classList.contains('lg:is-home')) return;
 		if (document.body.scrollTop >= threshold || document.documentElement.scrollTop >= threshold) {
-			navbar.classList.add('navbar-hidden')
-		}
-		
-	})
-	window.swup.hooks.on('content:replace', initCustomScrollbar)
-	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
-		// change banner height immediately when a link is clicked
-		const bodyElement = document.querySelector('body')
-		if (isHomePath(visit.to.url)) {
-			bodyElement!.classList.add('lg:is-home');
-		} else {
-			bodyElement!.classList.remove('lg:is-home');
-		}
-
-		// increase the page height during page transition to prevent the scrolling animation from jumping
-		const heightExtend = document.getElementById('page-height-extend')
-		if (heightExtend) {
-			heightExtend.classList.remove('hidden')
-		}
-
-		// Hide the TOC while scrolling back to top
-		let toc = document.getElementById('toc-wrapper');
-		if (toc) {
-			toc.classList.add('toc-not-ready')
+			navbar.classList.add('navbar-hidden');
 		}
 	});
+
 	window.swup.hooks.on('page:view', () => {
-		// hide the temp high element when the transition is done
-		const heightExtend = document.getElementById('page-height-extend')
-		if (heightExtend) {
-			heightExtend.classList.remove('hidden')
-		}
+		const heightExtend = document.getElementById('page-height-extend');
+		if (heightExtend) heightExtend.classList.remove('hidden');
 	});
+
 	window.swup.hooks.on('visit:end', (_visit: {to: {url: string}}) => {
 		setTimeout(() => {
-			const heightExtend = document.getElementById('page-height-extend')
-			if (heightExtend) {
-				heightExtend.classList.add('hidden')
-			}
+			const heightExtend = document.getElementById('page-height-extend');
+			if (heightExtend) heightExtend.classList.add('hidden');
 
-            // Just make the transition looks better
-            const toc = document.getElementById('toc-wrapper');
-            if (toc) {
-                toc.classList.remove('toc-not-ready')
-            }
-        }, 200)
+			const toc = document.getElementById('toc-wrapper');
+			if (toc) toc.classList.remove('toc-not-ready');
+		}, 200);
 	});
 }
 if (window?.swup?.hooks) {

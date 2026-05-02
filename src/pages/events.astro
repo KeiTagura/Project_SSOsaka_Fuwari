@@ -5,26 +5,12 @@ import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getLangFromPath } from "@/utils/lang";
 import Calendar from "../components/Calendar";
 
-let delay = 0;
-const interval = 50;
 const routeLang = getLangFromPath(Astro.url.pathname) ?? "ja";
 const t = i18nFor(routeLang);
 ---
 <MainGridLayout title={t(I18nKey.events)} description={t(I18nKey.events)}>
-    
-      <!-- Inject Bootstrap CSS via <head> slot -->
-
-    
-    <div class="card-base z-10 px-9 py-6 relative w-full ">
-
-        <Calendar 
-        
-        client:only="react" />
-  
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+        <Calendar client:only="react" />
     </div>
-
-    <div class="card-base z-10 px-9 py-6 relative w-full h-[700px]" >
-    </div>
-
 </MainGridLayout>
 

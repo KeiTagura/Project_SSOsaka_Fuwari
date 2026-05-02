@@ -55,13 +55,9 @@ const pathLang = getLangFromPath(currentPath) ?? undefined;
 const qLangRaw = Astro.url.searchParams.get("lang")?.toLowerCase?.();
 const qLang = qLangRaw === "en" || qLangRaw === "ja" ? qLangRaw : undefined;
 
-console.log("ETF");
-
 const getPageUrl = (p: number) => {
 	// Locale-prefixed routes
 	if (pathLang === "en" || pathLang === "ja") {
-		console.log("HHHH");
-		console.log(`/${pathLang}/${p}/`);
 		if (p === 1) return `/${pathLang}/`;
 		return `/${pathLang}/${p}/`;
 	}
@@ -86,12 +82,6 @@ const getPageUrl = (p: number) => {
         <Icon name="material-symbols:chevron-left-rounded" class="text-[1.75rem]"></Icon>
     </a>
     <div class="bg-[var(--card-bg)] flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold">
-        {
-          pages.forEach((p) => {
-    if (p !== -1) {
-      try { getPageUrl(p); } catch {}
-    }
-  })}
         {pages.map((p) => {
             if (p == HIDDEN)
                 return <Icon name="material-symbols:more-horiz" class="mx-1"/>;

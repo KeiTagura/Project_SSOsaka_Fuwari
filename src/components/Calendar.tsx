@@ -18,7 +18,6 @@ export default function Calendar() {
 	const fetchHolidays = useCallback(async () => {
 		try {
 			const holidayURL = `${window.location.origin}/api/holiday/`;
-			console.log("Holiday URL:", holidayURL);
 			const response = await fetch(holidayURL);
 			if (!response.ok) throw new Error("Network response was not ok");
 			const data = await response.json();
@@ -31,7 +30,6 @@ export default function Calendar() {
 	const fetchEvents = useCallback(async () => {
 		try {
 			const eventURL = `${window.location.origin}/api/event/`;
-			console.log("Event URL:", eventURL);
 			const response = await fetch(eventURL);
 			if (!response.ok) throw new Error("Network response was not ok");
 			const data = await response.json();

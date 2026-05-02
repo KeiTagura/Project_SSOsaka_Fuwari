@@ -121,8 +121,6 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
 
 const t = i18nFor(routeLang);
 
-console.log("CHECK");
-console.log(posts.map((p) => [p.slug, p.data.featured]));
 ---
 
 <MainGridLayout>
@@ -158,13 +156,6 @@ console.log(posts.map((p) => [p.slug, p.data.featured]));
         style={`animation-delay: calc(var(--content-delay) + ${len * 50}ms)`}>
       </Pagination>
 
-      
-<div class="card-base mt-8 h-[0.5rem] dark:bg-[var(--card-bg-featured)]"></div>
-
-
-<div id="access" class="max-w-6xl mx-auto p-4 space-y-4">
-
-</div>
 
 <div class="card-base mt-8 h-[0.5rem] dark:bg-[var(--card-bg-featured)]"></div>
 
@@ -251,31 +242,14 @@ console.log(posts.map((p) => [p.slug, p.data.featured]));
       if (en) en.style.display = (cur === 'en') ? '' : 'none';
       if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
     }
-    function rewriteLinksWithLang(){
-      try {
-        const cur = selectedLang();
-        const anchors = document.querySelectorAll('a[href]');
-        anchors.forEach((aEl)=>{
-          const a = aEl as HTMLAnchorElement;
-          if (!a.href) return;
-          const url = new URL(a.href, window.location.origin);
-          if (url.origin !== window.location.origin) return;
-          if (url.hash && url.pathname === window.location.pathname) return;
-          url.searchParams.set('lang', cur);
-          a.href = url.toString();
-        });
-      } catch {}
-    }
     filterHome();
     updateAccessVisible();
     updateHeadingVisible();
     updateFeaturedVisible();
-    rewriteLinksWithLang();
     window.addEventListener('popstate', filterHome);
     window.addEventListener('popstate', updateAccessVisible);
     window.addEventListener('popstate', updateHeadingVisible);
     window.addEventListener('popstate', updateFeaturedVisible);
-    window.addEventListener('popstate', rewriteLinksWithLang);
     document.addEventListener('astro:page-load', () => setTimeout(filterHome, 0));
     document.addEventListener('astro:after-swap', () => setTimeout(filterHome, 0));
     document.addEventListener('astro:page-load', () => setTimeout(updateAccessVisible, 0));
@@ -284,9 +258,6 @@ console.log(posts.map((p) => [p.slug, p.data.featured]));
     document.addEventListener('astro:after-swap', () => setTimeout(updateHeadingVisible, 0));
     document.addEventListener('astro:page-load', () => setTimeout(updateFeaturedVisible, 0));
     document.addEventListener('astro:after-swap', () => setTimeout(updateFeaturedVisible, 0));
-    document.addEventListener('astro:page-load', () => setTimeout(rewriteLinksWithLang, 0));
-    document.addEventListener('astro:after-swap', () => setTimeout(rewriteLinksWithLang, 0));
-    // Also catch clicks on pagination links to re-run after navigation
     document.addEventListener('click', (e)=>{
       const t = e.target as HTMLElement | null;
       if (!t) return;
@@ -295,7 +266,6 @@ console.log(posts.map((p) => [p.slug, p.data.featured]));
         setTimeout(filterHome, 100);
         setTimeout(updateHeadingVisible, 100);
         setTimeout(updateFeaturedVisible, 100);
-        setTimeout(rewriteLinksWithLang, 100);
       }
     });
     document.addEventListener('click', (e)=>{
@@ -308,7 +278,6 @@ console.log(posts.map((p) => [p.slug, p.data.featured]));
         setTimeout(updateAccessVisible, 50);
         setTimeout(updateHeadingVisible, 50);
         setTimeout(updateFeaturedVisible, 50);
-        setTimeout(rewriteLinksWithLang, 50);
       }
     });
   })();
