@@ -1,9 +1,13 @@
 ---
 title: Dev & Art
 published: 2025-12-06
-description: "Dev/Art"
-image: "./cover.jpg"
-tags: ["Game Dev", "Digital Art", "Casual", "Public"]
+description: Dev/Art
+image: ./cover.webp
+tags:
+  - Game Dev
+  - Digital Art
+  - Casual
+  - Public
 category: Public
 draft: false
 featured: true

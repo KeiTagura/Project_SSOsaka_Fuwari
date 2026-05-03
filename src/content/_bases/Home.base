@@ -32,13 +32,113 @@ properties:
     displayName: Path
   note.date:
     displayName: Date
+  note.description:
+    displayName: Description
   note.draft:
     displayName: Draft
+  note.image:
+    displayName: Image
   note.pubDate:
     displayName: Date
+  note.published:
+    displayName: Published
+  note.tags:
+    displayName: Tags
   note.title:
     displayName: Title
 views:
+  - type: cms
+    name: Access
+    filters:
+      and:
+        - file.folder.startsWith("access")
+    sort:
+      - property: published
+        direction: DESC
+    imageFormat: cover
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: access
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: file.fullname
+    titlePropertyNested: file.fullname
+    dateProperty: note.published
+    descriptionProperty: note.description
+    imageProperty: note.image
+    showTags: true
+    tagsProperty: note.tags
+    showDraftStatus: true
+    draftStatusUseFilenamePrefix: true
+  - type: cms
+    name: Forms
+    filters:
+      and:
+        - file.folder.startsWith("forms")
+    sort:
+      - property: file.ctime
+        direction: DESC
+    imageFormat: cover
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: forms
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: file.fullname
+    titlePropertyNested: file.fullname
+    dateProperty: file.ctime
+    showTags: false
+    showDraftStatus: false
+  - type: cms
+    name: Posts
+    filters:
+      and:
+        - file.folder.startsWith("posts")
+    sort:
+      - property: file.ctime
+        direction: DESC
+    imageFormat: cover
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: posts
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: note.title
+    dateProperty: file.ctime
+    descriptionProperty: note.description
+    imageProperty: note.image
+    showTags: true
+    tagsProperty: note.tags
+    showDraftStatus: true
+    draftStatusProperty: note.draft
+    draftStatusReverse: false
+  - type: cms
+    name: Pages
+    filters:
+      and:
+        - file.folder.startsWith("spec")
+    sort:
+      - property: file.ctime
+        direction: DESC
+    imageFormat: cover
+    showDate: true
+    customizeNewButton: true
+    newNoteLocation: spec
+    fallbackToEmbeds: if-empty
+    propertyDisplay1: file.fullname
+    showTextPreview: true
+    propertyLabels: above
+    titleProperty: file.fullname
+    titlePropertyNested: file.fullname
+    dateProperty: file.ctime
+    showTags: false
+    showDraftStatus: false
   - type: cms
     name: Vault CMS Guide
     filters:

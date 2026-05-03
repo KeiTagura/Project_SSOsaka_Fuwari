@@ -1,12 +1,14 @@
 ---
 title: Zig Day
 published: 2025-11-15
-description: "The day of the zig"
-image: "./cover.jpg"
-tags: ["Zig", "Public"]
+description: The day of the zig
+image: ./cover.jpg
+tags:
+  - Zig
+  - Public
 category: Public
 draft: false
-featured: true
+featured: false
 ---
 
 [comment]: <FeaturedDescription> 

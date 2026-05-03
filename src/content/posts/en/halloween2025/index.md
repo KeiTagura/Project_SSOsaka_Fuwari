@@ -1,9 +1,12 @@
 ---
 title: Halloween 2025
 published: 2025-11-01
-description: "Halloween Party"
-image: "./cover.jpg"
-tags: ["Holiday", "Casual", "InviteOnly"]
+description: Halloween Party
+image: ./cover.webp
+tags:
+  - Holiday
+  - Casual
+  - InviteOnly
 category: Private
 draft: false
 featured: false

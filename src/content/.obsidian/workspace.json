@@ -1,28 +1,104 @@
 {
   "main": {
-    "id": "dfa61c5254ded462",
+    "id": "5324373015726ba8",
     "type": "split",
     "children": [
       {
-        "id": "9191086a4ed29c54",
+        "id": "4509724f8bf84da7",
         "type": "tabs",
         "children": [
           {
-            "id": "4d87e8b76b496905",
+            "id": "e7a7b303c61786dc",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "bases",
               "state": {
                 "file": "_bases/Home.base",
-                "viewName": "Vault CMS Guide"
+                "viewName": "Posts"
               },
               "pinned": true,
               "icon": "lucide-home",
               "title": "Home"
             }
+          },
+          {
+            "id": "efa2ff8245aafd73",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "conflict-files-obsidian-git"
+            }
+          },
+          {
+            "id": "4674c2ca5db187ac",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "posts/game-night/index.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "index"
+            }
+          },
+          {
+            "id": "fc2096460908cdc9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "posts/ja/zigday00/index.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "index"
+            }
+          },
+          {
+            "id": "1d757bcdec2d2599",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "posts/en/zigday00/index.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "index"
+            }
+          },
+          {
+            "id": "78555af32ae36fab",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "posts/game-night/index.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "index"
+            }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -97,7 +173,7 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true,
-                "showSearch": false,
+                "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-tags",
@@ -118,16 +194,37 @@
               "icon": "lucide-list",
               "title": "Outline of Home"
             }
+          },
+          {
+            "id": "c0691d4e42b8ce15",
+            "type": "leaf",
+            "state": {
+              "type": "seo-global-panel",
+              "state": {},
+              "icon": "search-check",
+              "title": "SEO audit: vault"
+            }
+          },
+          {
+            "id": "1d226ad9a4fdbe4a",
+            "type": "leaf",
+            "state": {
+              "type": "seo-current-panel",
+              "state": {},
+              "icon": "search-check",
+              "title": "SEO audit: current note"
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 472.5
   },
   "left-ribbon": {
     "hiddenItems": {
+      "astro-composer:Edit astro config": false,
       "switcher:Open quick switcher": false,
       "command-palette:Open command palette": false,
       "bases:Create new base": false,
@@ -140,6 +237,30 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "4d87e8b76b496905",
-  "lastOpenFiles": []
+  "active": "78555af32ae36fab",
+  "lastOpenFiles": [
+    "_bases/Home.base",
+    "posts/game-night/index.md",
+    "posts/ja/zigday00/index.md",
+    "posts/en/zigday00/index.md",
+    "posts/en/zigday00/cover.jpg",
+    "posts/ja/halloween2025/index.md",
+    "conflict-files-obsidian-git.md",
+    "posts/game-night/cover.webp",
+    "posts/game-night",
+    "posts/test-obsidian/index.md",
+    "posts/test-obsidian",
+    "posts/markdown-extended.md",
+    "posts/en/weekly_game_art/index.md",
+    "posts/en/halloween2025/index.md",
+    "posts/ja/halloween2025/cover.webp",
+    "access/Untitled 1.md",
+    "posts/en/halloween2025/cover.webp",
+    "access/en/access.md",
+    "access/_test-obsidian-vault.md",
+    "access/Untitled.md",
+    "spec/en/about.md",
+    "posts/en/weekly_game_art/cover.webp",
+    "access/ja/access.md"
+  ]
 }
