@@ -6,7 +6,9 @@ import { getCategoryUrl } from "@utils/url-utils.ts";
 // Retrieve posts and sort them by publication date
 async function getRawSortedPosts(lang?: string) {
 	const allBlogPosts = await getCollection("posts", ({ data, slug }) => {
-		const draftOk = import.meta.env.PROD ? data.draft !== true : true;
+		const draftOk = import.meta.env.PROD
+			? data.draft !== true && new Date(data.published) <= new Date()
+			: true;
 		const langLower = lang?.toLowerCase();
 		const slugLang =
 			typeof slug === "string"
@@ -71,7 +73,9 @@ export async function getTagList(lang?: string): Promise<Tag[]> {
 	const allBlogPosts = await getCollection<"posts">(
 		"posts",
 		({ data, slug }) => {
-			const draftOk = import.meta.env.PROD ? data.draft !== true : true;
+			const draftOk = import.meta.env.PROD
+			? data.draft !== true && new Date(data.published) <= new Date()
+			: true;
 			const langLower = lang?.toLowerCase();
 			const slugLang =
 				typeof slug === "string"
@@ -112,7 +116,9 @@ export async function getCategoryList(lang?: string): Promise<Category[]> {
 	const allBlogPosts = await getCollection<"posts">(
 		"posts",
 		({ data, slug }) => {
-			const draftOk = import.meta.env.PROD ? data.draft !== true : true;
+			const draftOk = import.meta.env.PROD
+			? data.draft !== true && new Date(data.published) <= new Date()
+			: true;
 			const langLower = lang?.toLowerCase();
 			const slugLang =
 				typeof slug === "string"

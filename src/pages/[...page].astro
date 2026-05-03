@@ -15,7 +15,6 @@ import Markdown from "@components/misc/Markdown.astro";
 import PostFeatured from "@components/PostFeatured.astro";
 import type { GetStaticPaths } from "astro";
 import Pagination from "../components/control/Pagination.astro";
-import PostCard from "../components/PostCard.astro";
 import PostPage from "../components/PostPage.astro";
 import { PAGE_SIZE } from "../constants/constants";
 import I18nKey from "../i18n/i18nKey";
@@ -28,9 +27,13 @@ import { getLangFromPath } from "../utils/lang";
 const toDate = (d: unknown) => (d instanceof Date ? d : new Date(String(d)));
 const now = new Date();
 
-// Load posts (exclude drafts for lists; adjust if your schema differs)
+// Load posts: exclude drafts and future-published posts
 type Post = CollectionEntry<"posts">;
-const posts: Post[] = await getCollection("posts", ({ data }) => !data.draft);
+const posts: Post[] = await getCollection("posts", ({ data }) => {
+	if (data.draft) return false;
+	if (import.meta.env.PROD && new Date(data.published) > now) return false;
+	return true;
+});
 
 // Choose featured posts per language: soonest upcoming featured; fallback = latest past featured
 function getItemLangFromSlug(slug: string, fmLang?: string): "en" | "ja" | "" {
@@ -47,39 +50,29 @@ const candJa = candidates.filter(
 	(p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "ja",
 );
 
+const eventDateOf = (p: Post) => toDate(p.data.eventDate ?? p.data.published);
+
 const upcomingEn = candEn
-	.filter((p) => toDate(p.data.published) >= now)
-	.sort(
-		(a, b) =>
-			toDate(a.data.published).getTime() - toDate(b.data.published).getTime(),
-	);
+	.filter((p) => eventDateOf(p) >= now)
+	.sort((a, b) => eventDateOf(a).getTime() - eventDateOf(b).getTime());
 const pastEn = candEn
-	.filter((p) => toDate(p.data.published) < now)
-	.sort(
-		(a, b) =>
-			toDate(b.data.published).getTime() - toDate(a.data.published).getTime(),
-	);
+	.filter((p) => eventDateOf(p) < now)
+	.sort((a, b) => eventDateOf(b).getTime() - eventDateOf(a).getTime());
 const featuredEn: Post | undefined = upcomingEn[0] ?? pastEn[0];
 
 const upcomingJa = candJa
-	.filter((p) => toDate(p.data.published) >= now)
-	.sort(
-		(a, b) =>
-			toDate(a.data.published).getTime() - toDate(b.data.published).getTime(),
-	);
+	.filter((p) => eventDateOf(p) >= now)
+	.sort((a, b) => eventDateOf(a).getTime() - eventDateOf(b).getTime());
 const pastJa = candJa
-	.filter((p) => toDate(p.data.published) < now)
-	.sort(
-		(a, b) =>
-			toDate(b.data.published).getTime() - toDate(a.data.published).getTime(),
-	);
+	.filter((p) => eventDateOf(p) < now)
+	.sort((a, b) => eventDateOf(b).getTime() - eventDateOf(a).getTime());
 const featuredJa: Post | undefined = upcomingJa[0] ?? pastJa[0];
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts();
 	const nowRef = new Date();
 	const upcomingOnly = allBlogPosts.filter(
-		(p) => new Date(String(p.data.published)) >= nowRef,
+		(p) => new Date(String(p.data.eventDate ?? p.data.published)) >= nowRef,
 	);
 	return paginate(upcomingOnly, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
@@ -118,8 +111,6 @@ const accessEn = await getEntry("access" as any, "en/access" as any);
 const accessJa = await getEntry("access" as any, "ja/access" as any);
 const AccessEn = accessEn ? (await render(accessEn)).Content : null;
 const AccessJa = accessJa ? (await render(accessJa)).Content : null;
-
-const t = i18nFor(routeLang);
 
 ---
 

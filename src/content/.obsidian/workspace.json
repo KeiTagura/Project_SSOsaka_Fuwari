@@ -43,7 +43,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "posts/game-night/index.md",
+                "file": "posts/en/game-night/index.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
@@ -88,7 +88,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "posts/game-night/index.md",
+                "file": "posts/en/game-night/index.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
@@ -237,17 +237,18 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "78555af32ae36fab",
+  "active": "1d226ad9a4fdbe4a",
   "lastOpenFiles": [
+    "config.ts.tmp.44656.1777807368173",
     "_bases/Home.base",
-    "posts/game-night/index.md",
+    "posts/en/game-night/index.md",
     "posts/ja/zigday00/index.md",
     "posts/en/zigday00/index.md",
     "posts/en/zigday00/cover.jpg",
     "posts/ja/halloween2025/index.md",
     "conflict-files-obsidian-git.md",
-    "posts/game-night/cover.webp",
-    "posts/game-night",
+    "posts/en/game-night/cover.webp",
+    "posts/en/game-night",
     "posts/test-obsidian/index.md",
     "posts/test-obsidian",
     "posts/markdown-extended.md",

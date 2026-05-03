@@ -1,6 +1,7 @@
 ---
 title: GameNight
-published: 2026-105-03
+published: 2026-05-03
+eventDate: 2026-06-03
 description: ""
 image: ./cover.webp
 tags:
