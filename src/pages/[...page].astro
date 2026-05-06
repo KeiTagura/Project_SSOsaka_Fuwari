@@ -82,12 +82,12 @@ export const getStaticPaths = (async ({ paginate }) => {
 const allPastEvents = posts
 	.filter((p) => eventDateOf(p) < now)
 	.sort((a, b) => eventDateOf(b).getTime() - eventDateOf(a).getTime());
-const pastEventsEn = allPastEvents.filter(
-	(p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "en",
-);
-const pastEventsJa = allPastEvents.filter(
-	(p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "ja",
-);
+const pastEventsEn = allPastEvents
+	.filter((p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "en")
+	.slice(0, 2);
+const pastEventsJa = allPastEvents
+	.filter((p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "ja")
+	.slice(0, 2);
 
 const { page } = Astro.props;
 // Filter out the featured post from the current page list to avoid duplication (both locales)
@@ -182,6 +182,22 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
       {pastEventsEn.length > 0 && <PostPage page={{ data: pastEventsEn }} lang="en" />}
       {pastEventsJa.length > 0 && <PostPage page={{ data: pastEventsJa }} lang="ja" />}
     </div>
+    <div class="flex justify-center mt-2 mb-4">
+      {pastEventsEn.length > 0 && (
+        <a id="past-more-en" href="/archive/"
+           class="btn-regular-featured px-6 py-2 rounded-lg"
+           style={routeLang === 'en' ? '' : 'display:none'}>
+          View All Past Events →
+        </a>
+      )}
+      {pastEventsJa.length > 0 && (
+        <a id="past-more-ja" href="/archive/"
+           class="btn-regular-featured px-6 py-2 rounded-lg"
+           style={routeLang === 'ja' ? '' : 'display:none'}>
+          過去のイベントをすべて見る →
+        </a>
+      )}
+    </div>
   </>
 )}
 
@@ -273,10 +289,14 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
     }
     function updatePastTitleVisible(){
       const cur = selectedLang();
-      const en = document.getElementById('past-title-en');
-      const ja = document.getElementById('past-title-ja');
-      if (en) en.style.display = (cur === 'en') ? '' : 'none';
-      if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
+      const enTitle = document.getElementById('past-title-en');
+      const jaTitle = document.getElementById('past-title-ja');
+      const enMore  = document.getElementById('past-more-en');
+      const jaMore  = document.getElementById('past-more-ja');
+      if (enTitle) enTitle.style.display = (cur === 'en') ? '' : 'none';
+      if (jaTitle) jaTitle.style.display = (cur === 'ja') ? '' : 'none';
+      if (enMore)  enMore.style.display  = (cur === 'en') ? '' : 'none';
+      if (jaMore)  jaMore.style.display  = (cur === 'ja') ? '' : 'none';
     }
     filterHome();
     updateAccessVisible();
