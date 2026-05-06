@@ -147,6 +147,18 @@ function loadButtonScript() {
         const segs = window.location.pathname.split('/').filter(Boolean);
         if (segs[0] === 'en' || segs[0] === 'ja') return segs[0];
         if (segs[0] === 'posts' && (segs[1] === 'en' || segs[1] === 'ja')) return segs[1];
+        try {
+            const pref = (localStorage.getItem('preferredLang') || '').toLowerCase();
+            if (pref === 'en' || pref === 'ja') return pref;
+        } catch {}
+        try {
+            const langs = Array.from(navigator.languages?.length ? navigator.languages : [navigator.language]);
+            for (const l of langs) {
+                const ll = l.toLowerCase();
+                if (ll.startsWith('ja')) return 'ja';
+                if (ll.startsWith('en')) return 'en';
+            }
+        } catch {}
         return 'ja';
     }
 
@@ -220,6 +232,69 @@ function loadButtonScript() {
         }
     }
 
+    function getBrowserPreferredLang(): 'en' | 'ja' | null {
+        try {
+            const langs = Array.from(navigator.languages?.length ? navigator.languages : [navigator.language]);
+            for (const lang of langs) {
+                const l = lang.toLowerCase();
+                if (l.startsWith('ja')) return 'ja';
+                if (l.startsWith('en')) return 'en';
+            }
+        } catch {}
+        return null;
+    }
+
+    function showLangSuggestion(suggestedLang: string) {
+        if (document.getElementById('lang-suggest-banner')) return;
+        const copy: Record<string, { msg: string; btn: string }> = {
+            en: { msg: 'Your browser prefers English.', btn: 'Switch to EN' },
+            ja: { msg: 'ブラウザの言語が日本語です。', btn: '日本語へ切り替え' },
+        };
+        const { msg, btn } = copy[suggestedLang] ?? {};
+        if (!msg) return;
+
+        const banner = document.createElement('div');
+        banner.id = 'lang-suggest-banner';
+        banner.setAttribute('role', 'status');
+        banner.setAttribute('aria-live', 'polite');
+        banner.style.cssText = [
+            'position:fixed', 'bottom:1.5rem', 'left:50%', 'transform:translateX(-50%)',
+            'z-index:9999', 'display:flex', 'align-items:center', 'gap:0.75rem',
+            'padding:0.625rem 1rem', 'border-radius:0.75rem',
+            'box-shadow:0 4px 24px rgba(0,0,0,0.18)',
+            'font-size:0.875rem', 'white-space:nowrap',
+            'background:var(--card-bg,#fff)', 'color:var(--text,#222)',
+            'border:1px solid oklch(0.5 0.05 var(--hue,240)/0.25)',
+        ].join(';');
+
+        const acceptStyle = 'padding:0.25rem 0.75rem;border-radius:0.5rem;background:var(--primary);color:#fff;font-weight:600;border:none;cursor:pointer;font-size:0.875rem';
+        const dismissStyle = 'padding:0.25rem 0.5rem;border-radius:0.5rem;background:transparent;border:none;cursor:pointer;opacity:0.55;font-size:1rem;line-height:1';
+
+        banner.innerHTML = `<span>${msg}</span><button id="lang-suggest-accept" style="${acceptStyle}">${btn}</button><button id="lang-suggest-dismiss" style="${dismissStyle}" aria-label="Dismiss">✕</button>`;
+        document.body.appendChild(banner);
+
+        document.getElementById('lang-suggest-accept')?.addEventListener('click', () => {
+            banner.remove();
+            navigateToLang(suggestedLang);
+        });
+        document.getElementById('lang-suggest-dismiss')?.addEventListener('click', () => {
+            banner.remove();
+            try { localStorage.setItem('langSuggestionDismissed', '1'); } catch {}
+        });
+    }
+
+    function checkLangSuggestion() {
+        try {
+            if (localStorage.getItem('langSuggestionDismissed') === '1') return;
+            if (localStorage.getItem('preferredLang')) return;
+            const browserLang = getBrowserPreferredLang();
+            if (!browserLang) return;
+            const currentLang = getCurrentLang();
+            if (browserLang === currentLang) return;
+            showLangSuggestion(browserLang);
+        } catch {}
+    }
+
     const btnEn = document.getElementById('lang-en');
     if (btnEn) {
         btnEn.onclick = function () {
@@ -241,6 +316,7 @@ function loadButtonScript() {
 
     // Initialize selection state on load
     try { updateLangUI(getCurrentLang()); } catch {}
+    checkLangSuggestion();
 
     // Click-outside to close language panel
     document.addEventListener('click', function (e: MouseEvent) {
