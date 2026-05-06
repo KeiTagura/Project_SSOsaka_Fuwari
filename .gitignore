@@ -30,3 +30,7 @@ yarn.lock
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .ref/
+
+# ide
+.idea
+*.iml
