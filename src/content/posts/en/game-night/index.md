@@ -1,7 +1,7 @@
 ---
 title: GameNight
 published: 2026-05-03
-eventDate: 2026-06-03
+eventDate: 2026-05-23
 description: ""
 image: ./cover.webp
 tags:
@@ -10,14 +10,14 @@ tags:
   - Public
   - Games
 category: Public
-draft: true
+draft: false
 featured: true
 ---
 [comment]: <FeaturedDescription> 
   
 **SS: Game Night** is a casual evening for playing team and PvP games together, hanging out, and showing off game-related projects in a relaxed setting.  
   
-Bring yourself, bring a friend, bring a controller, or bring something you’re working on — a game prototype, level, character, animation, shader, tool, mod, soundtrack, or even just a rough idea.  
+Bring yourself, bring a friend, bring a controller, or bring something you’re working on ;  a game prototype, level, character, animation, shader, tool, mod, soundtrack, or even just a rough idea.  
   
 The main focus is playing games and having fun, but we’ll also have optional 5–10 minute casual showcase slots for anyone who wants to share what they’re making.  
 
@@ -26,29 +26,16 @@ The main focus is playing games and having fun, but we’ll also have optional 5
 
 
 ## Rough format
-
+```
+---
 Casual Project Show & Tell
 
-We welcome anyone interested in showing something game-related — a prototype, asset, level, animation, tool, mod, trailer, design idea, or work-in-progress.
+We welcome anyone interested in showing something game-related:
+A prototype, asset, level, animation, tool, mod, trailer, design idea, or work-in-progress.
 
 This is not a formal presentation. You don’t need slides, polish, or a finished project. The goal is to casually share what you’re making, get light feedback, and start conversations.
-
-If you’d like to show something, you can sign up on the day, or contact us ahead of time with:
-
-Your name / handle
-
-Project title or short description
-
-What you want to show
-
-Approximate time needed, usually 5–10 minutes
-
-Any special requirements: laptop, HDMI, controller, internet, audio, etc.
-
-We’ll keep the showcase blocks short so they don’t interrupt the flow of the night.
-
-## Even if you don’t want to show anything, you’re absolutely invited to come play, watch, hang out, and meet other game-loving people.
-
+---
+```
 
 | Time                  | Activity                                                                                                                                 |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------|
@@ -60,31 +47,26 @@ We’ll keep the showcase blocks short so they don’t interrupt the flow of the
 | `21:30 ~ 22:30`       | Team / PvP game block 2. Mini tournament, rematches, rotating teams, or playtesting someone’s game if people are interested.             |
 | `22:30 ~ 22:50`       | Free play, rematches, chatting, feedback, project talk, exchange contacts.                                                               |
 | `22:50 ~ 23:00`       | Closing, cleanup, next event announcements.                                                                                              |
-
-
 ## What can I bring?
-
+```
+---
 You don’t need to bring anything to attend.
-
 Optional things to bring:
-
-A controller
-
-A laptop or handheld console
-
-A game you want people to try
-
-A prototype or project you want to show
-
-Game art, music, tools, mods, levels, or other works-in-progress
-
-Snacks or drinks to share, if you want
+- A laptop or handheld console
+- A game you want people to try
+- A prototype or project you want to show
+- Game art, music, tools, mods, levels, or other works-in-progress
+-  Snacks or drinks to share, if you want
+---
+```
 
 ## If you plan to connect something to the TV or projector, please bring any adapters you need.
 
 
 
 ## What kind of projects can I show?
+```
+---
 
 Anything game-related is welcome, including:
 
@@ -109,25 +91,28 @@ Board game / tabletop concepts
 Game design ideas or mechanics you want feedback on
 
 ## Finished work is not required. Rough, messy, early work is totally fine.
+---
+
+```
 
 
 
 ## Code of Conduct
+```
+---
 We aim to create a respectful, supportive, inclusive environment. All participants are expected to:
 
-Be kind, considerate, and welcoming
+- Be kind, considerate, and welcoming
+- Respect different skill levels, backgrounds, play styles, and viewpoints
+- Keep competition friendly and fun
+- Give and receive feedback graciously
+- Ask before touching someone’s equipment, controller, laptop, or project
+- Ask for consent before recording, photographing, or streaming anyone’s work or gameplay
+- Avoid gatekeeping - casual players, beginners, developers, artists, and curious newcomers are all welcome
+---
 
-Respect different skill levels, backgrounds, play styles, and viewpoints
+```
 
-Keep competition friendly and fun
-
-Give and receive feedback graciously
-
-Ask before touching someone’s equipment, controller, laptop, or project
-
-Ask for consent before recording, photographing, or streaming anyone’s work or gameplay
-
-Avoid gatekeeping — casual players, beginners, developers, artists, and curious newcomers are all welcome
 
 ## Speak up if anything makes you uncomfortable — we want to address it
 
@@ -136,37 +121,39 @@ Avoid gatekeeping — casual players, beginners, developers, artists, and curiou
 ## Tickets
 
 <div class="max-w-3xl mx-auto">
-  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="[Peatix link here]" style="color:oklch(0.26 0 0)"> Peatix</a>
+  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="https://sso-gamenight.peatix.com/" style="color:oklch(0.26 0 0)"> Peatix</a>
 </div>
 <br/>
 <div class="max-w-3xl mx-auto">
-  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="[Meetup link here]" style="color:oklch(0.26 0 0)">Meetup</a>
+  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="https://www.meetup.com/secretshop/events/314639837/" style="color:oklch(0.26 0 0)">Meetup</a>
 </div>
 
 
 ## Want to show a project?
-Project showcase slots are casual and optional.
+```
+---
 
-If you want to show something, you can sign up during the event or contact us ahead of time.
+- 5 minutes to show
+- 5 minutes for questions / feedback
+- No slides required
+- Work-in-progress is welcome
 
-Recommended format:
+If you’d like to show something, you can sign up on the day all you need to prepare is:
 
-5 minutes to show
+Your name / handle
 
-5 minutes for questions / feedback
+* Project title or short description
+* What you want to show
+* Approximate time needed, 5-10 minutes
+* Any special requirements: laptop, HDMI, controller, internet, audio, etc.
 
-No slides required
+We’ll keep the showcase is meant to be casual so no need to be overly formal.
 
-Work-in-progress is welcome
+## Even if you don’t want to show anything, you’re absolutely invited to come play, watch, hang out, and meet other game-loving people.
 
-## We’ll fit in as many as we can without interrupting game time.
+---
 
-
-<div class="max-w-3xl mx-auto">
-  <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="[application or contact link here]" style="color:oklch(0.26 0 0)"> Show a Project</a>
-</div>
-
-
+```
 
 
 
@@ -174,11 +161,13 @@ Work-in-progress is welcome
 ## Venue, Logistics & What to Bring
 
 
-What to bring:
-
--Laptop, (or a desktop if your that crazy)
-
--Any project / code you want to show or work on
+What to bring: <br>
+You don’t need to bring anything to attend.
+- A laptop or handheld console
+- A game you want people to try
+- A prototype or project you want to show
+- Game art, music, tools, mods, levels, or other works-in-progress
+-  Snacks or drinks to share, if you want
 
 
 <div id="access" class="max-w-6xl mx-auto p-4 space-y-4">

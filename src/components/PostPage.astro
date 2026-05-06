@@ -25,7 +25,7 @@ function getItemLang(entry: CollectionEntry<"posts">): string {
                     title={entry.data.title}
                     tags={entry.data.tags}
                     category={entry.data.category}
-                    published={entry.data.published}
+                    published={entry.data.eventDate ?? entry.data.published}
                     updated={entry.data.updated}
                     url={getPostUrlBySlugLang(entry.slug, lang)}
                     image={entry.data.image}

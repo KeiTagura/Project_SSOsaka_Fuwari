@@ -10,7 +10,7 @@ tags:
   - Public
 category: Public
 draft: false
-featured: true
+featured: false
 ---
 
 [comment]: <FeaturedDescription> 

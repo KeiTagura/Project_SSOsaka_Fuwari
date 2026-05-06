@@ -23,7 +23,7 @@
             }
           },
           {
-            "id": "efa2ff8245aafd73",
+            "id": "1057ebfbf566efee",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -38,52 +38,7 @@
             }
           },
           {
-            "id": "4674c2ca5db187ac",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "posts/en/game-night/index.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "index"
-            }
-          },
-          {
-            "id": "fc2096460908cdc9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "posts/ja/zigday00/index.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "index"
-            }
-          },
-          {
-            "id": "1d757bcdec2d2599",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "posts/en/zigday00/index.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "index"
-            }
-          },
-          {
-            "id": "78555af32ae36fab",
+            "id": "e77e59f5a7bd02b8",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -98,7 +53,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -220,7 +175,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 472.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -237,31 +192,34 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "1d226ad9a4fdbe4a",
+  "active": "e77e59f5a7bd02b8",
   "lastOpenFiles": [
-    "config.ts.tmp.44656.1777807368173",
-    "_bases/Home.base",
+    "posts/ja/game-night/index.md",
     "posts/en/game-night/index.md",
-    "posts/ja/zigday00/index.md",
+    "posts/en/weekly_game_art/index.md",
+    "posts/en/game-night/cover.webp",
+    "posts/en/weekly_game_art/cover.webp",
+    "posts/en/halloween2025/cover.webp",
+    "posts/en/halloween2025/index.md",
+    "posts/ja/game-night/cover.webp",
+    "posts/ja/game-night",
+    "_bases/Home.base",
+    "posts/markdown-extended.md",
     "posts/en/zigday00/index.md",
+    "config.ts.tmp.44656.1777807368173",
+    "posts/ja/zigday00/index.md",
     "posts/en/zigday00/cover.jpg",
     "posts/ja/halloween2025/index.md",
     "conflict-files-obsidian-git.md",
-    "posts/en/game-night/cover.webp",
     "posts/en/game-night",
     "posts/test-obsidian/index.md",
     "posts/test-obsidian",
-    "posts/markdown-extended.md",
-    "posts/en/weekly_game_art/index.md",
-    "posts/en/halloween2025/index.md",
     "posts/ja/halloween2025/cover.webp",
     "access/Untitled 1.md",
-    "posts/en/halloween2025/cover.webp",
     "access/en/access.md",
     "access/_test-obsidian-vault.md",
     "access/Untitled.md",
     "spec/en/about.md",
-    "posts/en/weekly_game_art/cover.webp",
     "access/ja/access.md"
   ]
 }

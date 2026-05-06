@@ -1,12 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import PostMeta from "@components/PostMeta.astro";
-import { getPostUrlBySlug, getPostUrlBySlugLang } from "@utils/url-utils";
-import { Icon } from "astro-icon/components";
+import { getPostUrlBySlugLang } from "@utils/url-utils";
 
 const { post, lang } = Astro.props as { post: any; lang?: string };
-const { Content, data } = await post.render();
+const { Content } = await post.render();
 
 // Extract custom featured excerpt between markers in raw markdown body
 // Markers used in markdown:
@@ -90,7 +88,7 @@ if (imageUrl && !isAbsolute(imageUrl)) {
     <!-- metadata -->
     <PostMeta
       class="mb-5"
-      published={post.data.published}
+      published={post.data.eventDate ?? post.data.published}
       updated={post.data.updated}
       tags={post.data.tags}
       category={post.data.category}
