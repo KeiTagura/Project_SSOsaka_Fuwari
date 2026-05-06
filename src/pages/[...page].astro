@@ -78,6 +78,17 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 // https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
+// Past events: all non-draft posts whose eventDate (or published) is before now, newest first
+const allPastEvents = posts
+	.filter((p) => eventDateOf(p) < now)
+	.sort((a, b) => eventDateOf(b).getTime() - eventDateOf(a).getTime());
+const pastEventsEn = allPastEvents.filter(
+	(p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "en",
+);
+const pastEventsJa = allPastEvents.filter(
+	(p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "ja",
+);
+
 const { page } = Astro.props;
 // Filter out the featured post from the current page list to avoid duplication (both locales)
 function normalizeSlug(slug: string): string {
@@ -148,6 +159,32 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
       </Pagination>
 
 
+{(pastEventsEn.length > 0 || pastEventsJa.length > 0) && (
+  <>
+    <div class="card-base mt-4 h-[0.5rem] dark:bg-[var(--card-bg-featured)]"></div>
+    {pastEventsEn.length > 0 && (
+      <div
+        id="past-title-en"
+        data-lang="en"
+        class="text-5xl font-semibold text-center text-90 mt-8"
+        style={routeLang === 'en' ? '' : 'display:none'}
+      >{i18nFor('en')(I18nKey.pastEvents)}</div>
+    )}
+    {pastEventsJa.length > 0 && (
+      <div
+        id="past-title-ja"
+        data-lang="ja"
+        class="text-5xl font-semibold text-center text-90 mt-8"
+        style={routeLang === 'ja' ? '' : 'display:none'}
+      >{i18nFor('ja')(I18nKey.pastEvents)}</div>
+    )}
+    <div id="past-post-list">
+      {pastEventsEn.length > 0 && <PostPage page={{ data: pastEventsEn }} lang="en" />}
+      {pastEventsJa.length > 0 && <PostPage page={{ data: pastEventsJa }} lang="ja" />}
+    </div>
+  </>
+)}
+
 <div class="card-base mt-8 h-[0.5rem] dark:bg-[var(--card-bg-featured)]"></div>
 
 
@@ -204,13 +241,14 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
     }
     function filterHome(){
       const cur = selectedLang();
-      const root = document.getElementById('home-post-list') || document;
-      root.querySelectorAll('[data-post-lang]')
-        .forEach((el)=>{
+      ['home-post-list', 'past-post-list'].forEach(function(id){
+        const root = document.getElementById(id);
+        if (!root) return;
+        root.querySelectorAll('[data-post-lang]').forEach(function(el){
           const key = (el as HTMLElement).getAttribute('data-post-lang')||'';
-          const show = key === cur;
-          (el as HTMLElement).style.display = show ? '' : 'none';
+          (el as HTMLElement).style.display = key === cur ? '' : 'none';
         });
+      });
     }
     function updateAccessVisible(){
       const cur = selectedLang();
@@ -233,14 +271,23 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
       if (en) en.style.display = (cur === 'en') ? '' : 'none';
       if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
     }
+    function updatePastTitleVisible(){
+      const cur = selectedLang();
+      const en = document.getElementById('past-title-en');
+      const ja = document.getElementById('past-title-ja');
+      if (en) en.style.display = (cur === 'en') ? '' : 'none';
+      if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
+    }
     filterHome();
     updateAccessVisible();
     updateHeadingVisible();
     updateFeaturedVisible();
+    updatePastTitleVisible();
     window.addEventListener('popstate', filterHome);
     window.addEventListener('popstate', updateAccessVisible);
     window.addEventListener('popstate', updateHeadingVisible);
     window.addEventListener('popstate', updateFeaturedVisible);
+    window.addEventListener('popstate', updatePastTitleVisible);
     document.addEventListener('astro:page-load', () => setTimeout(filterHome, 0));
     document.addEventListener('astro:after-swap', () => setTimeout(filterHome, 0));
     document.addEventListener('astro:page-load', () => setTimeout(updateAccessVisible, 0));
@@ -249,6 +296,8 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
     document.addEventListener('astro:after-swap', () => setTimeout(updateHeadingVisible, 0));
     document.addEventListener('astro:page-load', () => setTimeout(updateFeaturedVisible, 0));
     document.addEventListener('astro:after-swap', () => setTimeout(updateFeaturedVisible, 0));
+    document.addEventListener('astro:page-load', () => setTimeout(updatePastTitleVisible, 0));
+    document.addEventListener('astro:after-swap', () => setTimeout(updatePastTitleVisible, 0));
     document.addEventListener('click', (e)=>{
       const t = e.target as HTMLElement | null;
       if (!t) return;
@@ -257,6 +306,7 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
         setTimeout(filterHome, 100);
         setTimeout(updateHeadingVisible, 100);
         setTimeout(updateFeaturedVisible, 100);
+        setTimeout(updatePastTitleVisible, 100);
       }
     });
     document.addEventListener('click', (e)=>{
@@ -269,6 +319,7 @@ const AccessJa = accessJa ? (await render(accessJa)).Content : null;
         setTimeout(updateAccessVisible, 50);
         setTimeout(updateHeadingVisible, 50);
         setTimeout(updateFeaturedVisible, 50);
+        setTimeout(updatePastTitleVisible, 50);
       }
     });
   })();

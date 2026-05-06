@@ -9,6 +9,7 @@ export const vi: Translation = {
 	[Key.events]: "Sự kiện",
 	[Key.search]: "Tìm kiếm",
 	[Key.upcomingEvents]: "Sự kiện sắp tới",
+	[Key.pastEvents]: "Sự kiện đã qua",
 
 	[Key.past]: "Đã qua",
 	[Key.upcoming]: "Sắp tới",

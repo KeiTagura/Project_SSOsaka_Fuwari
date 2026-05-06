@@ -9,6 +9,7 @@ export const es: Translation = {
 	[Key.events]: "Eventos",
 	[Key.search]: "Buscar",
 	[Key.upcomingEvents]: "Próximos eventos",
+	[Key.pastEvents]: "Eventos pasados",
 
 	[Key.past]: "Pasado",
 	[Key.upcoming]: "Próximos",

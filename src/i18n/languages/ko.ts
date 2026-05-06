@@ -9,6 +9,7 @@ export const ko: Translation = {
 	[Key.events]: "이벤트",
 	[Key.search]: "검색",
 	[Key.upcomingEvents]: "예정된 이벤트",
+	[Key.pastEvents]: "지난 이벤트",
 
 	[Key.past]: "지난",
 	[Key.upcoming]: "예정",

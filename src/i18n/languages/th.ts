@@ -9,6 +9,7 @@ export const th: Translation = {
 	[Key.events]: "อีเวนต์",
 	[Key.search]: "ค้นหา",
 	[Key.upcomingEvents]: "กิจกรรมที่จะมีขึ้น",
+	[Key.pastEvents]: "กิจกรรมที่ผ่านมา",
 
 	[Key.past]: "ที่ผ่านมา",
 	[Key.upcoming]: "กำลังจะมีขึ้น",

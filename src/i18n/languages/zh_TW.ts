@@ -9,6 +9,7 @@ export const zh_TW: Translation = {
 	[Key.events]: "活動",
 	[Key.search]: "搜尋",
 	[Key.upcomingEvents]: "即將舉行的活動",
+	[Key.pastEvents]: "過去的活動",
 
 	[Key.past]: "過去",
 	[Key.upcoming]: "即將",
