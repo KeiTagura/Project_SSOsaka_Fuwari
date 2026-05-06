@@ -156,6 +156,14 @@ export default defineConfig({
 		],
 	},
 	vite: {
+		plugins: [
+			{
+				name: 'ignore-non-js-content',
+				load(id) {
+					if (id.endsWith('.base')) return 'export default {}';
+				},
+			},
+		],
 		build: {
 			rollupOptions: {
 				onwarn(warning, warn) {
