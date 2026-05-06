@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://api.github.com/repos/actions/checkout/releases/latest\")",
+      "Bash(curl -s \"https://api.github.com/repos/actions/setup-node/releases/latest\")",
+      "Bash(curl -s \"https://api.github.com/repos/pnpm/action-setup/releases/latest\")",
+      "Bash(curl -s \"https://api.github.com/repos/actions/setup-node/git/ref/tags/v6.4.0\")",
+      "Bash(curl -s \"https://api.github.com/repos/pnpm/action-setup/git/ref/tags/v6.0.5\")"
+    ]
+  }
+}
