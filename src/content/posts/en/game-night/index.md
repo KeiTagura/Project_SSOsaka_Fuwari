@@ -120,6 +120,7 @@ We aim to create a respectful, supportive, inclusive environment. All participan
 
 ## Tickets
 
+
 <div class="max-w-3xl mx-auto">
   <a class="featured-post mb-8 p-6 rounded-lg  btn-regular-featured" href="https://sso-gamenight.peatix.com/" style="color:oklch(0.26 0 0)"> Peatix</a>
 </div>

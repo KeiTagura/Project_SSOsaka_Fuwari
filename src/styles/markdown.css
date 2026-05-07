@@ -19,7 +19,7 @@
         }
     }
 
-    a:not(.no-styling) {
+    a:not(.no-styling):not([class*="btn-"]) {
         @apply relative bg-none link font-medium text-[var(--primary)]
         underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4;
         box-decoration-break: clone;
