@@ -201,8 +201,8 @@ function loadButtonScript() {
             } else if (localeIdxs.length > 0) {
                 idx = localeIdxs[0];
             }
-            // Neutral paths: root, about, archive
-            if (parts.length === 0 || ((parts[0] === 'about' || parts[0] === 'archive') && localeIdxs.length === 0)) {
+            // Neutral paths: root, about, studio, events, old_events
+            if (parts.length === 0 || ((parts[0] === 'about' || parts[0] === 'studio' || parts[0] === 'events' || parts[0] === 'old_events') && localeIdxs.length === 0)) {
                 const params = new URLSearchParams(window.location.search);
                 params.set('lang', target);
                 const base = parts.length === 0 ? '/' : `/${parts[0]}` + (trailingSlash ? '/' : '');

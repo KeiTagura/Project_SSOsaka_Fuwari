@@ -1,0 +1,16 @@
+---
+import I18nKey from "@i18n/i18nKey";
+import { i18nFor } from "@i18n/translation";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { getLangFromPath } from "@/utils/lang";
+import Calendar from "../components/Calendar";
+
+const routeLang = getLangFromPath(Astro.url.pathname) ?? "ja";
+const t = i18nFor(routeLang);
+---
+<MainGridLayout title={t(I18nKey.events)} description={t(I18nKey.events)}>
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+        <Calendar client:only="react" />
+    </div>
+</MainGridLayout>
+

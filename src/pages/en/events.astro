@@ -10,6 +10,6 @@ const t = i18nFor(lang);
 const sortedPostsList = await getSortedPostsList(lang);
 ---
 
-<MainGridLayout title={t(I18nKey.archive)}>
+<MainGridLayout title={t(I18nKey.events)}>
     <ArchivePanel sortedPosts={sortedPostsList} client:only="svelte"></ArchivePanel>
 </MainGridLayout>
