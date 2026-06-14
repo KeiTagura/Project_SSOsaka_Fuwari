@@ -1,15 +1,40 @@
-# Studio
+# Learn. Collaborate. Ship. 
 
-[comment]: <FeaturedDescription>
-<p>A creative workspace for indie games, workshops, livestreams, and community sessions in Osaka.</p>
-<div class="flex flex-wrap gap-2 text-sm font-semibold text-75 not-prose">
-  <span class="btn-regular-featured px-3 py-1 rounded-lg">Games</span>
-  <span class="btn-regular-featured px-3 py-1 rounded-lg">Workshops</span>
-  <span class="btn-regular-featured px-3 py-1 rounded-lg">Community</span>
+<!--
+
+
+        <div class="tags flex flex-wrap justify-evenly gap-2 text-xl font-normal text-75 not-prose">
+            <span >Games</span>
+            <span >Workshops</span>
+            <span >Community</span>
+            <span >Projects</span>
+        </div>
+
+
+<div class="tags flex flex-wrap gap-2 text-xl font-normal text-75 not-prose">
+  <span class="px-10 py-1 rounded-lg">Games  </span>
+  <span class="px-10 py-1 rounded-lg">Workshops</span>
+  <span class="px-10 py-1 rounded-lg">Community</span>
+  <span class="px-10 py-1 rounded-lg">Projects</span>
 </div>
+-->
+
 [comment]: <FeaturedDescription>
 
+<div class = "flex felx-wrap gap-2"> 
+    <div class = "test-panel px-10 py-1 rounded-lg">
+    
+<p>A creative workspace for indie games, 
+workshops, livestreams, and community sessions in Osaka.</p>
+    </div>
+</div>
+
+<!-- 
 ![Secret Shop Osaka studio](/images/10.webp)
+-->
+
+[comment]: <FeaturedDescription> 
+
 
 # Secret Shop Studio
 
@@ -31,213 +56,221 @@ Participants will experience what it is like to work on a small game team, contr
 
 # What Is Secret Shop Studio?
 
-Many people interested in game development never get the opportunity to work on a real team.
+<p class="text-center">Many people interested in game development never get the opportunity to work on a real team. </br>
+Tutorials can teach tools. </br>
+Courses can teach techniques. </br>
+Game jams can teach speed. </br>
+But very few opportunities exist to learn how a project moves from idea to release while working alongside other people. </br>
+Secret Shop Studio exists to bridge that gap. </br>
+The goal is not simply to learn software. </br>
+The goal is to learn how games are actually made. </br></p> 
 
-Tutorials can teach tools.
 
-Courses can teach techniques.
-
-Game jams can teach speed.
-
-But very few opportunities exist to learn how a project moves from idea to release while working alongside other people.
-
-Secret Shop Studio exists to bridge that gap.
-
-The goal is not simply to learn software.
-
-The goal is to learn how games are actually made.
-
-Participants will gain experience with:
-
-* Team collaboration
-* Production workflows
-* Milestones and planning
-* Communication
-* Scope management
-* Playtesting
-* Publishing
-* Project completion
+<div class=" studio-experience-split">
+  <div class="studio-experience-copy">
+    <p><strong>Participants will gain experience with:</strong></p>
+    <ul>
+      <li>Team collaboration</li>
+      <li>Production workflows</li>
+      <li>Milestones and planning</li>
+      <li>Communication</li>
+      <li>Scope management</li>
+      <li>Playtesting</li>
+      <li>Publishing</li>
+      <li>Project completion</li>
+    </ul>
+  </div>
+  <div class="studio-experience-image" role="img" aria-label="Secret Shop Studio game screen"></div>
+</div>
 
 ---
 
+
 # Learn. Collaborate. Ship. Showcase.
 
-Secret Shop Studio is built around four goals.
+<p class="text-center">Secret Shop Studio is built around four goals.</p>
 
-### Learn
-
+<h1 class= "text-white"> Learn </h1>
+<p class="text-center">
 Gain exposure to the tools, workflows, and production practices used by small game teams.
+</p>
 
-### Collaborate
-
+<h1>Collaborate</h1>
+<p class="text-center">
 Work alongside programmers, artists, designers, writers, musicians, and other disciplines to create something together.
+</p>
 
-### Ship
-
+<h1> Ship </h1>
+<p class="text-center">
 Experience the realities of production, including planning, iteration, feedback, problem solving, and scope management.
+</p>
 
-### Showcase
-
+<h1> Showcase </h1>
+<p class="text-center">
 Leave with portfolio material, production experience, and a published project that demonstrates your contribution.
+</p>
 
 ---
 
 # Our Philosophy
 
-Secret Shop Studio is **project-driven rather than curriculum-driven**.
-
-Participants will inevitably learn tools, workflows, and production practices throughout the project.
-
-However, the primary goal is not to teach a predefined curriculum.
-
-The primary goal is to guide a team through the process of planning, building, and shipping a game.
-
-When challenges arise, participants will be encouraged to learn what they need to move the project forward.
-
-Sometimes this may involve mentorship.
-
-Sometimes this may involve learning new tools.
-
-Sometimes it may involve adapting the project scope.
-
-The project drives the learning.
+Secret Shop Studio is **project-driven rather than curriculum-driven**.</br>
+Participants will inevitably learn tools, workflows, and production practices throughout the project.</br>
+However, the primary goal is not to teach a predefined curriculum.</br>
+The primary goal is to guide a team through the process of planning, building, and shipping a game.</br>
+When challenges arise, participants will be encouraged to learn what they need to move the project forward.</br>
+Sometimes this may involve mentorship.</br>
+Sometimes this may involve learning new tools.</br>
+Sometimes it may involve adapting the project scope.</br>
+The project drives the learning.</br>
 
 ---
+<h1 style="text-align: center;">
+  FAQ
+</h1>
+<details class="studio-foldout">
+<summary>What Makes This Different?</summary>
 
-# What Makes This Different?
+<p>Most educational programs focus on teaching skills.</p>
 
-Most educational programs focus on teaching skills.
+<p>Secret Shop Studio focuses on applying skills.</p>
 
-Secret Shop Studio focuses on applying skills.
+<p>Instead of asking:</p>
 
-Instead of asking:
+<blockquote>How do I learn Unity?</blockquote>
 
-> How do I learn Unity?
+<p>we ask:</p>
 
-we ask:
+<blockquote>What do we need to learn to finish this project?</blockquote>
 
-> What do we need to learn to finish this project?
+<p>Instead of:</p>
 
-Instead of:
+<blockquote>What lesson comes next?</blockquote>
 
-> What lesson comes next?
+<p>we ask:</p>
 
-we ask:
+<blockquote>What problem does the team need to solve next?</blockquote>
 
-> What problem does the team need to solve next?
+<p>The emphasis is on practical experience, teamwork, and finishing what you start.</p>
+</details>
 
-The emphasis is on practical experience, teamwork, and finishing what you start.
+<details class="studio-foldout">
+<summary>What Is The Goal?</summary>
 
----
+<p>The goal is not to build a massive commercial game.</p>
 
-# What Is The Goal?
+<p>The goal is not to create the next indie hit.</p>
 
-The goal is not to build a massive commercial game.
+<p>The goal is to experience the complete production cycle.</p>
 
-The goal is not to create the next indie hit.
+<p>Participants will work through:</p>
 
-The goal is to experience the complete production cycle.
+<ol>
+  <li>Concept Development</li>
+  <li>Pre-Production</li>
+  <li>Planning</li>
+  <li>Production</li>
+  <li>Playtesting</li>
+  <li>Polish</li>
+  <li>Publishing</li>
+  <li>Postmortem</li>
+</ol>
 
-Participants will work through:
+<p>Projects will intentionally be kept small.</p>
 
-1. Concept Development
-2. Pre-Production
-3. Planning
-4. Production
-5. Playtesting
-6. Polish
-7. Publishing
-8. Postmortem
+<p>A finished small game is more valuable than an unfinished ambitious one.</p>
+</details>
 
-Projects will intentionally be kept small.
+<details class="studio-foldout">
+<summary>Who Is This For?</summary>
 
-A finished small game is more valuable than an unfinished ambitious one.
+<p>Secret Shop Studio may be a good fit if you are:</p>
 
----
+<ul>
+  <li>Interested in game development</li>
+  <li>Looking to build portfolio material</li>
+  <li>Interested in joining a team</li>
+  <li>Curious about production workflows</li>
+  <li>Looking for practical experience</li>
+  <li>Transitioning from IT, software, art, music, design, or another creative field</li>
+  <li>Willing to commit to a project and collaborate with others</li>
+</ul>
 
-# Who Is This For?
+<p>You do not need professional experience.</p>
 
-Secret Shop Studio may be a good fit if you are:
+<p>You do not need to know everything before joining.</p>
 
-* Interested in game development
-* Looking to build portfolio material
-* Interested in joining a team
-* Curious about production workflows
-* Looking for practical experience
-* Transitioning from IT, software, art, music, design, or another creative field
-* Willing to commit to a project and collaborate with others
+<p>You do need to be willing to learn, communicate, and contribute.</p>
+</details>
 
-You do not need professional experience.
+<details class="studio-foldout">
+<summary>Who Is This Not For?</summary>
 
-You do not need to know everything before joining.
+<p>This program may not be a good fit if you are looking for:</p>
 
-You do need to be willing to learn, communicate, and contribute.
+<ul>
+  <li>A full-time school</li>
+  <li>A job placement program</li>
+  <li>A large commercial project</li>
+  <li>A passive lecture series</li>
+  <li>Someone else to make the game for you</li>
+</ul>
 
----
+<p>Secret Shop Studio is built around participation.</p>
 
-# Who Is This Not For?
+<p>The more you contribute, the more you will gain from the experience.</p>
+</details>
 
-This program may not be a good fit if you are looking for:
+<details class="studio-foldout">
+<summary>What Will I Learn?</summary>
 
-* A full-time school
-* A job placement program
-* A large commercial project
-* A passive lecture series
-* Someone else to make the game for you
+<p>Participants may gain experience with:</p>
 
-Secret Shop Studio is built around participation.
+<ul>
+  <li>Production planning</li>
+  <li>Milestones</li>
+  <li>Team communication</li>
+  <li>Version control</li>
+  <li>Asset pipelines</li>
+  <li>Playtesting</li>
+  <li>Project reviews</li>
+  <li>Feedback processes</li>
+  <li>Publishing workflows</li>
+  <li>Scope management</li>
+  <li>Cross-discipline collaboration</li>
+</ul>
 
-The more you contribute, the more you will gain from the experience.
+<p>The exact lessons will vary depending on the project and the needs of the team.</p>
+</details>
 
----
+<details class="studio-foldout">
+<summary>What Will I Have At The End?</summary>
 
-# What Will I Learn?
+<p>Participants may leave the program with:</p>
 
-Participants may gain experience with:
+<ul>
+  <li>A published game</li>
+  <li>Portfolio material demonstrating their contribution</li>
+  <li>Experience working on a multidisciplinary team</li>
+  <li>Experience participating in production workflows</li>
+  <li>Experience with planning, reviews, and iteration</li>
+  <li>New collaborators and professional connections</li>
+  <li>A better understanding of how games move from concept to release</li>
+</ul>
 
-* Production planning
-* Milestones
-* Team communication
-* Version control
-* Asset pipelines
-* Playtesting
-* Project reviews
-* Feedback processes
-* Publishing workflows
-* Scope management
-* Cross-discipline collaboration
-
-The exact lessons will vary depending on the project and the needs of the team.
-
----
-
-# What Will I Have At The End?
-
-Participants may leave the program with:
-
-* A published game
-* Portfolio material demonstrating their contribution
-* Experience working on a multidisciplinary team
-* Experience participating in production workflows
-* Experience with planning, reviews, and iteration
-* New collaborators and professional connections
-* A better understanding of how games move from concept to release
-
-While Secret Shop Studio does not guarantee employment, it is designed to help participants build practical experience and portfolio material that can support future opportunities.
+<p>While Secret Shop Studio does not guarantee employment, it is designed to help participants build practical experience and portfolio material that can support future opportunities.</p>
+</details>
 
 ---
 
 # Team Structure
 
-Every cohort will be different.
+Every cohort will be different.</br>
+Projects will be selected based on the skills, interests, and availability of participants.</br>
+The goal is not to force a team into a project.</br>
+The goal is to find a project that fits the team.</br>
 
-Projects will be selected based on the skills, interests, and availability of participants.
-
-The goal is not to force a team into a project.
-
-The goal is to find a project that fits the team.
-
-Projects may involve:
+**Projects may involve:**
 
 * Programming
 * Art
@@ -254,11 +287,10 @@ Not every project will require every role.
 
 # The Role Of Secret Shop
 
-Secret Shop Studio is not about having one person build a game while everyone watches.
-
+Secret Shop Studio is not about having one person build a game while everyone watches.</br>
 Participants build the project.
 
-Secret Shop provides:
+**Secret Shop provides:**
 
 * Guidance
 * Mentorship
@@ -268,11 +300,11 @@ Secret Shop provides:
 * Accountability
 * A safety net when challenges arise
 
-The goal is to help teams stay focused, motivated, and moving toward release.
-
-Shipping is more important than perfection.
-
+The goal is to help teams stay focused, motivated, and moving toward release.</br>
+Shipping is more important than perfection.</br>
 Learning is more important than ambition.
+
+<div class="studio-role-image" role="img" aria-label="Secret Shop Studio game screen"></div>
 
 ---
 
@@ -293,14 +325,24 @@ The program is designed to help participants become reliable collaborators who u
 ---
 
 # Looking Forward
+<pre class="custom-code "><code>
+<span class="custom-code-line">One of the long-term goals of Secret Shop Studio is to help create future </span>
+<span class="custom-code-line">collaborators, project leads, mentors, and community members.</span>
+<span class="custom-code-line">Today's participant may become tomorrow's teammate.</span>
+<span class="custom-code-line">Tomorrow's teammate may become a future mentor.</span>
+<span class="custom-code-line">The hope is that each cohort helps strengthen the next one.</span>
+</code></pre>
 
-One of the long-term goals of Secret Shop Studio is to help create future collaborators, project leads, mentors, and community members.
+<h1 style="text-align: center;">
+  Learn. Collaborate. Ship. Showcase.
+</h1>
 
-Today's participant may become tomorrow's teammate.
 
-Tomorrow's teammate may become a future mentor.
 
-The hope is that each cohort helps strengthen the next one.
+
+| <span class="btn-regular-featured px-3 py-1 rounded-lg">Games</span>| <span class="btn-regular-featured px-3 py-1 rounded-lg">Workshops</span>| <span class="btn-regular-featured px-3 py-1 rounded-lg">Community</span>| <span class="btn-regular-featured px-3 py-1 rounded-lg">Projects</span> |
+| :--------- | :----------: | ----------: | ----------: |
+| ![Secret Shop Osaka studio](/images/10.webp)|![Secret Shop Osaka studio](/images/10.webp)|![Secret Shop Osaka studio](/images/10.webp) |![Secret Shop Osaka studio](/images/10.webp) |
 
 ---
 
@@ -314,36 +356,39 @@ We are collecting interest from potential participants while the first cohort is
 
 # Register Interest
 
-Interested in joining a future cohort?
+<pre class="custom-code "><code>
+<span class="custom-code-line font-extrabold text-base">Interested in joining a future cohort?</span>
+<span class="custom-code-line">Register your interest below.</span>
+<span class="custom-code-line">This is not a final application.</span>
+<span class="custom-code-line"> </span>
+<span class="custom-code-line font-extrabold text-base">Interested in joining a future cohort?</span>
+<span class="custom-code-line"> </span>
+<span class="custom-code-line"><span class="code-green">*</span> Who is interested</span>
+<span class="custom-code-line"><span class="code-green">*</span> What skills people bring</span>
+<span class="custom-code-line"><span class="code-green">*</span> What roles people would like to explore</span>
+<span class="custom-code-line"><span class="code-green">*</span> Availability</span>
+<span class="custom-code-line"><span class="code-green">*</span> Potential project directions</span>
+<span class="custom-code-line"> </span>
+<span class="custom-code-line font-extrabold text-base"> Interest Form: </span>
+<span class="custom-code-line"> [Insert Google Form or application link]</span>
+<span class="custom-code-line"> </span>
+<span class="custom-code-line font-extrabold text-base"> Contact: </span>
 
-Register your interest below.
-
-This is not a final application.
-
-It simply helps us understand:
-
-* Who is interested
-* What skills people bring
-* What roles people would like to explore
-* Availability
-* Potential project directions
-
-**Interest Form:**
-[Insert Google Form or application link]
-
-**Contact:**
-[Insert contact email]
+<span class="custom-code-line"> [Insert contact email]</span>
+</code></pre>
 
 ---
 
 # Expected Commitment
+<pre class="custom-code "><code>
+<span class="custom-code-line">The exact structure may change between cohorts, but participants should expect:</span>
+<span class="custom-code-line"> </span>
+<span class="custom-code-line"><span class="code-green">*</span> Weekly team sessions</span>
+<span class="custom-code-line"><span class="code-green">*</span> Work between meetings</span>
+<span class="custom-code-line"><span class="code-green">*</span> Active communication</span>
+<span class="custom-code-line"><span class="code-green">*</span> Collaboration with other participants</span>
+<span class="custom-code-line"><span class="code-green">*</span> A commitment to helping the project reach release</span>
+<span class="custom-code-line"> </span>
 
-The exact structure may change between cohorts, but participants should expect:
-
-* Weekly team sessions
-* Work between meetings
-* Active communication
-* Collaboration with other participants
-* A commitment to helping the project reach release
-
-Small projects. Real teamwork. Finished games.
+<span class="custom-code-line"> Small projects. Real teamwork. Finished games.</span>
+</code></pre>

@@ -13,3 +13,63 @@
   font-style: normal;
   font-display: swap;
 }
+.custom-code {
+  background: var(--codeblock-bg);
+  color: #ddd;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  white-space: normal;
+}
+
+.custom-md .custom-code > code {
+  display: grid;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font: inherit;
+  overflow: visible;
+  counter-reset: custom-code-line;
+  white-space: normal;
+}
+
+.custom-md .custom-code > code::before,
+.custom-md .custom-code > code::after {
+  content: none;
+}
+
+.custom-md .custom-code .custom-code-line {
+  counter-increment: custom-code-line;
+  display: flex;
+  align-items: baseline;
+  min-height: 1.5rem;
+  min-width: max-content;
+  white-space: pre;
+}
+
+.custom-md .custom-code .custom-code-line::before {
+  content: counter(custom-code-line);
+  flex: 0 0 2.75rem;
+  border-right: 1px solid rgb(255 255 255 / 0.18);
+  color: #777;
+  margin-right: 0.875rem;
+  padding-right: 0.75rem;
+  text-align: right;
+  user-select: none;
+}
+
+.code-red {
+  color: #ff5c5c;
+}
+
+.code-green {
+  color: #7ee787;
+}
+
+.code-blue {
+  color: #58a6ff;
+}

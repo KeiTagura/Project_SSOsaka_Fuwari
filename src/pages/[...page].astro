@@ -152,16 +152,29 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
     )}
 
   <section id="studio" class="scroll-mt-28 mb-8 p-6 rounded-lg bg-[var(--card-bg-featured)]">
+    <!--bg-[var(--bth-card-bh-hover-alt)]-->
+        <div class="  flex justify-center text-6xl font-semibold text-90">Studio</div>
     <div class="grid gap-6 md:grid-cols-[1.05fr_0.95fr] items-center">
-      <div class="space-y-4">
-        <div class="text-5xl font-semibold text-90">Studio</div>
-        <Markdown class="studio-preview text-lg leading-8 text-75" content={studioExcerptHtml} />
+      <div class="space-y-4 ">
+        <div class="text-[var(--card-bg)] text-lg leading-8 ">
+        Form a team, build a small game, finish it, and publish it.
+        </br>
+        </br>
+        	 
+          📚Learn. 
+          🤝Collaborate. 
+          🚀Ship. 
+          🎉Showcase!
+        
+        </br>
+        </div>
+        <!--<Markdown class="studio-preview text-lg leading-8 text-75" content={studioExcerptHtml} />-->
         <a class="featured-post p-4 rounded-lg bg-[var(--card-bg-featured)] btn-regular-featured w-fit" href="/studio/">
           READ MORE
         </a>
       </div>
       <div class="relative aspect-[16/10] rounded-2xl overflow-hidden">
-        <img src="/images/10.webp" alt="Secret Shop Osaka studio" class="w-full h-full object-cover" />
+        <img src="src/assets/images/SSSStudio_Front.png" alt="Secret Shop Osaka studio" class="w-full h-full object-cover" />
         <div aria-hidden="true" class="absolute inset-0 pointer-events-none" style="background-image: url('/images/overlays/overlay11.png'); background-repeat: repeat; opacity: 0.45;"></div>
       </div>
     </div>
