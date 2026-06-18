@@ -4,6 +4,9 @@ import Markdown from "@components/misc/Markdown.astro";
 import gameScreen from "../assets/images/gameScreen.png";
 import roleScreen from "../assets/images/ssShopWorkArea.png";
 import studioBanner from "../assets/images/SSStudio_Banner.png";
+import taemComposition from "../assets/images/teamComposition.png";
+import outFishing from "../assets/images/outFishing.png";
+import meshOut from "../assets/images/meshOut.png";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 
 const studioEntry = await getEntry("spec", "studio" as any);
@@ -14,6 +17,9 @@ const { Content } = await render(studioEntry);
 const studioBannerImage = `url("${studioBanner.src}")`;
 const studioGameScreenImage = `url("${gameScreen.src}")`;
 const secretShopRoleImage = `url("${roleScreen.src}")`;
+const teamCompositionImage = `url("${taemComposition.src}")`;
+const registerImage = `url("${outFishing.src}")`;
+const meshOutImage = `url("${meshOut.src}")`;
 ---
 
 <MainGridLayout title="Studio" description="Studio">
@@ -26,14 +32,57 @@ const secretShopRoleImage = `url("${roleScreen.src}")`;
   </div>
 </MainGridLayout>
 
-<style is:global define:vars={{ studioBannerImage, studioGameScreenImage, secretShopRoleImage }}>
+<style is:global define:vars={{ studioBannerImage, studioGameScreenImage, secretShopRoleImage, teamCompositionImage, registerImage, meshOutImage }}>
   
 .custom-md .custom-code {
       background: #13161a;
       border-radius: 0.875rem;
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow: visible;
+      white-space: normal;
+      counter-reset: custom-code-line;
 
 }
 
+.custom-md .custom-code > code {
+      display: block;
+      max-width: 100%;
+      overflow: visible;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+      font: inherit;
+      white-space: normal;
+}
+
+.custom-md .custom-code .custom-code-line {
+      counter-increment: custom-code-line;
+      display: block;
+      position: relative;
+      box-sizing: border-box;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 1.5rem;
+      padding-left: 3.625rem;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+}
+
+.custom-md .custom-code .custom-code-line::before {
+      content: counter(custom-code-line);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.75rem;
+      border-right: 1px solid rgb(255 255 255 / 0.18);
+      color: #777;
+      padding-right: 0.75rem;
+      text-align: right;
+      user-select: none;
+}
 
   .studio-foldout {
     border: 1px solid var(--line-divider);
@@ -86,6 +135,7 @@ const secretShopRoleImage = `url("${roleScreen.src}")`;
 
   .studio-foldout-content-inner {
     min-height: 0;
+    color: white;
     overflow: hidden;
   }
 
@@ -215,6 +265,8 @@ const secretShopRoleImage = `url("${roleScreen.src}")`;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .studio-experience-copy > :first-child {
@@ -225,7 +277,30 @@ const secretShopRoleImage = `url("${roleScreen.src}")`;
     margin-bottom: 0;
   }
 
+  .studio-experience-split--image-right .studio-experience-copy {
+    grid-column: 1;
+  }
+
+  .studio-experience-split--image-right .studio-experience-image {
+    grid-column: 2;
+  }
+
+  .team-struct-image {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 18rem;
+    background-image: var(--teamCompositionImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 0.875rem;
+  }
+
   .studio-experience-image {
+    grid-column: 1;
+    grid-row: 1;
     width: 100%;
     height: 100%;
     min-height: 18rem;
@@ -245,10 +320,103 @@ const secretShopRoleImage = `url("${roleScreen.src}")`;
     height: var(--studio-role-image-height);
     margin: 1.75rem auto 0;
     background-image: var(--secretShopRoleImage);
-    background-position: cover;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 0.875rem;
+  }
+
+.studio-footer-image {
+ --studio-role-image-width: 70%;
+    --studio-role-image-height: 18rem;
+
+    width: var(--studio-role-image-width);
+    height: var(--studio-role-image-height);
+    margin: 1.75rem auto 0;
+    background-image: var(--meshOutImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    image-rendering: pixelated;
+    border-radius: 0.875rem;
+  }
+
+    .studio-register-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 38%);
+    gap: 1.25rem;
+    align-items: stretch;
+    width: 90%;
+    margin: 1.5rem auto 0;
+  }
+
+  .studio-register-copy {
+    margin: 0;
+    height: 100%;
+  }
+
+  .studio-register-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .studio-register-image {
+    width: 100%;
+    min-height: 18rem;
+    background-image: var(--registerImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 0.875rem;
+    image-rendering: pixelated;
+  }
+
+  .studio-register-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    min-width: 10rem;
+    box-sizing: border-box;
+    background-color: var(--card-bg);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.6rem;
+  }
+  .studio-register-button-light{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    min-width: 10rem;
+    box-sizing: border-box;
+    background-color: var(--card-bg-featured);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.6rem;
+  }
+  
+  .studio-register-button-light:hover {
+    background-color: var(--btn-regular-bg-hover);
+  }
+
+  .studio-register-button-light:active {
+    background-color: var(--btn-regular-bg-hover);
+  }
+
+  .studio-register-button:hover {
+    background-color: var(--bth-card-bh-hover-alt);
+  }
+
+  .studio-register-button:active {
+    background-color: var(--bth-card-bh-active-alt);
   }
 
   @media (max-width: 768px) {
@@ -257,13 +425,34 @@ const secretShopRoleImage = `url("${roleScreen.src}")`;
       width: 100%;
     }
 
-    .studio-experience-split img {
+    .studio-experience-copy,
+    .studio-experience-image {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .studio-experience-split--image-right .studio-experience-copy,
+    .studio-experience-split--image-right .studio-experience-image {
+      grid-column: 1;
+      grid-row: auto;
+    }
+
+    .studio-experience-image {
       min-height: 14rem;
     }
 
     .studio-role-image {
       --studio-role-image-width: 100%;
-      --studio-role-image-height: 14rem;
+      --studio-role-image-height: 18rem;
+    }
+
+    .studio-register-split {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+
+    .studio-register-image {
+      min-height: 14rem;
     }
   }
 </style>

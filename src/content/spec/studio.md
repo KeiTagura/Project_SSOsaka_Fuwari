@@ -1,14 +1,14 @@
-# Learn. Collaborate. Ship. 
-
+ # Learn. Collaborate. Ship.
+<!--<h1>Learn. Collaborate. Ship. </h1> -->
 <!--
 
 
-        <div class="tags flex flex-wrap justify-evenly gap-2 text-xl font-normal text-75 not-prose">
-            <span >Games</span>
-            <span >Workshops</span>
-            <span >Community</span>
-            <span >Projects</span>
-        </div>
+  <div class="tags flex flex-wrap justify-evenly gap-2 text-xl font-normal text-75 not-prose">
+      <span >Games</span>
+      <span >Workshops</span>
+      <span >Community</span>
+      <span >Projects</span>
+  </div>
 
 
 <div class="tags flex flex-wrap gap-2 text-xl font-normal text-75 not-prose">
@@ -24,7 +24,7 @@
 <div class = "flex felx-wrap gap-2"> 
     <div class = "test-panel px-10 py-1 rounded-lg">
     
-<p>A creative workspace for indie games, 
+<p class="text-center"> A creative workspace for indie games, 
 workshops, livestreams, and community sessions in Osaka.</p>
     </div>
 </div>
@@ -52,6 +52,10 @@ It is a guided production experience focused on teamwork, collaboration, product
 
 Participants will experience what it is like to work on a small game team, contribute to a real production pipeline, and help bring a project from concept to release.
 
+  <div class="studio-register-action">
+    <a class="btn-regular-featured studio-register-button-light" href="#">Register</a>
+  </div>
+
 ---
 
 # What Is Secret Shop Studio?
@@ -66,7 +70,7 @@ The goal is not simply to learn software. </br>
 The goal is to learn how games are actually made. </br></p> 
 
 
-<div class=" studio-experience-split">
+<div class="studio-experience-split studio-experience-split--image-right">
   <div class="studio-experience-copy">
     <p><strong>Participants will gain experience with:</strong></p>
     <ul>
@@ -112,23 +116,24 @@ Leave with portfolio material, production experience, and a published project th
 
 ---
 
-# Our Philosophy
+#  Our Philosophy 
 
-Secret Shop Studio is **project-driven rather than curriculum-driven**.</br>
-Participants will inevitably learn tools, workflows, and production practices throughout the project.</br>
-However, the primary goal is not to teach a predefined curriculum.</br>
-The primary goal is to guide a team through the process of planning, building, and shipping a game.</br>
-When challenges arise, participants will be encouraged to learn what they need to move the project forward.</br>
-Sometimes this may involve mentorship.</br>
-Sometimes this may involve learning new tools.</br>
-Sometimes it may involve adapting the project scope.</br>
-The project drives the learning.</br>
+
+<p class="text-center">Secret Shop Studio is <strong>project-driven rather than curriculum-driven</strong>.</p>
+<p class="text-center">Participants will inevitably learn tools, workflows, and production practices throughout the project.</p>
+<p class="text-center">However, the primary goal is not to teach a predefined curriculum.</p>
+<p class="text-center">The primary goal is to guide a team through the process of planning, building, and shipping a game.</p>
+<p class="text-center">When challenges arise, participants will be encouraged to learn what they need to move the project forward.</p>
+<p class="text-center">Sometimes this may involve mentorship. </p>
+<p class="text-center">Sometimes this may involve learning new tools.</p>
+<p class="text-center">Sometimes it may involve adapting the project scope.</p>
+<p class="text-center">The project drives the learning.</p>
 
 ---
 <h1 style="text-align: center;">
   FAQ
 </h1>
-<details class="studio-foldout">
+<details class="studio-foldout ">
 <summary>What Makes This Different?</summary>
 
 <p>Most educational programs focus on teaching skills.</p>
@@ -265,49 +270,61 @@ The project drives the learning.</br>
 
 # Team Structure
 
-Every cohort will be different.</br>
-Projects will be selected based on the skills, interests, and availability of participants.</br>
-The goal is not to force a team into a project.</br>
-The goal is to find a project that fits the team.</br>
+<p class="text-center">Every cohort will be different.</p>
+<p class="text-center">Projects will be selected based on the skills, interests, and availability of participants.</p>
+<p class="text-center">The goal is not to force a team into a project. The goal is to find a project that fits the team.</p>
+<hr class="h-px my-8 bg-neutral-quaternary border-0">
+</br>
+<strong>Projects may involve:</strong>
+<div class="studio-experience-split">
+  <div class="studio-experience-copy">
+    
+  <ul>
+    <li>Programming</li>
+    <li>Art</li>
+    <li>Animation</li>
+    <li>Audio</li>
+    <li>Design</li>
+    <li>Writing</li>
+    <li>Production</li>
+    <li>QA</li>
+  </ul>
+  </div>
+  <div class="team-struct-image" role="img" aria-label="Secret Shop Studio game screen"></div>
+</div>
 
-**Projects may involve:**
-
-* Programming
-* Art
-* Animation
-* Audio
-* Design
-* Writing
-* Production
-* QA
-
-Not every project will require every role.
+ Not every project will require every role.
 
 ---
 
 # The Role Of Secret Shop
 
-Secret Shop Studio is not about having one person build a game while everyone watches.</br>
-Participants build the project.
+<pre class="custom-code "><code>
+<span class="custom-code-line">Secret Shop Studio is not about having one person build a game while everyone watches.</span>
+<span class="custom-code-line">Participants build the project.</span>
+<span class="custom-code-line"> </span>
+<span class="custom-code-line"> </span>
+<span class="custom-code-line"><strong>Secret Shop provides:</strong> </span>
+<span class="custom-code-line"><span class="code-green">*</span> Guidance</span>
+<span class="custom-code-line"><span class="code-green">*</span> Mentorship</span>
+<span class="custom-code-line"><span class="code-green">*</span> Production support</span>
+<span class="custom-code-line"><span class="code-green">*</span> Technical support</span>
+<span class="custom-code-line"><span class="code-green">*</span> Project structure</span>
+<span class="custom-code-line"><span class="code-green">*</span> Accountability</span>
+<span class="custom-code-line"><span class="code-green">*</span> A safety net when challenges arise</span>
+<span class="custom-code-line"> </span>
 
-**Secret Shop provides:**
+<span class="custom-code-line">The goal is to help teams stay focused, motivated, and moving toward release.</span>
+<span class="custom-code-line">Shipping is more important than perfection.</span>
+<span class="custom-code-line">Learning is more important than ambition.</span>
+</code></pre>
 
-* Guidance
-* Mentorship
-* Production support
-* Technical support
-* Project structure
-* Accountability
-* A safety net when challenges arise
 
-The goal is to help teams stay focused, motivated, and moving toward release.</br>
-Shipping is more important than perfection.</br>
-Learning is more important than ambition.
 
 <div class="studio-role-image" role="img" aria-label="Secret Shop Studio game screen"></div>
 
 ---
-
+<!--
 # Becoming An Effective Team Member
 
 Secret Shop Studio exists to help participants experience the complete process of creating, collaborating on, and shipping a game while developing the skills needed to be an effective team member and, for those interested, the skills necessary to lead future projects and teams.
@@ -321,8 +338,9 @@ That is perfectly fine.
 Great teams are built from strong contributors as much as strong leaders.
 
 The program is designed to help participants become reliable collaborators who understand how production works and how to help a project succeed.
-
+-->
 ---
+
 
 # Looking Forward
 <pre class="custom-code "><code>
@@ -332,7 +350,7 @@ The program is designed to help participants become reliable collaborators who u
 <span class="custom-code-line">Tomorrow's teammate may become a future mentor.</span>
 <span class="custom-code-line">The hope is that each cohort helps strengthen the next one.</span>
 </code></pre>
-
+<!--
 <h1 style="text-align: center;">
   Learn. Collaborate. Ship. Showcase.
 </h1>
@@ -343,7 +361,9 @@ The program is designed to help participants become reliable collaborators who u
 | <span class="btn-regular-featured px-3 py-1 rounded-lg">Games</span>| <span class="btn-regular-featured px-3 py-1 rounded-lg">Workshops</span>| <span class="btn-regular-featured px-3 py-1 rounded-lg">Community</span>| <span class="btn-regular-featured px-3 py-1 rounded-lg">Projects</span> |
 | :--------- | :----------: | ----------: | ----------: |
 | ![Secret Shop Osaka studio](/images/10.webp)|![Secret Shop Osaka studio](/images/10.webp)|![Secret Shop Osaka studio](/images/10.webp) |![Secret Shop Osaka studio](/images/10.webp) |
+-->
 
+<!--
 ---
 
 # Current Status
@@ -353,29 +373,38 @@ Applications are not currently open.
 We are collecting interest from potential participants while the first cohort is being planned.
 
 ---
-
+-->
 # Register Interest
 
-<pre class="custom-code "><code>
-<span class="custom-code-line font-extrabold text-base">Interested in joining a future cohort?</span>
-<span class="custom-code-line">Register your interest below.</span>
-<span class="custom-code-line">This is not a final application.</span>
-<span class="custom-code-line"> </span>
-<span class="custom-code-line font-extrabold text-base">Interested in joining a future cohort?</span>
-<span class="custom-code-line"> </span>
-<span class="custom-code-line"><span class="code-green">*</span> Who is interested</span>
-<span class="custom-code-line"><span class="code-green">*</span> What skills people bring</span>
-<span class="custom-code-line"><span class="code-green">*</span> What roles people would like to explore</span>
-<span class="custom-code-line"><span class="code-green">*</span> Availability</span>
-<span class="custom-code-line"><span class="code-green">*</span> Potential project directions</span>
-<span class="custom-code-line"> </span>
-<span class="custom-code-line font-extrabold text-base"> Interest Form: </span>
-<span class="custom-code-line"> [Insert Google Form or application link]</span>
-<span class="custom-code-line"> </span>
-<span class="custom-code-line font-extrabold text-base"> Contact: </span>
-
-<span class="custom-code-line"> [Insert contact email]</span>
-</code></pre>
+<div class="studio-register-split">
+  <pre class="custom-code studio-register-copy"><code>
+  <span class="custom-code-line font-extrabold text-base">Interested in joining a future cohort?</span>
+  <span class="custom-code-line"> </span>
+  <span class="custom-code-line">Register your interest below.</span>
+  <span class="custom-code-line">This is not a final application.</span>
+  <span class="custom-code-line"> </span>
+  <span class="custom-code-line font-extrabold text-base">Interested in joining a future cohort?</span>
+  <span class="custom-code-line"> </span>
+  <span class="custom-code-line"><span class="code-green">*</span> Who is interested</span>
+  <span class="custom-code-line"><span class="code-green">*</span> What skills people bring</span>
+  <span class="custom-code-line"><span class="code-green">*</span> What roles people would like to explore</span>
+  <span class="custom-code-line"><span class="code-green">*</span> Availability</span>
+  <span class="custom-code-line"><span class="code-green">*</span> Potential project directions</span>
+  <span class="custom-code-line"> </span>
+  <!--
+  <span class="custom-code-line font-extrabold text-base">Interest Form: </span>
+  <span class="custom-code-line"> </span>
+  <span class="custom-code-line">[Insert Google Form or application link]</span>
+  <span class="custom-code-line"> </span>
+  <span class="custom-code-line font-extrabold text-base">Contact: </span>
+  <span class="custom-code-line"> </span>
+  <span class="custom-code-line">[Insert contact email]</span> -->
+  </code></pre>
+  <div class="studio-register-action">
+    <div class="studio-register-image" role="img" aria-label="Secret Shop Studio registration"></div>
+    <a class="btn-regular-featured studio-register-button" href="#">Register</a>
+  </div>
+</div>
 
 ---
 
@@ -392,3 +421,5 @@ We are collecting interest from potential participants while the first cohort is
 
 <span class="custom-code-line"> Small projects. Real teamwork. Finished games.</span>
 </code></pre>
+
+<div class="studio-footer-image" role="img" aria-label="meshOut"></div>
