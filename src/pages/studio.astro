@@ -364,7 +364,7 @@ const vendImage = `url("${vend.src}")`;
   .ml-form-embedBody
   .ml-form-horizontalRow
   button {
-  background-color: var(--card-bg) !important;
+  background-color: var(--card-bg-featured) !important;
   border-color: var(--card-bg) !important;
   color: oklch(0.96 0.03 94.48) !important;
 }
@@ -416,7 +416,17 @@ const vendImage = `url("${vend.src}")`;
     border-radius: 0.875rem;
     image-rendering: pixelated;
   }
-
+ .sss-card-image img{
+    min-height: 12rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    image-rendering: pixelated;
+  }
+ .sss-card-image {
+  max-width: 12rem;
+  }
+      
   .studio-experience-image {
     grid-column: 1;
     grid-row: 1;

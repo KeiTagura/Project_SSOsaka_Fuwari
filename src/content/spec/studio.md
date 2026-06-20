@@ -24,8 +24,7 @@
 <div class = "flex felx-wrap gap-2"> 
     <div class = "test-panel px-10 py-1 rounded-lg">
     
-<p class="text-center"> A creative workspace for indie games, 
-workshops, livestreams, and community sessions in Osaka.</p>
+<p class="text-center">A small-team game production program where you'll build, finish, and publish a game while learning how real game development works.</p>
     </div>
 </div>
 
@@ -90,27 +89,54 @@ Learning how games are actually made.</br>
 
 # What You'll Walk Away With
 
-<p><strong>Participants may leave the program with:</strong></p>
 
-> A Published Game
+
+<p class="text-center"><strong>Participants may leave the program with:</strong></p>
+
+<div class = "flex flex-wrap justify-evenly"> 
+
+<div class = "sss-card-image">
+<img class = "mx-auto" src="/images/SSSCards_Publish.png" alt="image collab"> 
+
+> 📦 A Published Game
 
  A completed project released publicly.
 
-> Portfolio Material
+</div> 
+
+<div class = "sss-card-image">
+<img class = "mx-auto" src="/images/SSSCards_Portfolio.png" alt="image collab"> 
+
+> 🎨 Portfolio Material
 
 Work you can showcase to future collaborators, employers, or clients.
+</div> 
 
-> Production Experience
+<div class = "sss-card-image">
+<img class = "mx-auto" src="/images/SSSCards_Production.png" alt="image collab"> 
+
+> 🚀 Production Experience
 
 Experience working within a real development pipeline.
+</div> 
 
-> New Collaborators
+<div class = "sss-card-image">
+<img class = "mx-auto" src="/images/SSSCards_Collab.png" alt="image collab"> 
+
+> 🤝 New Collaborators
 
 Connections with artists, programmers, designers, musicians, and creators.
+</div> 
 
-> Team Experience
+<div class = "sss-card-image">
+<img class = "mx-auto" src="/images/SSSCards_team.png" alt="image collab"> 
+
+> 🌐 Team Experience
 
 Experience contributing to a multidisciplinary project from start to finish.
+</div> 
+
+</div>
 
 ---
 
@@ -118,26 +144,26 @@ Experience contributing to a multidisciplinary project from start to finish.
 
 
 
-<p class="text-center text-[#f8f2dc] text-[3rem]/4 font-extrabold" > Learn </p>
+<p class="text-center text-[#242424] text-[2.5rem]/4 font-extrabold" > Learn </p>
 <p class="text-center">
 <p class="text-center font-medium">Gain exposure to tools, workflows, and production practices used by small game teams.</p>
 </p>
 
-<p class="text-center text-[#f8f2dc] text-[3rem]/4 font-extrabold" > Collaborate</p>
+<p class="text-center text-[#242424] text-[2.5rem]/4 font-extrabold" > Collaborate</p>
 <p class="text-center">
 <p class="text-center font-medium">Work alongside artists, programmers, designers, musicians, writers, and other creators.</p>
 </p>
 
-<p class="text-center text-[#f8f2dc] text-[3rem]/4 font-extrabold" >  Ship </p>
+<p class="text-center text-[#242424] text-[2.5rem]/4 font-extrabold" >  Ship </p>
 <p class="text-center">
 <p class="text-center font-medium">Experience planning, iteration, problem solving, playtesting, and release.</p>
 </p>
 
-<p class="text-center text-[#f8f2dc] text-[3rem]/4 font-extrabold" >  Showcase </p>
+<p class="text-center text-[#242424] text-[2.5rem]/4 font-extrabold" >  Showcase </p>
 <p class="text-center">
 <p class="text-center font-medium">Leave with portfolio material and a completed project demonstrating your contribution.</p>
 </p>
-
+</br>
 
 # Expected Commitment
 
@@ -246,20 +272,7 @@ Experience contributing to a multidisciplinary project from start to finish.
 -->
 ---
 
-# Expected Commitment
 
-  <pre class="custom-code studio-register-copy"><code>
-  <span class="custom-code-line"><strong>Participants should expect:</strong></span>
-  <span class="custom-code-line"></span>
-  <span class="custom-code-line"><span class="code-green">*</span> Weekly team sessions.</span>
-  <span class="custom-code-line"><span class="code-green">*</span> Active communication between meetings.</span>
-  <span class="custom-code-line"><span class="code-green">*</span> Collaboration with teammates.</span>
-  <span class="custom-code-line"><span class="code-green">*</span> Some work outside of scheduled sessions.</span>
-  <span class="custom-code-line"><span class="code-green">*</span> A commitment to helping the project reach release.</span>
-  <span class="custom-code-line"><span class="code-green">*</span> Projects will intentionally be kept small and achievable.</span>
-  <span class="custom-code-line"><span class="code-green">*</span> A finished game is more valuable than an unfinished ambitious one.</span>
-  </code></pre>
-</br>
 
 #  FAQ 
 ---
