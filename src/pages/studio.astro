@@ -86,6 +86,15 @@ const vendImage = `url("${vend.src}")`;
       user-select: none;
 }
 
+.studio-markdown
+  > section:has(> h1#what-is-secret-shop-studio)
+  li::marker,
+.studio-markdown
+  > section:has(> h1#stay-updated)
+  li::marker {
+  color: oklch(0.96 0.03 94.48);;
+}
+
   .studio-foldout {
     border: 1px solid var(--line-divider);
     border-radius: 0.75rem;
@@ -300,6 +309,100 @@ const vendImage = `url("${vend.src}")`;
     image-rendering: pixelated;
   }
 
+
+
+  
+.studio-mailer-lite
+  .ml-form-formContent.horozintalForm {
+  padding: 0 0 2px 0 !important;
+}
+
+
+.studio-mailer-lite .ml-form-embedWrapper,
+.studio-mailer-lite .ml-form-embedBody,
+.studio-mailer-lite .ml-form-successBody {
+  background: oklch(0 0 0 / 0) !important;
+  border-radius: 0.75rem !important;
+  
+}
+
+
+
+.studio-mailer-lite
+  #mlb2-42835992.ml-form-embedContainer
+  .ml-form-embedWrapper
+  .ml-form-embedBody
+  .ml-form-horizontalRow
+  input {
+  width: 100% !important;
+  height: 3.5rem !important;
+  min-height: 3.5rem !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  box-sizing: border-box !important;
+  border-radius: 0.75rem !important;
+}
+
+.studio-mailer-lite
+  #mlb2-42835992.ml-form-embedContainer
+  .ml-form-embedWrapper
+  .ml-form-embedBody
+  .ml-form-horizontalRow
+  button {
+  width: 100% !important;
+  height: 3.5rem !important;
+  min-height: 3.5rem !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  box-sizing: border-box !important;
+}
+
+
+.studio-mailer-lite
+  #mlb2-42835992.ml-form-embedContainer
+  .ml-form-embedWrapper
+  .ml-form-embedBody
+  .ml-form-horizontalRow
+  button {
+  background-color: var(--card-bg) !important;
+  border-color: var(--card-bg) !important;
+  color: oklch(0.96 0.03 94.48) !important;
+}
+
+
+
+
+.studio-mailer-lite button,
+.studio-mailer-lite input[type="submit"] {
+  background: var(--card-bg) !important;
+  color: var(--btn-content) !important;
+  border-radius: 0.75rem !important;
+}
+.studio-mailer-lite button:hover,
+.studio-mailer-lite input[type="submit"]:hover {
+  background: red !important;
+}
+
+.studio-mailer-lite button:active,
+.studio-mailer-lite input[type="submit"]:active {
+  background: red !important;
+}
+
+
+
+  .studio-mailer-lite {
+    
+    width: min(100%, 56rem);
+    margin: 1.5rem auto;
+  }
+
+  .studio-mailer-lite
+  #mlb2-42835992.ml-form-embedContainer
+  .ml-form-embedWrapper.embedForm {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
   .team-struct-image {
     grid-column: 1;
     grid-row: 1;
@@ -472,6 +575,14 @@ const vendImage = `url("${vend.src}")`;
     }
   }
 </style>
+
+<script is:inline>
+  (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+  .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+  n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+  (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+  ml('account', '2459283');
+</script>
 
 <script>
   const FOLDOUT_ANIMATION_MS = 180;

@@ -248,17 +248,18 @@ Experience contributing to a multidisciplinary project from start to finish.
 
 # Expected Commitment
 
-Participants should expect:
-
-Weekly team sessions
-Active communication between meetings
-Collaboration with teammates
-Some work outside of scheduled sessions
-A commitment to helping the project reach release
-
-Projects will intentionally be kept small and achievable.
-
-A finished game is more valuable than an unfinished ambitious one.
+  <pre class="custom-code studio-register-copy"><code>
+  <span class="custom-code-line"><strong>Participants should expect:</strong></span>
+  <span class="custom-code-line"></span>
+  <span class="custom-code-line"><span class="code-green">*</span> Weekly team sessions.</span>
+  <span class="custom-code-line"><span class="code-green">*</span> Active communication between meetings.</span>
+  <span class="custom-code-line"><span class="code-green">*</span> Collaboration with teammates.</span>
+  <span class="custom-code-line"><span class="code-green">*</span> Some work outside of scheduled sessions.</span>
+  <span class="custom-code-line"><span class="code-green">*</span> A commitment to helping the project reach release.</span>
+  <span class="custom-code-line"><span class="code-green">*</span> Projects will intentionally be kept small and achievable.</span>
+  <span class="custom-code-line"><span class="code-green">*</span> A finished game is more valuable than an unfinished ambitious one.</span>
+  </code></pre>
+</br>
 
 #  FAQ 
 ---
@@ -351,7 +352,11 @@ A finished game is more valuable than an unfinished ambitious one.
 
 <p class="text-center">Join the Secret Shop Studio mailing list to receive updates about future cohorts, cohort applications, project progress, playtest opportunities, and published releases from Studio teams.
 </p>
-<hr class="h-px my-8 bg-neutral-quaternary border-0">
+
+<div class="studio-mailer-lite">
+  <div class="ml-embedded" data-form="qHgNKl"></div>
+</div>
+
 
 <div class="studio-experience-split">
   <div class="studio-experience-copy">
@@ -366,8 +371,9 @@ A finished game is more valuable than an unfinished ambitious one.
   </ul>
   </div>
   <div class="mail-list-image" role="img" aria-label="Secret Shop Studio game screen"></div>
+  
+<hr class="h-px my-8 bg-neutral-quaternary border-0">
 </div>
-
 
 
 
