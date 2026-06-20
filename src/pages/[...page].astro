@@ -154,7 +154,8 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
   <section id="studio" class="scroll-mt-28 mb-8 p-6 rounded-lg bg-[var(--card-bg-featured)]">
     <!--bg-[var(--bth-card-bh-hover-alt)]-->
       <div class="  flex justify-center text-6xl font-semibold text-90">Studio</div>
-        </br>
+
+    <div class="card-base mt-4 h-[0.5rem] dark:bg-[var(--card-bg)]"></div>
         </br>
     <div class="grid gap-6 md:grid-cols-[1.05fr_0.95fr] items-center">
       <div class="space-y-4 ">
@@ -187,16 +188,17 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
     </div>
     </br>
   </section>
+
   <div
     id="home-title-en"
     data-lang="en"
-    class="text-5xl font-semibold text-center text-90"
+    class="text-5xl font-semibold text-center text-[#d24200]"
     style={routeLang === 'en' ? '' : 'display:none'}
   >{i18nFor('en')(I18nKey.upcomingEvents)}</div>
   <div
     id="home-title-ja"
     data-lang="ja"
-    class="text-5xl font-semibold text-center text-90"
+    class="text-5xl font-semibold text-center text-[#d24200]"
     style={routeLang === 'ja' ? '' : 'display:none'}
   >{i18nFor('ja')(I18nKey.upcomingEvents)}</div>
     <div id="home-post-list">
@@ -216,7 +218,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
       <div
         id="past-title-en"
         data-lang="en"
-        class="text-5xl font-semibold text-center text-90 mt-8"
+        class="text-5xl font-semibold text-center text-[#d24200] mt-8"
         style={routeLang === 'en' ? '' : 'display:none'}
       >{i18nFor('en')(I18nKey.pastEvents)}</div>
     )}
@@ -224,7 +226,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
       <div
         id="past-title-ja"
         data-lang="ja"
-        class="text-5xl font-semibold text-center text-90 mt-8"
+        class="text-5xl font-semibold text-center text-[#d24200] mt-8"
         style={routeLang === 'ja' ? '' : 'display:none'}
       >{i18nFor('ja')(I18nKey.pastEvents)}</div>
     )}
@@ -255,7 +257,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
 
 
 <div id="access" class="max-w-6xl mx-auto p-4 space-y-4">
-  <div class="text-5xl font-semibold text-center text-90">Access</div>
+  <div class="text-5xl font-semibold text-center text-[#d24200]">Access</div>
 
   <div class="grid gap-4 md:grid-cols-3">
     <aside id="access-info" class="h-[34rem] md:col-span-1 shrink-0 text-sm rounded-xl border p-4 text-90 flex items-center">

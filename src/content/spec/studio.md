@@ -22,7 +22,7 @@
 [comment]: <FeaturedDescription>
 
 <div class = "flex felx-wrap gap-2"> 
-    <div class = "test-panel px-10 py-1 rounded-lg">
+    <div class = "test-panel min-h-min rounded-lg">
     
 <p class="text-center">A small-team game production program where you'll build, finish, and publish a game while learning how real game development works.</p>
     </div>
@@ -36,11 +36,11 @@
 
 
 # Secret Shop Studio
-
+<!--
 **Learn. Collaborate. Ship. Showcase.**
 
 A small-team game development program based at Secret Shop Osaka.
-
+-->
 The goal is simple:
 
 > Form a team. Build a game. Finish it. Publish it.
@@ -242,11 +242,11 @@ Experience contributing to a multidisciplinary project from start to finish.
 <span class="custom-code-line"></span>
 <span class="custom-code-line font-extrabold text-base">Pilot Cohort Pricing</span>
 
-<span class="custom-code-line"><strong>> Founding Cohort (Alpha):</strong> <span class="code-green">¥5,000</span></span>
+<span class="custom-code-line"><strong>> Founding Cohort (Alpha):</strong> <span class="code-green">¥6,500</span></span>
 
 <span class="custom-code-line"></span>
-<span class="custom-code-line font-extrabold text-base">Future Cohorts</span>
-<span class="custom-code-line"><strong>> Approximately</strong> <span class="code-green">*¥10,000</span></span>
+<span class="custom-code-line font-extrabold text-base">Future Cohorts (Beta)</span>
+<span class="custom-code-line"><strong>> Approximately</strong> <span class="code-green">*¥12,000</span></span>
   </code></pre>
 
 
@@ -385,7 +385,7 @@ Experience contributing to a multidisciplinary project from start to finish.
   </div>
   <div class="mail-list-image" role="img" aria-label="Secret Shop Studio game screen"></div>
   
-<hr class="h-px my-8 bg-neutral-quaternary border-0">
+
 </div>
 
 

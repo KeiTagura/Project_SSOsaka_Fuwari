@@ -221,7 +221,6 @@ const vendImage = `url("${vend.src}")`;
     bottom: 1.25rem;
     left: 50%;
     width: 90%;
-    height: 20%;
     box-sizing: border-box;
     transform: translateX(-50%);
     background-color: rgba(1, 1, 1, 0.5);
@@ -278,6 +277,7 @@ const vendImage = `url("${vend.src}")`;
     justify-content: center;
     grid-column: 2;
     grid-row: 1;
+    align-items: center;
   }
 
   .studio-experience-copy > :first-child {
@@ -367,6 +367,7 @@ const vendImage = `url("${vend.src}")`;
   background-color: var(--card-bg-featured) !important;
   border-color: var(--card-bg) !important;
   color: oklch(0.96 0.03 94.48) !important;
+  min-width: min-content;
 }
 
 
@@ -377,15 +378,18 @@ const vendImage = `url("${vend.src}")`;
   background: var(--card-bg) !important;
   color: var(--btn-content) !important;
   border-radius: 0.75rem !important;
+  min-width: min-content;
 }
 .studio-mailer-lite button:hover,
 .studio-mailer-lite input[type="submit"]:hover {
   background: red !important;
+  min-width: min-content;
 }
 
 .studio-mailer-lite button:active,
 .studio-mailer-lite input[type="submit"]:active {
   background: red !important;
+  min-width: min-content;
 }
 
 
