@@ -123,7 +123,7 @@ const accessJa = await getEntry("access" as any, "ja/access" as any);
 const AccessEn = accessEn ? (await render(accessEn)).Content : null;
 const AccessJa = accessJa ? (await render(accessJa)).Content : null;
 
-const studioEntry = await getEntry("spec", "studio" as any);
+const studioEntry = await getEntry("spec", "en/studio" as any);
 if (!studioEntry) {
 	throw new Error("Studio preview content not found");
 }
@@ -158,7 +158,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
     <div class="card-base mt-4 h-[0.5rem] dark:bg-[var(--card-bg)]"></div>
         </br>
     <div class="grid gap-6 md:grid-cols-[1.05fr_0.95fr] items-center">
-      <div class="space-y-4 ">
+      <div id="studio-promo-en" data-lang="en" class="space-y-4" style={routeLang === 'en' ? '' : 'display:none'}>
         <div class="text-[var(--card-bg)] text-lg leading-8 ">
         <p class = "text-center text-xl font-medium"> Form a team, build a small game, finish it, and publish it. </p>
         </br>
@@ -176,8 +176,30 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
         </br></br>
         <!--<Markdown class="studio-preview text-lg leading-8 text-75" content={studioExcerptHtml} />-->
         <div class = "flex justify-center">
-          <a class="text-[#d24200] featured-post p-4 rounded-lg bg-[var(--card-bg-featured)] btn-regular-featured w-full" href="/studio/">
+          <a class="text-[#d24200] featured-post p-4 rounded-lg bg-[var(--card-bg-featured)] btn-regular-featured w-full" href="/en/studio/">
             READ MORE
+          </a>
+        </div>
+      </div>
+      <div id="studio-promo-ja" data-lang="ja" class="space-y-4" style={routeLang === 'ja' ? '' : 'display:none'}>
+        <div class="text-[var(--card-bg)] text-lg leading-8 ">
+        <p class = "text-center text-xl font-medium">チームを作り、小さなゲームを制作し、完成させて公開する。</p>
+        </br>
+
+            <p class = "text-center text-3xl font-semibold">
+            学ぶ。
+            協力する。
+            完成させる。</br>
+            発表する！
+            </p>
+        </br>
+        </br>
+        </div>
+
+        </br></br>
+        <div class = "flex justify-center">
+          <a class="text-[#d24200] featured-post p-4 rounded-lg bg-[var(--card-bg-featured)] btn-regular-featured w-full" href="/ja/studio/">
+            詳しく見る
           </a>
         </div>
       </div>
@@ -339,6 +361,13 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
       if (en) en.style.display = (cur === 'en') ? '' : 'none';
       if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
     }
+    function updateStudioVisible(){
+      const cur = selectedLang();
+      const en = document.getElementById('studio-promo-en');
+      const ja = document.getElementById('studio-promo-ja');
+      if (en) en.style.display = (cur === 'en') ? '' : 'none';
+      if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
+    }
     function updatePastTitleVisible(){
       const cur = selectedLang();
       const enTitle = document.getElementById('past-title-en');
@@ -354,11 +383,13 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
     updateAccessVisible();
     updateHeadingVisible();
     updateFeaturedVisible();
+    updateStudioVisible();
     updatePastTitleVisible();
     window.addEventListener('popstate', filterHome);
     window.addEventListener('popstate', updateAccessVisible);
     window.addEventListener('popstate', updateHeadingVisible);
     window.addEventListener('popstate', updateFeaturedVisible);
+    window.addEventListener('popstate', updateStudioVisible);
     window.addEventListener('popstate', updatePastTitleVisible);
     document.addEventListener('astro:page-load', () => setTimeout(filterHome, 0));
     document.addEventListener('astro:after-swap', filterHome);
@@ -368,6 +399,8 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
     document.addEventListener('astro:after-swap', updateHeadingVisible);
     document.addEventListener('astro:page-load', () => setTimeout(updateFeaturedVisible, 0));
     document.addEventListener('astro:after-swap', updateFeaturedVisible);
+    document.addEventListener('astro:page-load', () => setTimeout(updateStudioVisible, 0));
+    document.addEventListener('astro:after-swap', updateStudioVisible);
     document.addEventListener('astro:page-load', () => setTimeout(updatePastTitleVisible, 0));
     document.addEventListener('astro:after-swap', updatePastTitleVisible);
     document.addEventListener('click', (e)=>{
@@ -378,6 +411,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
         setTimeout(filterHome, 100);
         setTimeout(updateHeadingVisible, 100);
         setTimeout(updateFeaturedVisible, 100);
+        setTimeout(updateStudioVisible, 100);
         setTimeout(updatePastTitleVisible, 100);
       }
     });
@@ -391,6 +425,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
         setTimeout(updateAccessVisible, 50);
         setTimeout(updateHeadingVisible, 50);
         setTimeout(updateFeaturedVisible, 50);
+        setTimeout(updateStudioVisible, 50);
         setTimeout(updatePastTitleVisible, 50);
       }
     });

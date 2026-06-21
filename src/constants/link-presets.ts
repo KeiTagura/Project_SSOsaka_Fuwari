@@ -16,16 +16,21 @@ export function getLinkPresets(lang?: string): {
 			url: "/about/",
 		},
 		[LinkPreset.Archive]: {
-			name: t(I18nKey.events),
+			name: "Events",
 			url: "/events/",
 		},
 		[LinkPreset.Events]: {
-			name: t(I18nKey.events),
+			name: "Events",
 			url: "/events/",
 		},
 		[LinkPreset.Studio]: {
 			name: "Studio",
-			url: "/studio/",
+			url:
+				lang === "ja"
+					? "/ja/studio/"
+					: lang === "en"
+						? "/en/studio/"
+						: "/studio/",
 		},
 	};
 }

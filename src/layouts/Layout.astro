@@ -235,6 +235,13 @@ const isHomePath = (href: string) => {
 };
 const getTitleWrapper = () => document.getElementById('title-wrapper');
 
+function showHomeTitle() {
+	const title = getTitleWrapper();
+	if (!title) return;
+	title.classList.remove('opacity-0', 'title-hidden');
+	document.getElementById('titleText')?.classList.remove('opacity-0');
+}
+
 
   function fadeInTitleOnce() {
     const title = document.getElementById('title-wrapper');
@@ -247,14 +254,14 @@ const getTitleWrapper = () => document.getElementById('title-wrapper');
     // Respect reduced motion
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) {
-      title.classList.remove('opacity-0', 'title-hidden');
+      showHomeTitle();
       return;
     }
 
     // Only once per session; change to localStorage if you want “once forever”
     if (sessionStorage.getItem('ssOsakaShown') === '1') {
       // If we’ve shown it already, make sure it’s visible (no fade)
-      title.classList.remove('opacity-0', 'title-hidden');
+      showHomeTitle();
       return;
     }
 
@@ -262,7 +269,7 @@ const getTitleWrapper = () => document.getElementById('title-wrapper');
     requestAnimationFrame(() => {
       // small delay improves reliability across browsers
       setTimeout(() => {
-        title.classList.remove('opacity-0', 'title-hidden');
+        showHomeTitle();
         sessionStorage.setItem('ssOsakaShown', '1');
       }, 50);
     });
@@ -377,7 +384,7 @@ function showBanner() {
 function init() {
   // show on first load if current page is home
   if (document.body.classList.contains('lg:is-home')) {
-    document.getElementById('title-wrapper')?.classList.remove('opacity-0', 'title-hidden');
+    showHomeTitle();
   } else {
     document.getElementById('title-wrapper')?.classList.add('title-hidden');
   }
@@ -385,7 +392,7 @@ function init() {
   window.swup?.hooks?.on('animation:in:end', () => {
     // fade in only on home after the new page is in
     if (document.body.classList.contains('lg:is-home')) {
-      document.getElementById('title-wrapper')?.classList.remove('title-hidden', 'opacity-0');
+      showHomeTitle();
     }
     // Ensure navbar is visible after navigation completes
     document.getElementById('navbar-wrapper')?.classList.remove('navbar-hidden');
@@ -429,7 +436,7 @@ const setup = () => {
 
 	window.swup.hooks.on('animation:in:end', () => {
 		if (nextIsHome) requestAnimationFrame(() => {
-			getTitleWrapper()?.classList.remove('title-hidden');
+			showHomeTitle();
 		});
 		document.getElementById('navbar-wrapper')?.classList.remove('navbar-hidden');
 	});

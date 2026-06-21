@@ -1,0 +1,661 @@
+---
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import gameScreen from "../assets/images/gameScreen.png";
+import roleScreen from "../assets/images/ssShopWorkArea.png";
+import studioBanner from "../assets/images/SSStudio_Banner.png";
+import taemComposition from "../assets/images/teamComposition.png";
+import outFishing from "../assets/images/outFishing.png";
+import vend from "../assets/images/vend.png";
+import meshOut from "../assets/images/meshOut.png";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+interface Props {
+	lang?: "en" | "ja";
+}
+
+const routeLang = Astro.props.lang ?? "en";
+
+const studioEntry =
+	routeLang === "ja"
+		? ((await getEntry("spec", "ja/studio" as any)) ??
+			(await getEntry("spec", "en/studio" as any)))
+		: await getEntry("spec", "en/studio" as any);
+if (!studioEntry) {
+	throw new Error("Studio page content not found");
+}
+const { Content } = await render(studioEntry);
+const studioBannerImage = `url("${studioBanner.src}")`;
+const studioGameScreenImage = `url("${gameScreen.src}")`;
+const secretShopRoleImage = `url("${roleScreen.src}")`;
+const teamCompositionImage = `url("${taemComposition.src}")`;
+const registerImage = `url("${outFishing.src}")`;
+const meshOutImage = `url("${meshOut.src}")`;
+const vendImage = `url("${vend.src}")`;
+---
+
+<MainGridLayout title={routeLang === "ja" ? "スタジオ" : "Studio"} description={routeLang === "ja" ? "スタジオ" : "Studio"}>
+  <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+      <Markdown class="mt-2 studio-markdown">
+        <Content />
+      </Markdown>
+    </div>
+  </div>
+</MainGridLayout>
+
+<style is:global define:vars={{ studioBannerImage, studioGameScreenImage, secretShopRoleImage, teamCompositionImage, registerImage, meshOutImage, vendImage }}>
+  
+.custom-md .custom-code {
+      background: #13161a;
+      border-radius: 0.875rem;
+      box-sizing: border-box;
+      max-width: 100%;
+      overflow: visible;
+      white-space: normal;
+      counter-reset: custom-code-line;
+
+}
+
+.custom-md .custom-code > code {
+      display: block;
+      max-width: 100%;
+      overflow: visible;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+      font: inherit;
+      white-space: normal;
+}
+
+.custom-md .custom-code .custom-code-line {
+      counter-increment: custom-code-line;
+      display: block;
+      position: relative;
+      box-sizing: border-box;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 1.5rem;
+      padding-left: 3.625rem;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+}
+
+.custom-md .custom-code .custom-code-line::before {
+      content: counter(custom-code-line);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.75rem;
+      border-right: 1px solid rgb(255 255 255 / 0.18);
+      color: #777;
+      padding-right: 0.75rem;
+      text-align: right;
+      user-select: none;
+}
+
+.studio-markdown
+  > section:has(> h1#what-is-secret-shop-studio)
+  li::marker,
+.studio-markdown
+  > section:has(> h1#stay-updated)
+  li::marker {
+  color: oklch(0.96 0.03 94.48);;
+}
+
+  .studio-foldout {
+    border: 1px solid var(--line-divider);
+    border-radius: 0.75rem;
+    background: var(--card-bg);
+    margin: 1rem 0;
+    overflow: hidden;
+  }
+
+  .studio-foldout > summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.125rem;
+    font-weight: 700;
+    color: var(--btn-regular-bg);
+    list-style: none;
+    user-select: none;
+  }
+
+  .studio-foldout > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .studio-foldout > summary::after {
+    content: "+";
+    flex: 0 0 auto;
+    font-size: 1.25rem;
+    line-height: 1;
+    transition: transform 180ms ease;
+  }
+
+  .studio-foldout[open] > summary::after {
+    transform: rotate(45deg);
+  }
+
+  .studio-foldout-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transform: translateY(-0.25rem);
+    transition:
+      grid-template-rows 240ms ease,
+      opacity 180ms ease,
+      transform 180ms ease;
+    padding: 0 1.125rem;
+  }
+
+  .studio-foldout-content-inner {
+    min-height: 0;
+    color: white;
+    overflow: hidden;
+  }
+
+  .studio-foldout[open]:not(.is-closing) > .studio-foldout-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: translateY(0);
+    padding-bottom: 1.125rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .studio-foldout > summary::after,
+    .studio-foldout-content {
+      transition: none;
+    }
+  }
+  .studio-markdown :is(h1, h2, h3, h4, h5, h6) {
+           font-size: xxx-large;
+           line-height: 3.6rem;
+           position: relative;
+           text-align: center;
+    /*
+    color: oklch(0.29 0.02 267.24);
+
+    oklch(0.6 0.21 22.56);
+    *color: oklch(0.58 0.19 38.7);*/
+  }
+
+  .studio-markdown :is(h1, h2, h3, h4, h5, h6) .anchor {
+    position: absolute;
+  }
+
+  .studio-markdown > section {
+    border-radius: 0.875rem;
+    margin: 1.25rem 0;
+    padding: 1.25rem;
+  }
+  .studio-markdown > section .tags {
+    height: 100%;
+  }  .studio-markdown > section .tags p {
+    /*justify-content: space-evenly;*/
+  }
+  .studio-markdown > section .tags > span{
+    /*background-color: var(--card-bg);*/
+  }    
+
+  .studio-markdown > section:nth-of-type(1) > :is(h1){
+
+  }
+
+  .studio-markdown > section:nth-of-type(even) {
+    color: oklch(0.96 0.03 94.48);
+    background: var(--card-bg);
+  }
+
+  .studio-markdown > section:nth-of-type(odd) {
+  color:  oklch(0.29 0.02 267.24);
+    background: var(--card-bg-featured);
+
+  }
+
+  
+  .studio-markdown > section:nth-of-type(even) > :is(h1, h2, h3, h4, h5, h6) {
+  color: oklch(0.58 0.19 38.7);
+}
+  .studio-markdown > section:nth-of-type(odd) > :is(h1, h2, h3, h4, h5, h6) {
+    color: oklch(0.96 0.03 94.48);
+}
+
+  .studio-markdown > section:nth-of-type(1) .test-panel {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    width: 90%;
+    box-sizing: border-box;
+    transform: translateX(-50%);
+    background-color: rgba(1, 1, 1, 0.5);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .studio-markdown > section:nth-of-type(1) {
+    position: relative;
+    background-image:
+      /*linear-gradient(rgb(0 0 0 / 0.35), rgb(0 0 0 / 0.35)),*/
+      var(--studioBannerImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 30rem;
+  }
+
+  .studio-markdown > section:nth-of-type(1) :is(h1, h2, h3, h4, h5, h6, p, span) {
+    color: white;
+  }
+
+  .studio-markdown > section > :first-child {
+    margin-top: 0;
+  }
+
+  .studio-markdown > section > :last-child {
+    margin-bottom: 0;
+  }
+
+  .studio-markdown > section .studio-foldout {
+    background: var(--card-bg);
+  }
+
+  .studio-markdown > section:has(> h1#what-is-secret-shop-studio) li {
+    font-weight: 600;
+  }
+
+  .studio-experience-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 42%);
+    gap: 1.25rem;
+    align-items: stretch;
+    margin-top: 1.5rem;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .studio-experience-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: 2;
+    grid-row: 1;
+    align-items: center;
+  }
+
+  .studio-experience-copy > :first-child {
+    margin-top: 0;
+  }
+
+  .studio-experience-copy > :last-child {
+    margin-bottom: 0;
+  }
+
+  .studio-experience-split--image-right .studio-experience-copy {
+    grid-column: 1;
+  }
+
+  .studio-experience-split--image-right .studio-experience-image {
+    grid-column: 2;
+  }
+  .mail-list-image {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 18rem;
+    background-image: var(--registerImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 0.875rem;
+    image-rendering: pixelated;
+  }
+
+
+
+  
+.studio-mailer-lite
+  .ml-form-formContent.horozintalForm {
+  padding: 0 0 2px 0 !important;
+}
+
+
+.studio-mailer-lite .ml-form-embedWrapper,
+.studio-mailer-lite .ml-form-embedBody,
+.studio-mailer-lite .ml-form-successBody {
+  background: oklch(0 0 0 / 0) !important;
+  border-radius: 0.75rem !important;
+  
+}
+
+
+
+.studio-mailer-lite
+  #mlb2-42835992.ml-form-embedContainer
+  .ml-form-embedWrapper
+  .ml-form-embedBody
+  .ml-form-horizontalRow
+  input {
+  width: 100% !important;
+  height: 3.5rem !important;
+  min-height: 3.5rem !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  box-sizing: border-box !important;
+  border-radius: 0.75rem !important;
+}
+
+.studio-mailer-lite
+  #mlb2-42835992.ml-form-embedContainer
+  .ml-form-embedWrapper
+  .ml-form-embedBody
+  .ml-form-horizontalRow
+  button {
+  width: 100% !important;
+  height: 3.5rem !important;
+  min-height: 3.5rem !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  box-sizing: border-box !important;
+}
+
+
+.studio-mailer-lite
+  #mlb2-42835992.ml-form-embedContainer
+  .ml-form-embedWrapper
+  .ml-form-embedBody
+  .ml-form-horizontalRow
+  button {
+  background-color: var(--card-bg-featured) !important;
+  border-color: var(--card-bg) !important;
+  color: oklch(0.96 0.03 94.48) !important;
+  min-width: min-content;
+}
+
+
+
+
+.studio-mailer-lite button,
+.studio-mailer-lite input[type="submit"] {
+  background: var(--card-bg) !important;
+  color: var(--btn-content) !important;
+  border-radius: 0.75rem !important;
+  min-width: min-content;
+}
+.studio-mailer-lite button:hover,
+.studio-mailer-lite input[type="submit"]:hover {
+  background: red !important;
+  min-width: min-content;
+}
+
+.studio-mailer-lite button:active,
+.studio-mailer-lite input[type="submit"]:active {
+  background: red !important;
+  min-width: min-content;
+}
+
+
+
+  .studio-mailer-lite {
+    
+    width: min(100%, 56rem);
+    margin: 1.5rem auto;
+  }
+
+  .studio-mailer-lite
+  #mlb2-42835992.ml-form-embedContainer
+  .ml-form-embedWrapper.embedForm {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+  .team-struct-image {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 18rem;
+    background-image: var(--teamCompositionImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 0.875rem;
+    image-rendering: pixelated;
+  }
+ .sss-card-image img{
+    min-height: 12rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    image-rendering: pixelated;
+  }
+ .sss-card-image {
+  max-width: 12rem;
+  }
+      
+  .studio-experience-image {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 18rem;
+    background-image: var(--studioGameScreenImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 0.875rem;
+    image-rendering: pixelated;
+  }
+
+  .studio-role-image {
+    --studio-role-image-width: 70%;
+    --studio-role-image-height: 18rem;
+
+    width: var(--studio-role-image-width);
+    height: var(--studio-role-image-height);
+    margin: 1.75rem auto 0;
+    background-image: var(--secretShopRoleImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0.875rem;
+  }
+
+.studio-footer-image {
+    --studio-role-image-width: 70%;
+    --studio-role-image-height: 16rem;
+
+    width: var(--studio-role-image-width);
+    height: var(--studio-role-image-height);
+    margin: 1.75rem auto 0;
+    background-image: var(--meshOutImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    image-rendering: pixelated;
+    border-radius: 0.875rem;
+  }
+
+    .studio-register-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 38%);
+    gap: 1.25rem;
+    align-items: stretch;
+    width: 90%;
+    margin: 1.5rem auto 1.5rem;
+  }
+
+  .studio-register-copy {
+    margin: 0;
+    height: 100%;
+  }
+
+  .studio-register-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .studio-register-image {
+    width: 100%;
+    min-height: 18rem;
+    background-image: var(--vendImage);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 0.875rem;
+    image-rendering: pixelated;
+  }
+
+  .studio-register-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    min-width: 10rem;
+    box-sizing: border-box;
+    background-color: var(--card-bg);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.6rem;
+  }
+  .studio-register-button-light{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    min-width: 10rem;
+    box-sizing: border-box;
+    background-color: var(--card-bg-featured);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.6rem;
+  }
+  
+  .studio-register-button-light:hover {
+    background-color: var(--btn-regular-bg-hover);
+  }
+
+  .studio-register-button-light:active {
+    background-color: var(--btn-regular-bg-hover);
+  }
+
+  .studio-register-button:hover {
+    background-color: var(--bth-card-bh-hover-alt);
+  }
+
+  .studio-register-button:active {
+    background-color: var(--bth-card-bh-active-alt);
+  }
+
+  @media (max-width: 768px) {
+    .studio-experience-split {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+
+    .studio-experience-copy,
+    .studio-experience-image {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .studio-experience-split--image-right .studio-experience-copy,
+    .studio-experience-split--image-right .studio-experience-image {
+      grid-column: 1;
+      grid-row: auto;
+    }
+
+    .studio-experience-image {
+      min-height: 14rem;
+    }
+
+    .studio-role-image {
+      --studio-role-image-width: 100%;
+      --studio-role-image-height: 18rem;
+    }
+
+    .studio-register-split {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+
+    .studio-register-image {
+      min-height: 14rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+  .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+  n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+  (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+  ml('account', '2459283');
+</script>
+
+<script>
+  const FOLDOUT_ANIMATION_MS = 180;
+
+  function prepareStudioFoldout(detail: HTMLDetailsElement) {
+    if (detail.dataset.foldoutReady === "true") return;
+
+    const summary = detail.querySelector(":scope > summary");
+    if (!(summary instanceof HTMLElement)) return;
+
+    const content = document.createElement("div");
+    content.className = "studio-foldout-content";
+    const contentInner = document.createElement("div");
+    contentInner.className = "studio-foldout-content-inner";
+
+    for (const node of Array.from(detail.childNodes)) {
+      if (node !== summary) contentInner.appendChild(node);
+    }
+    content.appendChild(contentInner);
+    detail.appendChild(content);
+    detail.dataset.foldoutReady = "true";
+
+    summary.addEventListener("click", (event) => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      event.preventDefault();
+
+      if (detail.open) {
+        if (detail.classList.contains("is-closing")) return;
+
+        detail.classList.add("is-closing");
+        window.setTimeout(() => {
+          detail.open = false;
+          detail.classList.remove("is-closing");
+        }, FOLDOUT_ANIMATION_MS);
+        return;
+      }
+
+      detail.open = true;
+    });
+  }
+
+  function initStudioFoldouts() {
+    document
+      .querySelectorAll<HTMLDetailsElement>("details.studio-foldout")
+      .forEach(prepareStudioFoldout);
+  }
+
+  initStudioFoldouts();
+  document.addEventListener("astro:page-load", initStudioFoldouts);
+  document.addEventListener("astro:after-swap", initStudioFoldouts);
+</script>

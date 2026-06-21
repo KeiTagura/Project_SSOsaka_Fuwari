@@ -1,0 +1,11 @@
+---
+import StudioPage from "../../components/StudioPage.astro";
+
+export function getStaticPaths() {
+	return [{ params: { lang: "en" } }, { params: { lang: "ja" } }];
+}
+
+const routeLang = Astro.params.lang === "ja" ? "ja" : "en";
+---
+
+<StudioPage lang={routeLang} />
