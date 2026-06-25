@@ -159,7 +159,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
         </br>
     <div class="grid gap-6 md:grid-cols-[1.05fr_0.95fr] items-center">
       <div id="studio-promo-en" data-lang="en" class="space-y-4" style={routeLang === 'en' ? '' : 'display:none'}>
-        <div class="text-[var(--card-bg)] text-lg leading-8 ">
+        <div class="text-white text-lg leading-8 ">
         <p class = "text-center text-xl font-medium"> Form a team, build a small game, finish it, and publish it. </p>
         </br>
        
@@ -182,7 +182,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
         </div>
       </div>
       <div id="studio-promo-ja" data-lang="ja" class="space-y-4" style={routeLang === 'ja' ? '' : 'display:none'}>
-        <div class="text-[var(--card-bg)] text-lg leading-8 ">
+        <div class="text-white text-lg leading-8 ">
         <p class = "text-center text-xl font-medium">チームを作り、小さなゲームを制作し、完成させて公開する。</p>
         </br>
 
@@ -203,10 +203,12 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
           </a>
         </div>
       </div>
-      <div class="relative aspect-[16/10] rounded-2xl overflow-hidden">
+      <!--  <div class="relative aspect-[16/10] rounded-2xl overflow-hidden">
+       
         <img src="src/assets/images/SSSStudio_Front.png" alt="Secret Shop Osaka studio" class="w-full h-full object-cover" />
         <div aria-hidden="true" class="absolute inset-0 pointer-events-none" style="background-image: url('/images/overlays/overlay11.png'); background-repeat: repeat; opacity: 0.45;"></div>
-      </div>
+      
+      </div>-->
     </div>
     </br>
   </section>
@@ -433,8 +435,29 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
 </script>
 
 <style is:global>
+  #studio {
+    position: relative;
+    overflow: hidden;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.432)),
+      url("/images/StudioBanner.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: cover;
+    image-rendering: pixelated;
+  }
+
+  #studio > * {
+    position: relative;
+    z-index: 1;
+  }
   #studio .btn-regular-featured {
     background-color: var(--card-bg);
+    border: 2px solid #d24200;
+  }
+
+  #studio-promo-ja .btn-regular-featured {
+    border: 2px solid #d24200;
   }
 
   #studio .btn-regular-featured:hover {

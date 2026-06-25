@@ -113,22 +113,6 @@ function loadButtonScript() {
                 try { updateLangUI(getCurrentLang()); } catch {}
             }
         }
-        // Hover-to-open language panel
-        const panel = document.getElementById('lang-select-panel');
-        if (panel) {
-            let hoverTimer: ReturnType<typeof setTimeout> | null = null;
-            const open = () => {
-                panel.classList.remove('float-panel-closed');
-                try { updateLangUI(getCurrentLang()); } catch {}
-            };
-            const close = () => panel.classList.add('float-panel-closed');
-            const cancel = () => { if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; } };
-
-            langBtn.addEventListener('mouseenter', () => { cancel(); open(); });
-            panel.addEventListener('mouseenter', () => { cancel(); open(); });
-            langBtn.addEventListener('mouseleave', () => { cancel(); hoverTimer = setTimeout(close, 150); });
-            panel.addEventListener('mouseleave', () => { cancel(); hoverTimer = setTimeout(close, 150); });
-        }
     }
 
     function getCurrentLang() {
@@ -192,8 +176,16 @@ function loadButtonScript() {
             } else if (localeIdxs.length > 0) {
                 idx = localeIdxs[0];
             }
-            // Neutral paths: root, about, studio, events, old_events
-            if (parts.length === 0 || ((parts[0] === 'about' || parts[0] === 'studio' || parts[0] === 'events' || parts[0] === 'old_events') && localeIdxs.length === 0)) {
+            if ((parts[0] === 'studio' && localeIdxs.length === 0) || ((parts[0] === 'en' || parts[0] === 'ja') && parts[1] === 'studio')) {
+                const params = new URLSearchParams(window.location.search);
+                params.delete('lang');
+                const newUrl = `/${target}/studio/` + (params.toString() ? ('?' + params.toString()) : '');
+                try { localStorage.setItem('preferredLang', target); } catch {}
+                window.location.assign(newUrl);
+                return;
+            }
+            // Neutral paths: root, about, events, old_events
+            if (parts.length === 0 || ((parts[0] === 'about' || parts[0] === 'events' || parts[0] === 'old_events') && localeIdxs.length === 0)) {
                 const params = new URLSearchParams(window.location.search);
                 params.set('lang', target);
                 const base = parts.length === 0 ? '/' : `/${parts[0]}` + (trailingSlash ? '/' : '');
