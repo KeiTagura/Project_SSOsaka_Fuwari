@@ -32,6 +32,15 @@ export function getLinkPresets(lang?: string): {
 						? "/en/studio/"
 						: "/studio/",
 		},
+		[LinkPreset.Space]: {
+			name: "Space",
+			url:
+				lang === "ja"
+					? "/ja/space/"
+					: lang === "en"
+						? "/en/space/"
+						: "/space/",
+		},
 	};
 }
 

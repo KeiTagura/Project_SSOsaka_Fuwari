@@ -160,10 +160,10 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
     <div class="grid gap-6 md:grid-cols-[1.05fr_0.95fr] items-center">
       <div id="studio-promo-en" data-lang="en" class="space-y-4" style={routeLang === 'en' ? '' : 'display:none'}>
         <div class="text-white text-lg leading-8 ">
-        <p class = "text-center text-xl font-medium"> Form a team, build a small game, finish it, and publish it. </p>
+        <p class = "text-center text-xl font-medium rounded-lg bg-[#00000080] "> Form a team, build a small game, finish it, and publish it. </p>
         </br>
        
-            <p class = "text-center text-3xl font-semibold">
+            <p class = "text-center text-3xl font-semibold rounded-lg bg-[#00000080]">
             📚 Learn. 
             🤝 Collaborate. 
             🚀 Ship. </br>
@@ -183,10 +183,10 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
       </div>
       <div id="studio-promo-ja" data-lang="ja" class="space-y-4" style={routeLang === 'ja' ? '' : 'display:none'}>
         <div class="text-white text-lg leading-8 ">
-        <p class = "text-center text-xl font-medium">チームを作り、小さなゲームを制作し、完成させて公開する。</p>
+        <p class = "text-center text-xl font-medium rounded-lg bg-[#00000080] ">チームを作り、小さなゲームを制作し、完成させて公開する。</p>
         </br>
 
-            <p class = "text-center text-3xl font-semibold">
+            <p class = "text-center text-3xl font-semibold rounded-lg bg-[#00000080]">
             学ぶ。
             協力する。
             完成させる。</br>
@@ -315,6 +315,80 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
   </div>
 </div>
 
+<div id="open-hours" class="max-w-6xl mx-auto p-4 mt-6 space-y-4">
+  <!-- <div class="text-5xl font-semibold text-center text-[#d24200]">Open Hours</div> -->
+  <div class="rounded-xl border p-6 bg-[var(--card-bg-featured)] text-center text-lg leading-8">
+
+    <div id="open-hours-en" data-lang="en" class="open-hours-copy" style={routeLang === 'en' ? '' : 'display:none'}>
+      <div class="text-5xl font-semibold text-center text-white">Open Hours</div>
+      <p class="open-hours-lede text-[var(--card-bg)]">Open Hours are the heart of Secret Shop.</p>
+      <p class="text-[var(--card-bg)]">OMost evenings you'll find people working on games, programming, drawing, making music, building projects, sharing ideas, or simply relaxing with other creative people after work.</p>
+      <p class="text-[var(--card-bg)]">Game development is our primary focus, but creators of all kinds are welcome.</p>
+
+      <h3>Weekly Schedule</h3>
+      <div class="open-hours-table-wrap">
+        <table class="open-hours-table">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Monday</td><td>Closed</td></tr>
+            <tr><td>Tuesday</td><td>7:00 PM - 11:00 PM</td></tr>
+            <tr><td>Wednesday</td><td>7:00 PM - 11:00 PM</td></tr>
+            <tr><td>Thursday</td><td>7:00 PM - 11:00 PM</td></tr>
+            <tr><td>Friday</td><td>7:00 PM - 11:00 PM</td></tr>
+            <tr><td>Saturday</td><td>　
+              <a class="btn-regular-dark rounded-lg" href="/events/?lang=en"> Scheduled Programs & Events </a>　
+            </td></tr>
+            <tr><td>Sunday</td><td>Events</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="open-hours-note text-[var(--card-bg)]">Please check the Events page for the latest schedule.</p>
+      <p class="open-hours-question text-[var(--card-bg)]">Need a creative space during the day?</p>
+      <p class="text-[var(--card-bg)]">Secret Shop is also available for private bookings for creative and technical groups outside of regular Open Hours.</p>
+    </div>
+
+    <div id="open-hours-ja" data-lang="ja" class="open-hours-copy" style={routeLang === 'ja' ? '' : 'display:none'}>
+      <div class="text-5xl font-semibold text-center text-white">Open Hours</div>
+      <p class="open-hours-lede">Open HoursはSecret Shopの中心となる時間です。</p>
+      <p>多くの夜には、ゲーム制作、プログラミング、イラスト、音楽制作、ものづくり、アイデア共有、仕事帰りに他のクリエイティブな人たちと過ごす人たちが集まります。</p>
+      <p>主な focus はゲーム開発ですが、さまざまな分野のクリエイターを歓迎しています。</p>
+
+      <h3>週間スケジュール</h3>
+      <div class="open-hours-table-wrap">
+        <table class="open-hours-table">
+          <thead>
+            <tr>
+              <th>曜日</th>
+              <th>時間</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>月曜日</td><td>休み</td></tr>
+            <tr><td>火曜日</td><td>19:00 - 23:00</td></tr>
+            <tr><td>水曜日</td><td>19:00 - 23:00</td></tr>
+            <tr><td>木曜日</td><td>19:00 - 23:00</td></tr>
+            <tr><td>金曜日</td><td>19:00 - 23:00</td></tr>
+            <tr><td>土曜日</td><td>
+              <a class="btn-regular-dark rounded-lg" href="/events/?lang=ja"> 定期開催イベント・プログラム </a>　
+            </td></tr>
+            <tr><td>日曜日</td><td>イベント</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="open-hours-note">最新のスケジュールはEventsページをご確認ください。</p>
+      <p class="open-hours-question">日中に使えるクリエイティブスペースを探していますか？</p>
+      <p>Secret Shopは、通常のOpen Hours以外にも、クリエイティブまたは技術系グループ向けの貸切利用に対応しています。</p>
+    </div>
+  </div>
+</div>
+
 
 <script>
   (function(){
@@ -346,8 +420,12 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
       const cur = selectedLang();
       const en = document.getElementById('access-en');
       const ja = document.getElementById('access-ja');
+      const hoursEn = document.getElementById('open-hours-en');
+      const hoursJa = document.getElementById('open-hours-ja');
       if (en) en.style.display = (cur === 'en') ? '' : 'none';
       if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
+      if (hoursEn) hoursEn.style.display = (cur === 'en') ? '' : 'none';
+      if (hoursJa) hoursJa.style.display = (cur === 'ja') ? '' : 'none';
     }
     function updateHeadingVisible(){
       const cur = selectedLang();
@@ -439,7 +517,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
     position: relative;
     overflow: hidden;
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.432)),
+      linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0)),
       url("/images/StudioBanner.png");
     background-position: right;
     background-repeat: no-repeat;
@@ -466,6 +544,71 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
 
   #studio .btn-regular-featured:active {
     background-color: var(--bth-card-bh-active-alt);
+  }
+
+  .open-hours-copy {
+    color: white;
+  }
+
+  .open-hours-copy p {
+    max-width: 52rem;
+    margin: 0.75rem auto;
+  }
+
+  .open-hours-copy h3 {
+    margin: 1.75rem 0 1rem;
+    color: #d24200;
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .open-hours-lede,
+  .open-hours-question {
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+
+  .open-hours-note {
+    font-style: italic;
+    color: --card-bg;
+  }
+
+  .open-hours-table-wrap {
+    max-width: 52rem;
+    margin: 0 auto 1.25rem;
+    overflow-x: auto;
+    border: 1px solid rgb(255 255 255 / 0.18);
+    border-radius: 0.875rem;
+  }
+
+  .open-hours-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgb(0 0 0 / 0.18);
+    text-align: left;
+  }
+
+  .open-hours-table th,
+  .open-hours-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.14);
+    vertical-align: top;
+  }
+
+  .open-hours-table th {
+    color: #ffffff;
+    background: rgb(0 0 0 / 0.22);
+    font-weight: 800;
+  }
+
+  .open-hours-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .open-hours-table td:first-child {
+    width: 11rem;
+    font-weight: 800;
   }
 </style>
 

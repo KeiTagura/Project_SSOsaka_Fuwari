@@ -176,10 +176,16 @@ function loadButtonScript() {
             } else if (localeIdxs.length > 0) {
                 idx = localeIdxs[0];
             }
-            if ((parts[0] === 'studio' && localeIdxs.length === 0) || ((parts[0] === 'en' || parts[0] === 'ja') && parts[1] === 'studio')) {
+            const localizedStaticPage =
+                parts[0] === 'studio' || parts[0] === 'space'
+                    ? parts[0]
+                    : ((parts[0] === 'en' || parts[0] === 'ja') && (parts[1] === 'studio' || parts[1] === 'space'))
+                        ? parts[1]
+                        : '';
+            if (localizedStaticPage && (localeIdxs.length === 0 || parts[0] === 'en' || parts[0] === 'ja')) {
                 const params = new URLSearchParams(window.location.search);
                 params.delete('lang');
-                const newUrl = `/${target}/studio/` + (params.toString() ? ('?' + params.toString()) : '');
+                const newUrl = `/${target}/${localizedStaticPage}/` + (params.toString() ? ('?' + params.toString()) : '');
                 try { localStorage.setItem('preferredLang', target); } catch {}
                 window.location.assign(newUrl);
                 return;

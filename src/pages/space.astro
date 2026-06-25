@@ -1,0 +1,14 @@
+---
+import SpacePage from "../components/SpacePage.astro";
+---
+
+<SpacePage lang="en" />
+
+<script is:inline>
+	const params = new URLSearchParams(window.location.search);
+	const lang = (params.get("lang") || "").toLowerCase();
+	if (lang === "ja" || lang === "en") {
+		params.delete("lang");
+		window.location.replace(`/${lang}/space/${params.toString() ? `?${params.toString()}` : ""}`);
+	}
+</script>

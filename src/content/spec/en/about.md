@@ -1,52 +1,158 @@
+---
+
+title: "About Secret Shop"
+description: "A creative workshop and community space in Osaka for people who enjoy making things."
+draft: false
+------------
+
 # 🤔 About Secret Shop
-### A Space in Progress — and a Community in the Making
-```
 
-Secret Shop is a new creative space in Osaka, Japan, built for people who love to make things — whether that’s software, art, hardware, games, or ideas.
-It’s part coworking studio, part event venue, and part workshop — a place where developers, artists, and makers can come together to build, learn, and collaborate.
+## A Creative Space in Progress
 
-The space is still actively being built out, one project at a time — from installing lighting and welding kitchen counters, to building furniture and setting up work areas.
-As more of the space takes shape, we’ll continue to host more events, workshops, and gatherings, expanding what Secret Shop can offer to the community.
-```
+Secret Shop is a creative workshop and community space in Osaka, Japan.
 
-### 🔨 Built by Hand, Driven by Curiosity
-```
+It is built for people who enjoy making things — games, software, art, music, hardware, animation, films, tools, prototypes, and strange little ideas that do not fit neatly into one category.
 
-Secret Shop is a DIY project from the ground up — both literally and philosophically.
-We believe in learning by doing, and in creating a space where experimentation and collaboration are encouraged.
-Every improvement, every new piece of the space, reflects the effort and ideas of the people who show up and contribute.
+Game development is one of our main entry points because games naturally bring many creative and technical disciplines together. Programmers, artists, designers, musicians, writers, makers, and players all have a place in the process.
 
-```
+But Secret Shop is not only for game developers.
 
-### 🚀 What We’re Building Toward
+It is for people who are curious, creative, technical, experimental, or simply excited to build things with others.
 
-```
-Our goal is to grow Secret Shop into a hub where:
+---
 
-・Developers, artists, and designers can share projects and ideas
-・Makers and tinkerers can collaborate on hardware and creative tech
-・Anyone can host or attend events like Zig Day Osaka, game jams, art shows, or local meetups
-・And people can simply hang out, talk, and build cool things together
+# 🛠️ Built by Hand
 
-We’re new, small, and still finding our rhythm — but that’s part of the fun.
-We’re not trying to recreate what already exists — we’re trying to build something new, from the ground up, with the community that grows around it.
+Secret Shop is still being built, one project at a time.
 
-```
+The space is a DIY effort from the ground up — from renovation and lighting, to furniture, work areas, event setups, kitchen improvements, and community tools.
 
-### 👌 Join Us
+That process is part of the identity of the space.
 
-```
-If this sounds like the kind of place you’d want to be part of — you’re invited.
-Come to an event, lend a hand, bring an idea, or just drop by to say hi.
-We’re always looking for creative collaborators, curious minds, and friendly faces to help shape what Secret Shop becomes next.
-```
+We believe in learning by doing.
 
+We believe in starting before everything is perfect.
 
-### 📧 Contact Us
+We believe a community space can grow together with the people who use it.
 
-```
-Questions? Feedback? Events Suggestions?
+Secret Shop is not a polished corporate venue.
 
-Email: contact@secretshop.osaka
-Discord: https://discord.gg/AE94Z8hhpn
-```
+It is a working space, a gathering place, and an ongoing project.
+
+---
+
+# 🎮 Why Games?
+
+Games are one of the best ways to bring different kinds of creators together.
+
+A small game project might need:
+
+* Programming
+* Art
+* Animation
+* Sound
+* Music
+* Design
+* Writing
+* Production
+* Testing
+* Marketing
+
+Because of that, game development becomes a practical meeting point for many different skills.
+
+Someone may come to Secret Shop because they are interested in games, but end up meeting a musician, filmmaker, hardware tinkerer, artist, programmer, or writer.
+
+Those intersections are where interesting things happen.
+
+---
+
+# 🌱 What We’re Building Toward
+
+Secret Shop is growing into a place where people can:
+
+* Attend game dev meetups, game nights, workshops, and creative events
+* Drop in during Open Shop hours to work, study, play, or meet others
+* Join small team projects through Secret Shop Studio
+* Share works-in-progress and receive feedback
+* Find collaborators
+* Learn from people with different backgrounds
+* Experiment with creative and technical projects
+* Build community around making things
+
+We are not trying to recreate something that already exists.
+
+We are trying to build something local, useful, flexible, and alive.
+
+A place where people can show up, make friends, learn skills, start projects, finish projects, and help shape what comes next.
+
+---
+
+# 🧪 Learn by Doing
+
+Secret Shop is built around the idea that people learn best by doing real things with other people.
+
+That might mean:
+
+* Joining a team
+* Showing a prototype
+* Helping build the space
+* Running an event
+* Teaching someone a tool
+* Asking for feedback
+* Trying something new
+* Failing, adjusting, and continuing
+
+Not everything needs to be perfect.
+
+Not everything needs to be professional.
+
+But things should move forward.
+
+That spirit is at the center of Secret Shop.
+
+---
+
+# 🤝 Community First
+
+Secret Shop is for people who want to create, collaborate, and contribute.
+
+You do not need to be an expert.
+
+You do not need to already know someone.
+
+You do not need to have a finished project.
+
+You can come with a game, a sketchbook, a laptop, an idea, a question, or just curiosity.
+
+Our goal is to create a space where newcomers feel welcome, experienced creators feel useful, and different kinds of people can meet through shared creative work.
+
+---
+
+# 🚪 How to Get Involved
+
+There are several ways to become part of Secret Shop:
+
+## Attend an Event
+
+Join a meetup, game night, workshop, show & tell, or other community event.
+
+## Visit Open Shop
+
+Drop in during open hours to work on projects, meet people, or spend time in the space.
+
+## Apply to Secret Shop Studio
+
+Join a small team production program focused on building and publishing a game.
+
+## Host or Suggest Something
+
+If you have an idea for a workshop, meetup, talk, playtest, or creative gathering, we would love to hear it.
+
+---
+
+# 📧 Contact
+
+Questions? Feedback? Event suggestions?
+
+**Email:** [contact@secretshop.osaka](mailto:contact@secretshop.osaka)
+**Discord:** https://discord.gg/AE94Z8hhpn

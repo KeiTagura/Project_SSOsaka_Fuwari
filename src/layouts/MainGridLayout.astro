@@ -157,11 +157,14 @@ const mainPanelTop = siteConfig.banner.enable
           if (url.origin !== window.location.origin) return;
           if (url.hash && url.pathname === window.location.pathname) return;
           const parts = url.pathname.split('/').filter(Boolean);
-          const isStudio =
-            parts[0] === 'studio' ||
-            ((parts[0] === 'en' || parts[0] === 'ja') && parts[1] === 'studio');
-          if (isStudio) {
-            url.pathname = `/${cur}/studio/`;
+          const localizedStaticPage =
+            parts[0] === 'studio' || parts[0] === 'space'
+              ? parts[0]
+              : ((parts[0] === 'en' || parts[0] === 'ja') && (parts[1] === 'studio' || parts[1] === 'space'))
+                ? parts[1]
+                : '';
+          if (localizedStaticPage) {
+            url.pathname = `/${cur}/${localizedStaticPage}/`;
             url.searchParams.delete('lang');
             a.href = url.toString();
             return;

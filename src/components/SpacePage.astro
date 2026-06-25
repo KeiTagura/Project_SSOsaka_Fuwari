@@ -1,0 +1,93 @@
+---
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+interface Props {
+	lang?: "en" | "ja";
+}
+
+const routeLang = Astro.props.lang ?? "en";
+const spaceEntry =
+	routeLang === "ja"
+		? ((await getEntry("spec", "ja/space" as any)) ??
+			(await getEntry("spec", "en/space" as any)))
+		: await getEntry("spec", "en/space" as any);
+
+if (!spaceEntry) {
+	throw new Error("Space page content not found");
+}
+
+const { Content } = await render(spaceEntry);
+const title = routeLang === "ja" ? "Space" : "Space";
+const description = (spaceEntry.data as { description?: string }).description ?? title;
+---
+
+<MainGridLayout title={title} description={description}>
+	<div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+		<div class="card-base z-10 px-9 py-6 relative w-full">
+			<Markdown class="mt-2 space-markdown">
+				<Content />
+			</Markdown>
+		</div>
+	</div>
+</MainGridLayout>
+
+<style is:global>
+	.space-markdown > section {
+		border-radius: 0.875rem;
+		margin: 1.25rem 0;
+		padding: 1.5rem;
+		background: var(--card-bg-featured);
+		color: oklch(0.29 0.02 267.24);
+	}
+
+	.space-markdown > section:nth-of-type(even) {
+		background: var(--card-bg);
+		color: oklch(0.96 0.03 94.48);
+	}
+
+	.space-markdown :is(h1, h2, h3) {
+		text-align: center;
+		font-weight: 800;
+		color: #d24200;
+	}
+
+	.space-markdown h1 {
+		font-size: clamp(2.25rem, 6vw, 4rem);
+		line-height: 1.05;
+	}
+
+	.space-markdown p,
+	.space-markdown li {
+		font-size: 1.05rem;
+		line-height: 1.8;
+	}
+
+	.space-markdown table {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 1.25rem 0;
+		overflow: hidden;
+		border-radius: 0.875rem;
+	}
+
+	.space-markdown th,
+	.space-markdown td {
+		padding: 0.875rem 1rem;
+		border: 1px solid rgb(255 255 255 / 0.16);
+		text-align: left;
+		vertical-align: top;
+	}
+
+	.space-markdown th {
+		color: #d24200;
+		background: rgb(0 0 0 / 0.18);
+		font-weight: 800;
+	}
+
+	.space-markdown td:first-child {
+		font-weight: 800;
+		white-space: nowrap;
+	}
+</style>
