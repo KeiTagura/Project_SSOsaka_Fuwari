@@ -1,5 +1,6 @@
 ---
 import ArchivePanel from "@components/ArchivePanel.svelte";
+import RecurringEvents from "@components/RecurringEvents.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18nFor } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
@@ -11,5 +12,6 @@ const sortedPostsList = await getSortedPostsList(lang);
 ---
 
 <MainGridLayout title={t(I18nKey.events)}>
+    <RecurringEvents lang={lang} />
     <ArchivePanel sortedPosts={sortedPostsList} client:only="svelte"></ArchivePanel>
 </MainGridLayout>

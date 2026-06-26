@@ -1,90 +1,14 @@
 ---
-
-import { getEntry, render } from "astro:content";
-import Markdown from "@components/misc/Markdown.astro";
-import I18nKey from "../i18n/i18nKey";
-import { i18nFor } from "../i18n/translation";
-import MainGridLayout from "../layouts/MainGridLayout.astro";
-import { getLangFromPath } from "../utils/lang";
-
-// Respond to ?lang=en|ja, else infer from path, default 'ja'
-const pathLang = getLangFromPath(Astro.url.pathname) ?? undefined;
-const qLangRaw = Astro.url.searchParams.get("lang")?.toLowerCase?.();
-const qLang = qLangRaw === "en" || qLangRaw === "ja" ? qLangRaw : undefined;
-const routeLang = qLang ?? pathLang ?? "ja";
-// Load localized entries (fallback to neutral) so client can toggle by ?lang
-const enEntry =
-	(await getEntry("spec", "en/about" as any)) ??
-	(await getEntry("spec", "about" as any));
-const jaEntry =
-	(await getEntry("spec", "ja/about" as any)) ??
-	(await getEntry("spec", "about" as any));
-
-if (!enEntry && !jaEntry) {
-	throw new Error("About page content not found");
-}
-
-const En = enEntry ? (await render(enEntry)).Content : null;
-const Ja = jaEntry ? (await render(jaEntry)).Content : null;
-const t = i18nFor(routeLang);
+import AboutPage from "../components/AboutPage.astro";
 ---
-<MainGridLayout title={t(I18nKey.about)} description={t(I18nKey.about)}>
-    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-        <div class="card-base z-10 px-9 py-6 relative w-full ">
-            <Markdown class="mt-2">
-                {En && (
-                  <div
-                    id="about-en"
-                    data-lang="en"
-                    class="about-block"
-                    style={routeLang === 'en' ? '' : 'display:none'}
-                  >
-                    <En />
-                  </div>
-                )}
-                {Ja && (
-                  <div
-                    id="about-ja"
-                    data-lang="ja"
-                    class="about-block"
-                    style={routeLang === 'ja' ? '' : 'display:none'}
-                  >
-                    <Ja />
-                  </div>
-                )}
-            </Markdown>
-        </div>
-    </div>
-</MainGridLayout>
 
-<script>
-  (function(){
-    function getSelectedLang(){
-      const params = new URLSearchParams(window.location.search);
-      const q = (params.get('lang')||'').toLowerCase();
-      if (q === 'en' || q === 'ja') return q;
-      const segs = window.location.pathname.split('/').filter(Boolean);
-      if (segs[0] === 'en' || segs[0] === 'ja') return segs[0];
-      try {
-        const pref = (localStorage.getItem('preferredLang')||'').toLowerCase();
-        if (pref === 'en' || pref === 'ja') return pref;
-      } catch {}
-      return 'ja';
-    }
-    function updateVisible(){
-      const cur = getSelectedLang();
-      const en = document.getElementById('about-en');
-      const ja = document.getElementById('about-ja');
-      if (en) en.style.display = (cur === 'en') ? '' : 'none';
-      if (ja) ja.style.display = (cur === 'ja') ? '' : 'none';
-    }
-    updateVisible();
-    window.addEventListener('popstate', updateVisible);
-    document.addEventListener('astro:page-load', () => setTimeout(updateVisible, 0));
-    document.addEventListener('astro:after-swap', () => setTimeout(updateVisible, 0));
-    if (window?.swup?.hooks) {
-      window.swup.hooks.on('content:replace', () => updateVisible());
-      window.swup.hooks.on('page:view', () => updateVisible());
-    }
-  })();
+<AboutPage lang="ja" />
+
+<script is:inline>
+	const params = new URLSearchParams(window.location.search);
+	const lang = (params.get("lang") || "").toLowerCase();
+	if (lang === "en" || lang === "ja") {
+		params.delete("lang");
+		window.location.replace(`/${lang}/about/${params.toString() ? `?${params.toString()}` : ""}`);
+	}
 </script>

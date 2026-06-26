@@ -1,0 +1,36 @@
+---
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18nFor } from "../i18n/translation";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+interface Props {
+	lang?: "en" | "ja";
+}
+
+const routeLang = Astro.props.lang ?? "ja";
+const aboutEntry =
+	routeLang === "en"
+		? ((await getEntry("spec", "en/about" as any)) ??
+			(await getEntry("spec", "about" as any)))
+		: ((await getEntry("spec", "ja/about" as any)) ??
+			(await getEntry("spec", "about" as any)));
+
+if (!aboutEntry) {
+	throw new Error("About page content not found");
+}
+
+const { Content } = await render(aboutEntry);
+const t = i18nFor(routeLang);
+---
+
+<MainGridLayout title={t(I18nKey.about)} description={t(I18nKey.about)}>
+	<div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+		<div class="card-base z-10 px-9 py-6 relative w-full">
+			<Markdown class="mt-2">
+				<Content />
+			</Markdown>
+		</div>
+	</div>
+</MainGridLayout>

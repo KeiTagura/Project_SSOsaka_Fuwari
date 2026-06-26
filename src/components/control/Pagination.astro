@@ -46,10 +46,7 @@ if (r < page.lastPage - 2) pages.push(HIDDEN);
 if (r === page.lastPage - 2) pages.push(page.lastPage - 1);
 if (r < page.lastPage) pages.push(page.lastPage);
 
-// Preserve current language selection in pagination links
-// - If the path has a locale prefix (/en/, /ja/), use it in the page path
-// - Else, if ?lang=en|ja is present, append it to neutral page URLs
-// - Else, keep neutral URLs
+// Preserve current language selection in pagination links using locale-prefixed paths
 const currentPath = Astro.url.pathname;
 const pathLang = getLangFromPath(currentPath) ?? undefined;
 const qLangRaw = Astro.url.searchParams.get("lang")?.toLowerCase?.();
@@ -61,15 +58,11 @@ const getPageUrl = (p: number) => {
 		if (p === 1) return `/${pathLang}/`;
 		return `/${pathLang}/${p}/`;
 	}
-	// Neutral routes; preserve ?lang if present
-	const base = p === 1 ? "/" : `/${p}/`;
-	if (qLang) {
-		const qs = new URLSearchParams(Astro.url.searchParams);
-		qs.set("lang", qLang);
-		const suffix = qs.toString();
-		return suffix ? `${base}?${suffix}` : base;
+	if (qLang === "en" || qLang === "ja") {
+		if (p === 1) return `/${qLang}/`;
+		return `/${qLang}/${p}/`;
 	}
-	return base;
+	return p === 1 ? "/" : `/${p}/`;
 };
 ---
 

@@ -1,58 +1,19 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import PostFeatured from "@components/PostFeatured.astro";
+import HomePage from "../[...page].astro";
 import type { GetStaticPaths } from "astro";
-import Pagination from "../../components/control/Pagination.astro";
-import PostPage from "../../components/PostPage.astro";
 import { PAGE_SIZE } from "../../constants/constants";
-import MainGridLayout from "../../layouts/MainGridLayout.astro";
 import { getSortedPosts } from "../../utils/content-utils";
 
-const lang = "en";
-const toDate = (d: unknown) => (d instanceof Date ? d : new Date(String(d)));
-const now = new Date();
-type Post = CollectionEntry<"posts">;
-const posts: Post[] = await getCollection("posts", (entry) => {
-	const { data, slug } = entry as any;
-	const draftOk = !data.draft && (import.meta.env.DEV || new Date(data.published) <= now);
-	const slugLang =
-		typeof slug === "string" ? slug.split("/")[0]?.toLowerCase?.() : undefined;
-	const fmLang = data.lang?.toLowerCase?.();
-	const langOk = fmLang === lang || slugLang === lang;
-	return draftOk && langOk;
-});
-const eventDateOf = (p: Post) => toDate(p.data.eventDate ?? p.data.published);
-const candidates = posts.filter((p) => !!p.data.featured);
-const upcoming = candidates
-	.filter((p) => eventDateOf(p) >= now)
-	.sort((a, b) => eventDateOf(a).getTime() - eventDateOf(b).getTime());
-const past = candidates
-	.filter((p) => eventDateOf(p) < now)
-	.sort((a, b) => eventDateOf(b).getTime() - eventDateOf(a).getTime());
-const featuredPost: Post | undefined = upcoming[0] ?? past[0];
 export const getStaticPaths = (async ({ paginate }) => {
-	const langLocal = "en";
-	const allBlogPosts = await getSortedPosts(langLocal);
-	return paginate(allBlogPosts, { pageSize: PAGE_SIZE });
+	const allBlogPosts = await getSortedPosts("en");
+	const nowRef = new Date();
+	const upcomingOnly = allBlogPosts.filter(
+		(p) => new Date(String(p.data.eventDate ?? p.data.published)) >= nowRef,
+	);
+	return paginate(upcomingOnly, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
+
 const { page } = Astro.props;
-const pageFiltered = featuredPost
-	? { ...page, data: page.data.filter((p) => p.slug !== featuredPost.slug) }
-	: page;
-const len = pageFiltered.data.length;
 ---
 
-<MainGridLayout>
-  {featuredPost && (
-    <div class="featured-post mb-8 p-6 rounded-lg bg-[var(--card-bg-featured)]">
-      <PostFeatured post={featuredPost} lang={lang} />
-    </div>
-  )}
-
-  <PostPage page={pageFiltered} lang={lang}></PostPage>
-  <Pagination
-    class="mx-auto onload-animation"
-    page={page}
-    style={`animation-delay: calc(var(--content-delay) + ${len * 50}ms)`}>
-  </Pagination>
-</MainGridLayout>
+<HomePage page={page} />

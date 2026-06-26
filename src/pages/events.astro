@@ -1,5 +1,6 @@
 ---
 import ArchivePanel from "@components/ArchivePanel.svelte";
+import RecurringEvents from "@components/RecurringEvents.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18nFor } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
@@ -17,6 +18,16 @@ const sortedPostsList = await getSortedPostsList();
 ---
 
 <MainGridLayout title={t(I18nKey.events)}>
+    <RecurringEvents lang={lang} />
     <ArchivePanel sortedPosts={sortedPostsList} client:only="svelte"></ArchivePanel>
 </MainGridLayout>
 
+
+<script is:inline>
+	const params = new URLSearchParams(window.location.search);
+	const lang = (params.get("lang") || "").toLowerCase();
+	if (lang === "en" || lang === "ja") {
+		params.delete("lang");
+		window.location.replace(`/${lang}/events/${params.toString() ? `?${params.toString()}` : ""}`);
+	}
+</script>

@@ -1,0 +1,193 @@
+---
+interface Props {
+	lang?: string;
+}
+
+const lang = Astro.props.lang === "en" ? "en" : "ja";
+const isEn = lang === "en";
+const prefix = isEn ? "/en" : "/ja";
+
+const copy = isEn
+	? {
+			title: "Recurring Events",
+			description:
+				"Regular gatherings and open community times at Secret Shop. Some recurring events are still in development. Active events will appear with an “Upcoming” label in the event list below",
+			items: [
+				//	{
+				//		title: "Open Hours",
+				//		schedule: "Tuesday - Friday, 7:00 PM - 11:00 PM",
+				//		description:
+				//			"Drop in to work, meet other creators, ask questions, or spend time in a creative space.",
+						//href: `${prefix}/space/`,
+				//	},
+
+					{
+						title: "Secret Shop Studio",
+						schedule: "First Saturday of each month, time TBD",
+						description:
+						"A guided small-team production program where participants work together to build and publish a game.",
+					},
+					{
+						title: "Game Dev Meetup",
+						schedule: "Second Sunday of each month, time TBD",
+						description:
+						"A community meetup for game developers, artists, musicians, designers, and anyone interested in making games.",
+					},
+					{
+						title: "Board Game Night",
+						schedule: "Third Saturday of each month, time TBD",
+						description:
+						"A casual social night for playing board games, meeting people, and relaxing with the Secret Shop community.",
+					},
+					{
+						title: "Show & Tell",
+						schedule: "Fourth Sunday of each month, time TBD",
+						description:
+						"Bring a project, prototype, artwork, tool, game, or idea to share with the community and get feedback.",
+					},
+				],
+			}
+	: {
+			title: "定期開催",
+			description:
+				"Secret Shopで定期的に開催される集まりや、オープンコミュニティの時間です。一部の定期イベントは現在準備中です。現在開催予定のイベントは、下のイベント一覧で「Upcoming」または「開催予定」の表示をご確認ください。",
+			items: [
+				{
+					title: "Open Hours",
+					schedule: "火曜日 - 金曜日 19:00 - 23:00",
+					description:
+						"作業、交流、質問、共同制作などに使える気軽なドロップインの時間です。",
+					href: `${prefix}/space/`,
+				},
+				{
+				title: "Secret Shop Studio",
+				schedule: "毎月第1土曜日、時間未定",
+				description:
+				"小さなチームで協力しながら、ゲームの制作と公開を目指すガイド付きの制作プログラムです。",
+				},
+				{
+				title: "Game Dev Meetup",
+				schedule: "毎月第2日曜日、時間未定",
+				description:
+				"ゲーム開発者、アーティスト、ミュージシャン、デザイナー、そしてゲームづくりに興味がある人のためのコミュニティミートアップです。",
+				},
+				{
+				title: "Board Game Night",
+				schedule: "毎月第3土曜日、時間未定",
+				description:
+				"ボードゲームを遊びながら、人と出会い、Secret Shopのコミュニティと気軽に交流できるカジュアルな夜です。",
+				},
+				{
+				title: "Show & Tell",
+				schedule: "毎月第4日曜日、時間未定",
+				description:
+				"プロジェクト、プロトタイプ、アート作品、ツール、ゲーム、アイデアなどを持ち寄って共有し、コミュニティからフィードバックをもらえる時間です。",
+				},
+			],
+		};
+---
+
+<section class="card-base recurring-events px-8 py-6 mb-6">
+	<div class="recurring-events__header">
+		<h2>{copy.title}</h2>
+		<p>{copy.description}</p>
+	</div>
+
+	<div class="recurring-events__grid">
+		{copy.items.map((item) => (
+			<a class="recurring-events__item" href={item.href}>
+				<span class="recurring-events__schedule">{item.schedule}</span>
+				<h3>{item.title}</h3>
+				<p>{item.description}</p>
+			</a>
+		))}
+	</div>
+</section>
+
+<style>
+	.recurring-events {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		background-color: var(--btn-regular-bg);
+	}
+
+	.recurring-events__header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.recurring-events__header h2 {
+		margin: 0;
+		color: #d24200;
+		font-size: 1.75rem;
+		font-weight: 800;
+		line-height: 1.15;
+	}
+
+	.recurring-events__header p {
+		margin: 0;
+		color: var(--text-50);
+	}
+
+	.recurring-events__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.875rem;
+	}
+
+	.recurring-events__item {
+		display: flex;
+		min-height: 10rem;
+		flex-direction: column;
+		gap: 0.5rem;
+		border: 1px solid color-mix(in oklch, var(--primary) 30%, transparent);
+		border-radius: 0.75rem;
+		background: color-mix(in oklch, var(--card-bg) 82%, transparent);
+		padding: 1rem;
+		text-decoration: none;
+		transition:
+			transform 160ms ease,
+			background 160ms ease,
+			border-color 160ms ease;
+	}
+
+	.recurring-events__item:hover {
+		transform: translateY(-2px);
+		border-color: var(--primary);
+		background: var(--btn-plain-bg-hover);
+		color: white;
+	}
+
+	.recurring-events__schedule {
+		color:  var(--btn-regular-bg);
+		font-size: 0.875rem;
+		font-weight: 800;
+	}
+
+	.recurring-events__item h3 {
+		margin: 0;
+		color: #d24200;
+		font-size: 1.25rem;
+		font-weight: 800;
+		line-height: 1.2;
+	}
+
+	.recurring-events__item p {
+		margin: 0;
+		color: white;
+		line-height: 1.55;
+	}
+
+	@media (max-width: 640px) {
+		.recurring-events {
+			padding-left: 1.25rem;
+			padding-right: 1.25rem;
+		}
+
+		.recurring-events__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

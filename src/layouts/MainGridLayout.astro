@@ -158,9 +158,9 @@ const mainPanelTop = siteConfig.banner.enable
           if (url.hash && url.pathname === window.location.pathname) return;
           const parts = url.pathname.split('/').filter(Boolean);
           const localizedStaticPage =
-            parts[0] === 'studio' || parts[0] === 'space'
+            parts[0] === 'about' || parts[0] === 'studio' || parts[0] === 'space' || parts[0] === 'events'
               ? parts[0]
-              : ((parts[0] === 'en' || parts[0] === 'ja') && (parts[1] === 'studio' || parts[1] === 'space'))
+              : ((parts[0] === 'en' || parts[0] === 'ja') && (parts[1] === 'about' || parts[1] === 'studio' || parts[1] === 'space' || parts[1] === 'events'))
                 ? parts[1]
                 : '';
           if (localizedStaticPage) {
@@ -169,7 +169,16 @@ const mainPanelTop = siteConfig.banner.enable
             a.href = url.toString();
             return;
           }
-          url.searchParams.set('lang', cur);
+          const localizedHome =
+            parts.length === 0 ||
+            ((parts[0] === 'en' || parts[0] === 'ja') && parts.length === 1);
+          if (localizedHome) {
+            url.pathname = `/${cur}/`;
+            url.searchParams.delete('lang');
+            a.href = url.toString();
+            return;
+          }
+          url.searchParams.delete('lang');
           a.href = url.toString();
         });
       } catch {}

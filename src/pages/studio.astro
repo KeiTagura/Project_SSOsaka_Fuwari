@@ -6,8 +6,9 @@ import StudioPage from "../components/StudioPage.astro";
 
 <script is:inline>
 	const params = new URLSearchParams(window.location.search);
-	if ((params.get("lang") || "").toLowerCase() === "ja") {
+	const lang = (params.get("lang") || "").toLowerCase();
+	if (lang === "en" || lang === "ja") {
 		params.delete("lang");
-		window.location.replace(`/ja/studio/${params.toString() ? `?${params.toString()}` : ""}`);
+		window.location.replace(`/${lang}/studio/${params.toString() ? `?${params.toString()}` : ""}`);
 	}
 </script>

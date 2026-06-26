@@ -177,9 +177,9 @@ function loadButtonScript() {
                 idx = localeIdxs[0];
             }
             const localizedStaticPage =
-                parts[0] === 'studio' || parts[0] === 'space'
+                parts[0] === 'about' || parts[0] === 'studio' || parts[0] === 'space' || parts[0] === 'events'
                     ? parts[0]
-                    : ((parts[0] === 'en' || parts[0] === 'ja') && (parts[1] === 'studio' || parts[1] === 'space'))
+                    : ((parts[0] === 'en' || parts[0] === 'ja') && (parts[1] === 'about' || parts[1] === 'studio' || parts[1] === 'space' || parts[1] === 'events'))
                         ? parts[1]
                         : '';
             if (localizedStaticPage && (localeIdxs.length === 0 || parts[0] === 'en' || parts[0] === 'ja')) {
@@ -190,14 +190,19 @@ function loadButtonScript() {
                 window.location.assign(newUrl);
                 return;
             }
-            // Neutral paths: root, about, events, old_events
-            if (parts.length === 0 || ((parts[0] === 'about' || parts[0] === 'events' || parts[0] === 'old_events') && localeIdxs.length === 0)) {
+            // Neutral root path
+            if (parts.length === 0) {
                 const params = new URLSearchParams(window.location.search);
-                params.set('lang', target);
-                const base = parts.length === 0 ? '/' : `/${parts[0]}` + (trailingSlash ? '/' : '');
-                const newUrl = base + (params.toString() ? ('?' + params.toString()) : '');
+                params.delete('lang');
                 try { localStorage.setItem('preferredLang', target); } catch {}
-                window.location.assign(newUrl);
+                window.location.assign(`/${target}/` + (params.toString() ? ('?' + params.toString()) : ''));
+                return;
+            }
+            if (parts[0] === 'old_events' && localeIdxs.length === 0) {
+                const params = new URLSearchParams(window.location.search);
+                params.delete('lang');
+                try { localStorage.setItem('preferredLang', target); } catch {}
+                window.location.assign('/old_events/' + (params.toString() ? ('?' + params.toString()) : ''));
                 return;
             }
             let next = parts.slice();

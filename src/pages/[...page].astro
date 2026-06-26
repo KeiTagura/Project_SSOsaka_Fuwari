@@ -138,7 +138,18 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
 
 ---
 
-<MainGridLayout>
+
+<script is:inline>
+	const params = new URLSearchParams(window.location.search);
+	const lang = (params.get("lang") || "").toLowerCase();
+	const parts = window.location.pathname.split("/").filter(Boolean);
+	if ((lang === "en" || lang === "ja") && parts[0] !== "en" && parts[0] !== "ja") {
+		params.delete("lang");
+		const rest = parts.join("/");
+		const targetPath = `/${lang}/${rest ? `${rest}/` : ""}`;
+		window.location.replace(targetPath + (params.toString() ? `?${params.toString()}` : ""));
+	}
+</script><MainGridLayout>
   
     {featuredEn && (
       <div id="featured-en" data-lang="en" class="featured-post mb-8 p-6 rounded-lg bg-[var(--card-bg-featured)]" style={routeLang === 'en' ? '' : 'display:none'}>
@@ -341,7 +352,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
             <tr><td>Thursday</td><td>7:00 PM - 11:00 PM</td></tr>
             <tr><td>Friday</td><td>7:00 PM - 11:00 PM</td></tr>
             <tr><td>Saturday</td><td>　
-              <a class="btn-regular-dark rounded-lg" href="/events/?lang=en"> Scheduled Programs & Events </a>　
+              <a class="btn-regular-dark rounded-lg" href="/en/events/"> Scheduled Programs & Events </a>　
             </td></tr>
             <tr><td>Sunday</td><td>Events</td></tr>
           </tbody>
@@ -350,7 +361,8 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
 
       <p class="open-hours-note text-[var(--card-bg)]">Please check the Events page for the latest schedule.</p>
       <p class="open-hours-question text-[var(--card-bg)]">Need a creative space during the day?</p>
-      <p class="text-[var(--card-bg)]">Secret Shop is also available for private bookings for creative and technical groups outside of regular Open Hours.</p>
+      <p class="text-[var(--card-bg)]">Secret Shop is also available for private bookings for creative and technical groups outside of regular <a class=" text-[#d24200]"  href="/en/events/">Open Hours</a>.</p>
+      <p><a class="btn-regular-dark rounded-lg" href="/en/space/"> Booking Info </a>　</p>
     </div>
 
     <div id="open-hours-ja" data-lang="ja" class="open-hours-copy" style={routeLang === 'ja' ? '' : 'display:none'}>
@@ -375,7 +387,7 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
             <tr><td>木曜日</td><td>19:00 - 23:00</td></tr>
             <tr><td>金曜日</td><td>19:00 - 23:00</td></tr>
             <tr><td>土曜日</td><td>
-              <a class="btn-regular-dark rounded-lg" href="/events/?lang=ja"> 定期開催イベント・プログラム </a>　
+              <a class="btn-regular-dark rounded-lg" href="/ja/events/"> 定期開催イベント・プログラム </a>　
             </td></tr>
             <tr><td>日曜日</td><td>イベント</td></tr>
           </tbody>
@@ -384,7 +396,8 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
 
       <p class="open-hours-note">最新のスケジュールはEventsページをご確認ください。</p>
       <p class="open-hours-question">日中に使えるクリエイティブスペースを探していますか？</p>
-      <p>Secret Shopは、通常のOpen Hours以外にも、クリエイティブまたは技術系グループ向けの貸切利用に対応しています。</p>
+      <p>Secret Shopは、通常の<a class=" text-[#d24200]" href="/ja/events/"> Open Hours </a> 以外にも、クリエイティブまたは技術系グループ向けの貸切利用に対応しています。</p>
+      <p><a class="btn-regular-dark rounded-lg" href="/ja/space/"> 貸切・予約について </a>　</p>
     </div>
   </div>
 </div>

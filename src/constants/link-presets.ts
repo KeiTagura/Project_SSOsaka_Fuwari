@@ -9,19 +9,39 @@ export function getLinkPresets(lang?: string): {
 	return {
 		[LinkPreset.Home]: {
 			name: t(I18nKey.home),
-			url: "/",
+			url:
+				lang === "ja"
+					? "/ja/"
+					: lang === "en"
+						? "/en/"
+						: "/",
 		},
 		[LinkPreset.About]: {
 			name: t(I18nKey.about),
-			url: "/about/",
+			url:
+				lang === "ja"
+					? "/ja/about/"
+					: lang === "en"
+						? "/en/about/"
+						: "/about/",
 		},
 		[LinkPreset.Archive]: {
 			name: "Events",
-			url: "/events/",
+			url:
+				lang === "ja"
+					? "/ja/events/"
+					: lang === "en"
+						? "/en/events/"
+						: "/events/",
 		},
 		[LinkPreset.Events]: {
 			name: "Events",
-			url: "/events/",
+			url:
+				lang === "ja"
+					? "/ja/events/"
+					: lang === "en"
+						? "/en/events/"
+						: "/events/",
 		},
 		[LinkPreset.Studio]: {
 			name: "Studio",
