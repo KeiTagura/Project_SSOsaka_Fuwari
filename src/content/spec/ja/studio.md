@@ -173,7 +173,7 @@ Secret Shop Studioが重視するのは、その先にあるものです。</br>
 # Secret Shop Studioに参加する
 
 <pre class="custom-code studio-register-copy"><code>
-<span class="custom-code-line">第1期 <strong>Secret Shop Studio</strong> コホートの応募を受け付けています。</span>
+<span class="custom-code-line">第1期 <strong>Secret Shop Studio</strong> cohortの応募を受け付けています。</span>
 <span class="custom-code-line">第1期は、およそ <strong>4〜6名</strong> の参加者で構成される予定です。</span>
 <span class="custom-code-line">適切なチームが編成されるまで、応募を受け付けます。</span>
 </code></pre>
@@ -280,7 +280,7 @@ Secret Shop Studioが重視するのは、その先にあるものです。</br>
 
 <p class="text-center text[#f8f2dc] font-medium">まだ応募する準備ができていませんか？</p>
 
-<p class="text-center">Secret Shop Studioのメーリングリストに登録すると、今後のコホート、応募開始、プロジェクトの進捗、プレイテストの機会、Studioチームによる公開作品のお知らせを受け取れます。
+<p class="text-center">Secret Shop Studioのメーリングリストに登録すると、今後のcohort、応募開始、プロジェクトの進捗、プレイテストの機会、Studioチームによる公開作品のお知らせを受け取れます。
 </p>
 
 <div class="studio-mailer-lite">
@@ -291,7 +291,7 @@ Secret Shop Studioが重視するのは、その先にあるものです。</br>
   <div class="studio-experience-copy">
     <p class="text-center font-bold">このリストでは、次のような情報をお届けします：</p>
     <ul>
-      <li>新しいコホートの応募開始</li>
+      <li>新しいcohortの応募開始</li>
       <li>進行中のStudioプロジェクトの更新</li>
       <li>プレイテストのお知らせ</li>
       <li>完成したプロジェクトのリリース情報</li>
