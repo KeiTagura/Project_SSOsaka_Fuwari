@@ -1,7 +1,7 @@
 ---
 title: SoftLaunch
-published: 2026-05-03
-eventDate: 2026-07-23
+published: 2026-07-01
+eventDate: 2026-08-01
 description: ""
 image: ./cover.webp
 tags:
@@ -128,14 +128,21 @@ No formal program is planned during regular Open Shop hours unless announced sep
       <td>Event pricing may vary</td>
     </tr>
   </tbody>
+    <tfoot>
+    <tr>
+      <th scope="row" colspan="2" >¥600 is a soft-launch price and will change later as the space and schedule become more established.</th>
+      <td scope="row" colspan="2" class = "code-green">Join the Secret Shop Discord and the drop-in price is <strong >¥500</strong>.</td>
+    </tr>
+  </tfoot>
 </table>
 
 </div>
+</br>
 
-<span class="custom-code-line">This is a soft-launch price and will change later as the space and schedule become more established. </span>
 <span class="custom-code-line">Some weekend events are ticketed and prices may vary depending on the format. </span>
 <span class="custom-code-line">Please check each event listing for details. </span>
 <span class="custom-code-line"> </span>
+
 
 
 </code></pre>
