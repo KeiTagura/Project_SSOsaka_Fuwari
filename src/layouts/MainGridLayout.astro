@@ -39,6 +39,33 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 const mainPanelTop = siteConfig.banner.enable
 	? `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
 	: "5.5rem";
+const socialLinks = [
+	{
+		name: "Instagram",
+		icon: "fa6-brands:instagram",
+		url: "https://www.instagram.com/secretshop.osaka/",
+	},
+	{
+		name: "Discord",
+		icon: "fa6-brands:discord",
+		url: "https://discord.gg/AE94Z8hhpn",
+	},
+	{
+		name: "Bluesky",
+		icon: "fa6-brands:bluesky",
+		url: "https://bsky.app/profile/ssosaka.bsky.social",
+	},
+	{
+		name: "Meetup",
+		icon: "fa6-brands:meetup",
+		url: "https://www.meetup.com/secretshop/",
+	},
+	{
+		name: "Peatix",
+		icon: "fa6-solid:ticket",
+		url: "https://ssosaka.peatix.com/",
+	},
+];
 ---
 
 <Layout title={title} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle}>
@@ -63,6 +90,33 @@ const mainPanelTop = siteConfig.banner.enable
 
     
 </div>}
+
+{siteConfig.banner.enable && (
+    <section
+        id="banner-social-links"
+        aria-label="Social links"
+        class="absolute left-0 right-0 z-40 pointer-events-none px-4 socials-hidden"
+        style={`top: calc(100vh - 8rem)`}
+    >
+        <div class="mx-auto flex max-w-[var(--page-width)] justify-center">
+            <div class="banner-social-panel pointer-events-auto flex items-center gap-2 rounded-2xl px-3 py-2">
+                {socialLinks.map((item) => (
+                    <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={item.name}
+                        title={item.name}
+                        class="banner-social-link"
+                    >
+                        <Icon name={item.icon} class="text-[1.2rem]" />
+                        <span class="sr-only">{item.name}</span>
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
+)}
 <!-- Main content -->
 <div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`}>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
@@ -131,6 +185,70 @@ const mainPanelTop = siteConfig.banner.enable
         {!siteConfig.toc.enable && <div id="toc"></div>}
     </div>
 </div>
+<style>
+    :global(body:not(.lg\:is-home) #banner-social-links) {
+        display: none;
+    }
+
+    #banner-social-links {
+        transition:
+            opacity 700ms ease-out,
+            transform 700ms ease-out;
+    }
+
+    #banner-social-links.socials-hidden {
+        opacity: 0;
+        transform: translateY(0.5rem);
+        pointer-events: none;
+    }
+
+    .banner-social-panel {
+        border: 1px solid rgb(255 255 255 / 0.18);
+        background: rgb(0 0 0 / 0.48);
+        box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 0.28);
+        backdrop-filter: blur(14px);
+    }
+
+    .banner-social-link {
+        display: inline-flex;
+        width: 2.75rem;
+        height: 2.75rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.875rem;
+        color: rgb(255 255 255 / 0.86);
+        transition:
+            transform 160ms ease,
+            background 160ms ease,
+            color 160ms ease;
+    }
+
+    .banner-social-link:hover {
+        transform: translateY(-2px);
+        background: rgb(255 255 255 / 0.14);
+        color: var(--primary);
+    }
+
+    .banner-social-link:active {
+        transform: translateY(0) scale(0.95);
+    }
+
+    @media (max-width: 640px) {
+        #banner-social-links {
+            top: calc(100vh - 9rem) !important;
+        }
+
+        .banner-social-panel {
+            gap: 0.25rem;
+            padding: 0.375rem;
+        }
+
+        .banner-social-link {
+            width: 2.35rem;
+            height: 2.35rem;
+        }
+    }
+</style>
 <script>
   (function(){
     function selectedLang(){
@@ -202,3 +320,6 @@ const mainPanelTop = siteConfig.banner.enable
   })();
   </script>
 </Layout>
+
+
+

@@ -1,15 +1,56 @@
 ---
-
+import { Icon } from "astro-icon/components";
 import { profileConfig } from "../config";
-import { url } from "../utils/url-utils";
 
 const currentYear = new Date().getFullYear();
+const socialLinks = [
+	{
+		name: "Discord",
+		icon: "fa6-brands:discord",
+		url: "https://discord.gg/AE94Z8hhpn",
+	},
+	{
+		name: "Bluesky",
+		icon: "fa6-brands:bluesky",
+		url: "https://bsky.app/",
+	},
+	{
+		name: "Meetup",
+		icon: "fa6-brands:meetup",
+		url: "https://www.meetup.com/secretshop/",
+	},
+	{
+		name: "Peatix",
+		icon: "fa6-solid:ticket",
+		url: "https://sso-gamenight.peatix.com/",
+	},
+	{
+		name: "Instagram",
+		icon: "fa6-brands:instagram",
+		url: "https://www.instagram.com/",
+	},
+];
 ---
 
 <!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">-->
 <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div>
 <!--<div class="transition bg-[oklch(92%_0.01_var(&#45;&#45;hue))] dark:bg-black rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">-->
 <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">
+    <nav class="footer-socials" aria-label="Social links">
+        {socialLinks.map((item) => (
+            <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={item.name}
+                title={item.name}
+                class="footer-social-link"
+            >
+                <Icon name={item.icon} class="text-[1.1rem]" />
+                <span class="sr-only">{item.name}</span>
+            </a>
+        ))}
+    </nav>
     <div class="transition text-50 text-sm text-center">
         &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name}. All Rights Reserved. </br>
         <!--  <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('rss.xml')}>RSS</a> /
@@ -19,3 +60,40 @@ const currentYear = new Date().getFullYear();
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a>
     </div>
 </div>
+
+<style>
+    .footer-socials {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .footer-social-link {
+        display: inline-flex;
+        width: 2.5rem;
+        height: 2.5rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgb(255 255 255 / 0.12);
+        border-radius: 0.75rem;
+        background: var(--btn-regular-bg);
+        color: var(--btn-content);
+        transition:
+            transform 160ms ease,
+            background 160ms ease,
+            color 160ms ease;
+    }
+
+    .footer-social-link:hover {
+        transform: translateY(-2px);
+        background: var(--btn-regular-bg-hover);
+        color: var(--primary);
+    }
+
+    .footer-social-link:active {
+        transform: translateY(0) scale(0.95);
+        background: var(--btn-regular-bg-active);
+    }
+</style>
