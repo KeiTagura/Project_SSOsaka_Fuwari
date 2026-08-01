@@ -22,7 +22,7 @@ Secret Shop Studioは、通常の授業、ゲームジャム、就職支援プ�
 参加者が一緒に小さなゲームを制作し、実際のプロジェクトが企画から公開まで進む流れを学ぶ、実践型の制作プログラムです。
 
 <div class="studio-register-action">
-  <a class="btn-regular-featured studio-register-button-light" href="#">応募する</a>
+  <a class="btn-regular-featured studio-register-button-light" href="https://docs.google.com/forms/d/e/1FAIpQLSfbs-JVjNamsmnMiNRWLJg2i-Bgt-zN_AV6m2ScT1iBI1BMRw/viewform?usp=sharing&ouid=100140504759860676636">応募する</a>
 </div>
 
 ---
@@ -196,7 +196,7 @@ Secret Shop Studioが重視するのは、その先にあるものです。</br>
 
   <div class="studio-register-action">
     <div class="studio-register-image" role="img" aria-label="Secret Shop Studio registration"></div>
-    <a class="btn-regular-featured studio-register-button-light" href="#">応募する</a>
+    <a class="btn-regular-featured studio-register-button-light" href="https://docs.google.com/forms/d/e/1FAIpQLSfbs-JVjNamsmnMiNRWLJg2i-Bgt-zN_AV6m2ScT1iBI1BMRw/viewform?usp=sharing&ouid=100140504759860676636">応募する</a>
   </div>
 </div>
 

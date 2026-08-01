@@ -50,7 +50,7 @@ Secret Shop Studio is not a traditional class, a game jam, or a job placement pr
 It is a guided production experience where participants work together to create a small game while learning how real projects move from concept to release.
 
   <div class="studio-register-action">
-    <a class="btn-regular-featured studio-register-button-light" href="#">Register</a>
+    <a class="btn-regular-featured studio-register-button-light" href="https://docs.google.com/forms/d/e/1FAIpQLSfbs-JVjNamsmnMiNRWLJg2i-Bgt-zN_AV6m2ScT1iBI1BMRw/viewform?usp=sharing&ouid=100140504759860676636">Register</a>
   </div>
 
 ---
@@ -253,7 +253,7 @@ Experience contributing to a multidisciplinary project from start to finish.
 
   <div class="studio-register-action">
     <div class="studio-register-image" role="img" aria-label="Secret Shop Studio registration"></div>
-    <a class="btn-regular-featured studio-register-button-light" href="#">Register</a>
+    <a class="btn-regular-featured studio-register-button-light" href="https://docs.google.com/forms/d/e/1FAIpQLSfbs-JVjNamsmnMiNRWLJg2i-Bgt-zN_AV6m2ScT1iBI1BMRw/viewform?usp=sharing&ouid=100140504759860676636">Register</a>
   </div>
 </div>
 
