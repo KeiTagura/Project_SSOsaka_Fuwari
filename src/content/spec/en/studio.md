@@ -367,8 +367,35 @@ Experience contributing to a multidisciplinary project from start to finish.
 </p>
 
 <div class="studio-mailer-lite">
-  <div class="ml-embedded" data-form="qHgNKl"></div>
+  <div id="mlb2-42835992" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-42835992">
+    <div class="ml-form-align-center">
+      <div class="ml-form-embedWrapper embedForm">
+        <div class="ml-form-embedBody ml-form-embedBodyHorizontal row-form">
+          <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2459283/forms/42835992/subscribe" method="post" target="_blank">
+            <div class="ml-form-formContent horozintalForm">
+              <div class="ml-form-horizontalRow">
+                <div class="ml-input-horizontal">
+                  <div class="horizontal-fields">
+                    <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                      <input class="form-control" type="email" name="fields[email]" placeholder="Email address" autocomplete="email" required />
+                    </div>
+                  </div>
+                </div>
+                <div class="ml-button-horizontal primary">
+                  <button type="submit" class="primary">Subscribe</button>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="ml-submit" value="1" />
+            <input type="hidden" name="anticsrf" value="true" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 
 
 <div class="studio-experience-split">
@@ -387,5 +414,6 @@ Experience contributing to a multidisciplinary project from start to finish.
   
 
 </div>
+
 
 
