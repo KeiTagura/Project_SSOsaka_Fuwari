@@ -1,6 +1,6 @@
 ﻿---
 title: "GameNight: Fight Night"
-published: 2026-07-30
+published: 2026-08-01
 eventDate: 2026-08-08
 description: "Secret Shopで開催する、PvPゲームと格闘ゲーム中心のカジュアルなFight Nightです。"
 image: ./cover.png

@@ -1,6 +1,6 @@
 ﻿---
 title: "Game Dev & Digital Art Meetup"
-published: 2026-07-30
+published: 2026-08-01
 eventDate: 2026-08-09
 description: "A relaxed Sunday afternoon meetup for game development, digital art, animation, music, programming, and creative projects at Secret Shop Osaka."
 image: ./cover.webp
