@@ -12,6 +12,14 @@ const postsCollection = defineCollection({
 		tags: z.array(z.string()).optional().default([]),
 		category: z.string().optional().nullable().default(""),
 		lang: z.string().optional().default(""),
+		eventStart: z.string().optional(),
+		eventEnd: z.string().optional(),
+		eventStatus: z.string().optional(),
+		eventAttendanceMode: z.string().optional(),
+		eventTicketUrl: z.string().optional(),
+		eventTicketPrice: z.union([z.string(), z.number()]).optional(),
+		eventTicketCurrency: z.string().optional().default("JPY"),
+		eventTicketAvailability: z.string().optional(),
 		featured: z.boolean().optional(), // ✅ Add this line
 
 		/* For internal use */

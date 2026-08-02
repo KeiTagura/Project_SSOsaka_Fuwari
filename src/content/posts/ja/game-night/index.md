@@ -2,6 +2,9 @@
 title: GameNight
 published: 2026-05-03
 eventDate: 2026-05-23
+eventStart: "2026-05-23T19:00:00+09:00"
+eventEnd: "2026-05-23T23:00:00+09:00"
+eventTicketUrl: "https://sso-gamenight.peatix.com/"
 description: ""
 image: ./cover.webp
 tags:

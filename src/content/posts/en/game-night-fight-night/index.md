@@ -2,6 +2,10 @@
 title: "GameNight: Fight Night"
 published: 2026-08-01
 eventDate: 2026-08-08
+eventStart: "2026-08-08T18:00:00+09:00"
+eventEnd: "2026-08-08T23:00:00+09:00"
+eventTicketUrl: "https://peatix.com/event/5115527"
+eventTicketPrice: 1200
 description: "A casual PvP and fighting game night at Secret Shop with rotations, featured games, optional brackets, and friendly matches."
 image: ./cover.png
 tags:

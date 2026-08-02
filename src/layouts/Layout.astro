@@ -18,6 +18,7 @@ import {
 import { defaultFavicons } from "../constants/icon";
 import type { Favicon } from "../types/config";
 import { url } from "../utils/url-utils";
+import { getSecretShopLocalBusinessJsonLd } from "../utils/structured-data";
 import "katex/dist/katex.css";
 
 interface Props {
@@ -73,6 +74,7 @@ const bannerOffsetByPosition = {
 };
 const bannerOffset =
 	bannerOffsetByPosition[siteConfig.banner.position || "center"];
+const localBusinessJsonLd = getSecretShopLocalBusinessJsonLd(Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -145,6 +147,8 @@ const bannerOffset =
 			'page-width': `${PAGE_WIDTH}rem`,
 		}}></style>  <!-- defines global css variables. This will be applied to <html> <body> and some other elements idk why -->
 
+
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)}></script>
 
 		<slot name="head"></slot>
 

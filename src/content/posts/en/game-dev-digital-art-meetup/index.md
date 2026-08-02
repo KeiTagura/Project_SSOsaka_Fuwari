@@ -2,6 +2,9 @@
 title: "Game Dev & Digital Art Meetup"
 published: 2026-08-01
 eventDate: 2026-08-09
+eventStart: "2026-08-09T13:00:00+09:00"
+eventEnd: "2026-08-09T18:00:00+09:00"
+eventTicketUrl: "https://peatix.com/event/5115533"
 description: "A relaxed Sunday afternoon meetup for game development, digital art, animation, music, programming, and creative projects at Secret Shop Osaka."
 image: ./cover.webp
 tags:
