@@ -4,7 +4,7 @@ published: 2026-08-16
 eventDate: 2026-08-23
 eventStart: "2026-08-23T13:00:00+09:00"
 eventEnd: "2026-08-23T18:00:00+09:00"
-eventTicketUrl: "https://peatix.com/event/5115533"
+eventTicketUrl: "https://peatix.com/event/5135104"
 description: "A relaxed Sunday afternoon meetup for game development, digital art, animation, music, programming, and creative projects at Secret Shop Osaka."
 image: ./cover.webp
 tags:
@@ -109,7 +109,7 @@ The schedule is flexible and may change depending on attendance and the interest
 ## Tickets
 
 <div class="max-w-3xl mx-auto">
-  <a class="featured-post mb-8 p-6 rounded-lg btn-regular-featured" href="https://peatix.com/event/5115533" style="color:oklch(0.26 0 0)">Peatix</a>
+  <a class="featured-post mb-8 p-6 rounded-lg btn-regular-featured" href="https://peatix.com/event/5135104" style="color:oklch(0.26 0 0)">Peatix</a>
 </div>
 <br/>
 <div class="max-w-3xl mx-auto">
