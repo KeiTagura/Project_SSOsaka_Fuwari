@@ -20,7 +20,9 @@ interface Post {
 		tags: string[];
 		category?: string | null;
 		lang?: string;
-		published: Date;
+		published: Date | string;
+		eventDate?: Date | string;
+		eventStart?: string;
 	};
 }
 
@@ -40,21 +42,38 @@ type GroupWithStatus = { year: number; posts: PostWithStatus[] };
 let groups: Group[] = [];
 let groupsWithStatus: GroupWithStatus[] = [];
 
-function formatDate(date: Date) {
-	const month = (date.getMonth() + 1).toString().padStart(2, "0");
-	const day = date.getDate().toString().padStart(2, "0");
+function getEventDateValue(post: Post): Date | string {
+	return post.data.eventStart ?? post.data.eventDate ?? post.data.published;
+}
+
+function toDateKey(value: Date | string): string {
+	if (value instanceof Date) return value.toISOString().slice(0, 10);
+	const match = String(value).match(/^\d{4}-\d{2}-\d{2}/);
+	if (match) return match[0];
+	return new Date(value).toISOString().slice(0, 10);
+}
+
+function todayDateKey(): string {
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = String(today.getMonth() + 1).padStart(2, "0");
+	const day = String(today.getDate()).padStart(2, "0");
+	return `${year}-${month}-${day}`;
+}
+
+function formatDate(value: Date | string) {
+	const [, month, day] = toDateKey(value).split("-");
 	return `${month}-${day}`;
 }
 function formatTag(tagList: string[]) {
 	return tagList.map((t) => `#${t}`).join(" ");
 }
 
-function eventSpaceTime(date: Date): EventInfo {
-	const today = new Date();
-	// compare by day (ignore time)
-	const isSameDay = date.toDateString() === today.toDateString();
-	if (isSameDay) return { status: "today", label: t(I18nKey.today) };
-	if (date < today) return { status: "past", label: t(I18nKey.past) };
+function eventSpaceTime(value: Date | string): EventInfo {
+	const eventKey = toDateKey(value);
+	const todayKey = todayDateKey();
+	if (eventKey === todayKey) return { status: "today", label: t(I18nKey.today) };
+	if (eventKey < todayKey) return { status: "past", label: t(I18nKey.past) };
 	return { status: "upcoming", label: t(I18nKey.upcoming) };
 }
 
@@ -123,9 +142,13 @@ onMount(async () => {
 		filtered = filtered.filter((post) => !post.data.category);
 	}
 
-	// group by year
+	filtered = [...filtered].sort((a, b) =>
+		toDateKey(getEventDateValue(b)).localeCompare(toDateKey(getEventDateValue(a))),
+	);
+
+	// group by event year
 	const grouped = filtered.reduce<Record<number, Post[]>>((acc, post) => {
-		const year = post.data.published.getFullYear();
+		const year = Number(toDateKey(getEventDateValue(post)).slice(0, 4));
 		if (!acc[year]) {
 			acc[year] = [];
 		}
@@ -145,7 +168,7 @@ onMount(async () => {
 		year: g.year,
 		posts: g.posts.map((p) => ({
 			...p,
-			eventInfo: eventSpaceTime(p.data.published),
+			eventInfo: eventSpaceTime(getEventDateValue(p)),
 		})),
 	}));
 });
@@ -177,7 +200,7 @@ onMount(async () => {
           <div class="flex flex-row justify-start items-center h-full">
             <!-- date -->
             <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
-              {formatDate(post.data.published)}
+              {formatDate(getEventDateValue(post))}
             </div>
 
             <!-- status (colored by status) -->
