@@ -150,6 +150,8 @@ const localBusinessJsonLd = getSecretShopLocalBusinessJsonLd(Astro.site);
 
 		<script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)}></script>
 
+		<script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="3a034518-6790-4255-b4fb-7e8a69a44293"></script>
+
 		<slot name="head"></slot>
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
