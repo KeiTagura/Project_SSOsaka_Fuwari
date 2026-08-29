@@ -2,14 +2,14 @@
 import HomePage from "../[...page].astro";
 import type { GetStaticPaths } from "astro";
 import { PAGE_SIZE } from "../../constants/constants";
-import { getSortedPosts } from "../../utils/content-utils";
+import { getPostEventDate, getSortedPosts } from "../../utils/content-utils";
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts("ja");
 	const nowRef = new Date();
-	const upcomingOnly = allBlogPosts.filter(
-		(p) => new Date(String(p.data.eventDate ?? p.data.published)) >= nowRef,
-	);
+	const upcomingOnly = allBlogPosts
+		.filter((p) => getPostEventDate(p.data) >= nowRef)
+		.sort((a, b) => getPostEventDate(a.data).getTime() - getPostEventDate(b.data).getTime());
 	return paginate(upcomingOnly, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 

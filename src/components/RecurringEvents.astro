@@ -11,46 +11,55 @@ const copy = isEn
 	? {
 			title: "Recurring Events",
 			description:
-				"Regular gatherings and open community times at Secret Shop. Some recurring events are still in development. Active events will appear with an “Upcoming” label in the event list below",
+				"Regular gatherings and open community times at Secret Shop. Active events will appear with an Upcoming label in the event list below.",
 			items: [
-				//	{
-				//		title: "Open Hours",
-				//		schedule: "Tuesday - Friday, 7:00 PM - 11:00 PM",
-				//		description:
-				//			"Drop in to work, meet other creators, ask questions, or spend time in a creative space.",
-						//href: `${prefix}/space/`,
-				//	},
-
-					{
-						title: "Secret Shop Studio",
-						schedule: "First Saturday of each month, time TBD",
-						description:
+				{
+					title: "Open Hours",
+					schedule: "Tuesday - Friday 19:00 - 23:00",
+					description: "Casual drop-in hours for working, socializing, asking questions, collaborative projects, and more.",
+					href: `${prefix}/space/`,
+				},
+				{
+					title: "Secret Shop Studio",
+					schedule: "Selected Saturdays, announced by cohort",
+					description:
 						"A guided small-team production program where participants work together to build and publish a game.",
-					},
-					{
-						title: "Game Dev Meetup",
-						schedule: "Second Sunday of each month, time TBD",
-						description:
-						"A community meetup for game developers, artists, musicians, designers, and anyone interested in making games.",
-					},
-					{
-						title: "Board Game Night",
-						schedule: "Third Saturday of each month, time TBD",
-						description:
-						"A casual social night for playing board games, meeting people, and relaxing with the Secret Shop community.",
-					},
-					{
-						title: "Show & Tell",
-						schedule: "Fourth Sunday of each month, time TBD",
-						description:
+					href: `${prefix}/studio/`,
+				},
+				{
+					title: "Game Dev Meetup",
+					schedule: "First and third Sunday of each month, afternoon",
+					description:
+						"A community meetup for game developers, artists, musicians, designers, and anyone interested in making games or digital media.",
+					href: `${prefix}/events/`,
+				},
+				{
+					title: "Game Night: Fight Night",
+					schedule: "First Saturday of each month, 6:00 PM - 11:00 PM",
+					description:
+						"A casual PvP night for fighting games, versus games, team battles, rotations, and friendly competitive play.",
+					href: `${prefix}/events/`,
+				},
+				{
+					title: "Game Night: LAN Party",
+					schedule: "Third Saturday of each month, 6:00 PM - 10:00 PM",
+					description:
+						"A casual PC and multiplayer game night for team games, co-op games, strategy games, and community picks.",
+					href: `${prefix}/events/`,
+				},
+				{
+					title: "Show & Tell",
+					schedule: "Fourth Sunday of each month, time TBD",
+					description:
 						"Bring a project, prototype, artwork, tool, game, or idea to share with the community and get feedback.",
-					},
-				],
-			}
+					href: `${prefix}/events/`,
+				},
+			],
+		}
 	: {
 			title: "定期開催",
 			description:
-				"Secret Shopで定期的に開催される集まりや、オープンコミュニティの時間です。一部の定期イベントは現在準備中です。現在開催予定のイベントは、下のイベント一覧で「Upcoming」または「開催予定」の表示をご確認ください。",
+				"Secret Shopで定期的に開催される集まりや、オープンコミュニティの時間です。現在開催予定のイベントは、下のイベント一覧でご確認ください。",
 			items: [
 				{
 					title: "Open Hours",
@@ -60,28 +69,39 @@ const copy = isEn
 					href: `${prefix}/space/`,
 				},
 				{
-				title: "Secret Shop Studio",
-				schedule: "毎月第1土曜日、時間未定",
-				description:
-				"小さなチームで協力しながら、ゲームの制作と公開を目指すガイド付きの制作プログラムです。",
+					title: "Secret Shop Studio",
+					schedule: "土曜日不定期、コホートごとに告知",
+					description:
+						"小さなチームで協力しながら、ゲームの制作と公開を目指すガイド付きの制作プログラムです。",
+					href: `${prefix}/studio/`,
 				},
 				{
-				title: "Game Dev Meetup",
-				schedule: "毎月第2日曜日、時間未定",
-				description:
-				"ゲーム開発者、アーティスト、ミュージシャン、デザイナー、そしてゲームづくりに興味がある人のためのコミュニティミートアップです。",
+					title: "Game Dev Meetup",
+					schedule: "毎月第1・第3日曜日、午後",
+					description:
+						"ゲーム開発者、アーティスト、ミュージシャン、デザイナー、そしてゲームやデジタルメディア制作に興味がある人のためのコミュニティミートアップです。",
+					href: `${prefix}/events/`,
 				},
 				{
-				title: "Board Game Night",
-				schedule: "毎月第3土曜日、時間未定",
-				description:
-				"ボードゲームを遊びながら、人と出会い、Secret Shopのコミュニティと気軽に交流できるカジュアルな夜です。",
+					title: "Game Night: Fight Night",
+					schedule: "毎月第1土曜日 18:00 - 23:00",
+					description:
+						"格闘ゲーム、対戦ゲーム、チーム戦、ローテーション、ゆるい競技プレイを楽しむカジュアルなPvPゲームナイトです。",
+					href: `${prefix}/events/`,
 				},
 				{
-				title: "Show & Tell",
-				schedule: "毎月第4日曜日、時間未定",
-				description:
-				"プロジェクト、プロトタイプ、アート作品、ツール、ゲーム、アイデアなどを持ち寄って共有し、コミュニティからフィードバックをもらえる時間です。",
+					title: "Game Night: LAN Party",
+					schedule: "毎月第3土曜日 18:00 - 22:00",
+					description:
+						"PCゲーム、チーム戦、協力プレイ、ストラテジーゲーム、参加者の持ち込みタイトルを楽しむカジュアルなマルチプレイイベントです。",
+					href: `${prefix}/events/`,
+				},
+				{
+					title: "Show & Tell",
+					schedule: "毎月第4日曜日、時間未定",
+					description:
+						"プロジェクト、プロトタイプ、アート作品、ツール、ゲーム、アイデアなどを持ち寄って共有し、コミュニティからフィードバックをもらえる時間です。",
+					href: `${prefix}/events/`,
 				},
 			],
 		};

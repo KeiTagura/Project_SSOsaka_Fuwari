@@ -3,12 +3,46 @@ import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import { getCategoryUrl } from "@utils/url-utils.ts";
 
+type PublishablePostData = {
+	draft?: boolean;
+	published: Date | string;
+};
+
+type EventDatedPostData = {
+	eventStart?: string;
+	eventDate?: Date | string;
+	published: Date | string;
+};
+
+export function toDateKey(value: Date | string): string {
+	if (value instanceof Date) return value.toISOString().slice(0, 10);
+	const match = String(value).match(/^\d{4}-\d{2}-\d{2}/);
+	if (match) return match[0];
+	return new Date(value).toISOString().slice(0, 10);
+}
+
+export function todayDateKey(): string {
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = String(today.getMonth() + 1).padStart(2, "0");
+	const day = String(today.getDate()).padStart(2, "0");
+	return `${year}-${month}-${day}`;
+}
+
+export function isPostPublishable(data: PublishablePostData): boolean {
+	if (!import.meta.env.PROD) return true;
+	return data.draft !== true && toDateKey(data.published) <= todayDateKey();
+}
+
+export function getPostEventDate(data: EventDatedPostData): Date {
+	const value = data.eventStart ?? data.eventDate ?? data.published;
+	return value instanceof Date ? value : new Date(String(value));
+}
+
 // Retrieve posts and sort them by publication date
 async function getRawSortedPosts(lang?: string) {
 	const allBlogPosts = await getCollection("posts", ({ data, slug }) => {
-		const draftOk = import.meta.env.PROD
-			? data.draft !== true && new Date(data.published) <= new Date()
-			: true;
+		const draftOk = isPostPublishable(data);
 		const langLower = lang?.toLowerCase();
 		const slugLang =
 			typeof slug === "string"
@@ -73,9 +107,7 @@ export async function getTagList(lang?: string): Promise<Tag[]> {
 	const allBlogPosts = await getCollection<"posts">(
 		"posts",
 		({ data, slug }) => {
-			const draftOk = import.meta.env.PROD
-			? data.draft !== true && new Date(data.published) <= new Date()
-			: true;
+			const draftOk = isPostPublishable(data);
 			const langLower = lang?.toLowerCase();
 			const slugLang =
 				typeof slug === "string"
@@ -116,9 +148,7 @@ export async function getCategoryList(lang?: string): Promise<Category[]> {
 	const allBlogPosts = await getCollection<"posts">(
 		"posts",
 		({ data, slug }) => {
-			const draftOk = import.meta.env.PROD
-			? data.draft !== true && new Date(data.published) <= new Date()
-			: true;
+			const draftOk = isPostPublishable(data);
 			const langLower = lang?.toLowerCase();
 			const slugLang =
 				typeof slug === "string"

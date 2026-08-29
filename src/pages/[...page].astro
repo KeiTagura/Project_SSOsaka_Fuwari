@@ -21,20 +21,14 @@ import { PAGE_SIZE } from "../constants/constants";
 import I18nKey from "../i18n/i18nKey";
 import { i18nFor } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
-import { getSortedPosts } from "../utils/content-utils";
+import { getPostEventDate, getSortedPosts, isPostPublishable } from "../utils/content-utils";
 import { getLangFromPath } from "../utils/lang";
 
-// Helper so it works whether published is a Date or string
-const toDate = (d: unknown) => (d instanceof Date ? d : new Date(String(d)));
 const now = new Date();
 
 // Load posts: exclude drafts and future-published posts
 type Post = CollectionEntry<"posts">;
-const posts: Post[] = await getCollection("posts", ({ data }) => {
-	if (data.draft) return false;
-	if (import.meta.env.PROD && new Date(data.published) > now) return false;
-	return true;
-});
+const posts: Post[] = await getCollection("posts", ({ data }) => isPostPublishable(data));
 
 // Choose featured posts per language: soonest upcoming featured; fallback = latest past featured
 function getItemLangFromSlug(slug: string, fmLang?: string): "en" | "ja" | "" {
@@ -51,7 +45,7 @@ const candJa = candidates.filter(
 	(p) => getItemLangFromSlug(p.slug, (p.data as any)?.lang) === "ja",
 );
 
-const eventDateOf = (p: Post) => toDate(p.data.eventDate ?? p.data.published);
+const eventDateOf = (p: Post) => getPostEventDate(p.data);
 
 const upcomingEn = candEn
 	.filter((p) => eventDateOf(p) >= now)
@@ -72,9 +66,9 @@ const featuredJa: Post | undefined = upcomingJa[0] ?? pastJa[0];
 export const getStaticPaths = (async ({ paginate }) => {
 	const allBlogPosts = await getSortedPosts();
 	const nowRef = new Date();
-	const upcomingOnly = allBlogPosts.filter(
-		(p) => new Date(String(p.data.eventDate ?? p.data.published)) >= nowRef,
-	);
+	const upcomingOnly = allBlogPosts
+		.filter((p) => getPostEventDate(p.data) >= nowRef)
+		.sort((a, b) => getPostEventDate(a.data).getTime() - getPostEventDate(b.data).getTime());
 	return paginate(upcomingOnly, { pageSize: PAGE_SIZE });
 }) satisfies GetStaticPaths;
 // https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
@@ -162,6 +156,8 @@ const studioExcerptHtml = getFeaturedDescription((studioEntry as any).body ?? ""
         <PostFeatured post={featuredJa} lang="ja" />
       </div>
     )}
+
+
 
   <section id="studio" class="scroll-mt-28 mb-8 p-6 rounded-lg bg-[var(--card-bg-featured)]">
     <!--bg-[var(--bth-card-bh-hover-alt)]-->
